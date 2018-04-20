@@ -2,7 +2,7 @@
 
 This is a simple program with graphical interface to analize English texts and create a dictionary for learning.
 
-It takes only UTF-8 encoding and following formats: txt, srt (subtitles fro movies) and fb2.
+It takes only UTF-8 encoding and following formats: txt, srt (subtitles for movies) and fb2.
 
 In the end of work you will get the list of words you don't know in text, sorted by first appearance in text.
 
