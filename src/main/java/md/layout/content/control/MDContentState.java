@@ -1,0 +1,5 @@
+package md.layout.content.control;
+
+public enum MDContentState {
+    HIDDEN, INITIAL, FILE_SELECTED, MD_FILE_SELECTED, ANALYSIS_IN_PROGRESS, ANALYSIS_COMPLETED, LIST_PROCESSED
+}
