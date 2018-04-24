@@ -1,6 +1,5 @@
 package md.layout.content.control;
 
-import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import md.layout.ISceneAddable;
@@ -9,7 +8,6 @@ import md.layout.background.impl.MDBackground;
 import md.layout.content.control.helper.ContentHelper;
 import md.layout.content.view.bottom.MDContentBottom;
 import md.layout.content.view.center.MDContentCenter;
-import md.layout.content.view.helper.FileHelper;
 import md.layout.content.view.top.MDContentTop;
 import md.settings.Settings;
 import md.shape.mdcenterlist.model.MDListLineModel;
@@ -17,15 +15,9 @@ import md.shape.mdcenterlist.model.MDListModel;
 import md.skin.colorschema.i.IMDColorSchema;
 import md.textanalysis.MyDict;
 import md.textanalysis.TextAnalyser;
-import md.textanalysis.helper.TextAnalyserHelper;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.Set;
 
 import static md.layout.content.control.MDContentState.*;
 

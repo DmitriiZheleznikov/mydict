@@ -1,7 +1,6 @@
 package md.textanalysis.helper;
 
 import md.textanalysis.totextconverter.LinesToTextConverterFactory;
-import md.textanalysis.totextconverter.impl.TxtLinesToTextConverter;
 
 import java.util.List;
 

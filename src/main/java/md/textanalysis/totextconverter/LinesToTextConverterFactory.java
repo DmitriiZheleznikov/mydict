@@ -1,6 +1,7 @@
 package md.textanalysis.totextconverter;
 
 import md.textanalysis.totextconverter.impl.Fb2LinesToTextConverter;
+import md.textanalysis.totextconverter.impl.MyDictLinesToTextConverter;
 import md.textanalysis.totextconverter.impl.SrtLinesToTextConverter;
 import md.textanalysis.totextconverter.impl.TxtLinesToTextConverter;
 
@@ -17,6 +18,7 @@ public class LinesToTextConverterFactory {
         MAP.put("txt", TxtLinesToTextConverter::new);
         MAP.put("srt", SrtLinesToTextConverter::new);
         MAP.put("fb2", Fb2LinesToTextConverter::new);
+        MAP.put("mydict", MyDictLinesToTextConverter::new);
     }
 
     public static ILinesToTextConverter get(String fileExtension, List<String> rawLinesToAnalyse) {

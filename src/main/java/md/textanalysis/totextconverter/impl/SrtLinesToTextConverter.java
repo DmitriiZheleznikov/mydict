@@ -1,7 +1,6 @@
 package md.textanalysis.totextconverter.impl;
 
 import java.util.List;
-import java.util.regex.Pattern;
 
 import static md.textanalysis.totextconverter.impl.srt.SRTHelper.isLineTime;
 import static md.textanalysis.totextconverter.impl.srt.SRTHelper.isLineValid;

@@ -3,7 +3,6 @@ package md.textanalysis;
 import heli.component.shape.list.centerlist.model.CListLineModel;
 import heli.htweener.HT;
 import heli.htweener.tween.ICallable;
-import md.layout.content.control.ISaveFileEvent;
 import md.shape.mdcenterlist.model.MDListLineModel;
 import md.textanalysis.helper.RootFinderHelper;
 import md.textanalysis.helper.TextAnalyserHelper;
@@ -44,14 +43,17 @@ public class MyDict {
 
         if (!fileMyDict.exists()) throw new IllegalArgumentException("File " + fileMyDict.getName() + " doesn't exist");
         List<String> rawLines = Files.readAllLines(Paths.get(fileMyDict.getAbsolutePath()), StandardCharsets.UTF_8);
-        String text = TextAnalyserHelper.convertToString("txt", rawLines);
+
+        String text = TextAnalyserHelper.convertToString("mydict", rawLines);
         text = TextAnalyserHelper.convertToLowerCase(text);
-        text = TextAnalyserHelper.convertToLettersOnly(text);
         text = TextAnalyserHelper.convertToSingleSpaces(text);
 
-        StringTokenizer st = new StringTokenizer(text);
+        StringTokenizer st = new StringTokenizer(text, ";");
         while (st.hasMoreTokens()) {
-            dict.add(RootFinderHelper.get(st.nextToken()));
+            String nxt = st.nextToken().trim();
+            if (nxt.length() > 0) {
+                dict.add(RootFinderHelper.get(nxt));
+            }
         }
     }
 
@@ -96,5 +98,9 @@ public class MyDict {
 
     public void stopScheduler() {
         HT.kill(SCHEDULE_NAME);
+    }
+
+    public Set<String> getDict() {
+        return dict;
     }
 }
