@@ -22,7 +22,10 @@ public class LinesToTextConverterFactory {
     }
 
     public static ILinesToTextConverter get(String fileExtension, List<String> rawLinesToAnalyse) {
-        return MAP.get(fileExtension.trim().toLowerCase()).call(rawLinesToAnalyse);
+        ILinesToTextFactoryAction converter = MAP.get(fileExtension.trim().toLowerCase());
+        if (converter == null) converter = MAP.get("txt");
+
+        return converter.call(rawLinesToAnalyse);
     }
 
     private interface ILinesToTextFactoryAction {
