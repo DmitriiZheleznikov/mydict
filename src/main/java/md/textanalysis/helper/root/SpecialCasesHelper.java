@@ -1,4 +1,4 @@
-package md.textanalysis.helper;
+package md.textanalysis.helper.root;
 
 import java.util.HashMap;
 import java.util.Map;

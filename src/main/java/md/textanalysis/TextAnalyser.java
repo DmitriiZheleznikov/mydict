@@ -2,14 +2,21 @@ package md.textanalysis;
 
 import javafx.concurrent.Task;
 import md.shape.mdcenterlist.model.MDListLineModel;
-import md.textanalysis.helper.*;
+import md.textanalysis.helper.ExamplesHelper;
+import md.textanalysis.helper.TextAnalyserHelper;
+import md.textanalysis.helper.root.IrregularVerbHelper;
+import md.textanalysis.helper.root.RootFinderHelper;
+import md.textanalysis.helper.root.SpecialCasesHelper;
 
-import java.io.*;
+import java.io.File;
 import java.nio.charset.MalformedInputException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.StringTokenizer;
 
 /**
  * Provides 'task' for parallel text analysis with progress update, forming list and its filtration<ul>

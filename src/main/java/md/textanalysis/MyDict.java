@@ -4,7 +4,6 @@ import heli.component.shape.list.centerlist.model.CListLineModel;
 import heli.htweener.HT;
 import heli.htweener.tween.ICallable;
 import md.shape.mdcenterlist.model.MDListLineModel;
-import md.textanalysis.helper.RootFinderHelper;
 import md.textanalysis.helper.TextAnalyserHelper;
 
 import java.io.File;
@@ -52,7 +51,7 @@ public class MyDict {
         while (st.hasMoreTokens()) {
             String nxt = st.nextToken().trim();
             if (nxt.length() > 0) {
-                dict.add(RootFinderHelper.get(nxt));
+                dict.add(TextAnalyserHelper.getRoot(nxt));
             }
         }
     }
@@ -64,7 +63,7 @@ public class MyDict {
         while (firstLine.prev() != null) firstLine = firstLine.prev();
 
         do {
-            if (dict.contains(RootFinderHelper.get(firstLine.getText()))) firstLine.disable();
+            if (dict.contains(TextAnalyserHelper.getRoot(firstLine.getText()))) firstLine.disable();
             firstLine = firstLine.next();
         } while (firstLine != null);
     }

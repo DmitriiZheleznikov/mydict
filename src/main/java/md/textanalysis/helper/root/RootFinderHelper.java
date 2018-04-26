@@ -1,4 +1,4 @@
-package md.textanalysis.helper;
+package md.textanalysis.helper.root;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,28 +50,6 @@ public class RootFinderHelper {
      * @return 'root' of word
      */
     public static String get(String word) {
-        String key = null;
-
-        String specialCase = SpecialCasesHelper.get(word);
-        if (specialCase != null) {
-            key = specialCase;
-        }
-
-        if (key == null) {
-            String irrVerbForm1 = IrregularVerbHelper.get(word);
-            if (irrVerbForm1 != null) {
-                key = irrVerbForm1;
-            }
-        }
-
-        if (key == null) {
-            key = RootFinderHelper.getRoot(word);
-        }
-
-        return key;
-    }
-
-    private static String getRoot(String word) {
         String root = getRootRecursive(word, 0);
         if (root.startsWith("'") || root.startsWith("-")) return root.substring(1);
         if (root.endsWith("'")) return root.substring(0, root.length()-1);
