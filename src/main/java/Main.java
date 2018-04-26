@@ -2,21 +2,28 @@ import heli.helper.ResourceHelper;
 import heli.htweener.Ease;
 import heli.htweener.HT;
 import heli.htweener.util.HTLoop;
-import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import md.layout.background.impl.MDBackground;
 import md.layout.background.impl.DefaultBackground;
-
+import md.layout.background.impl.MDBackground;
 import md.layout.content.control.MDContent;
 import md.settings.Settings;
 import md.skin.colorschema.ColorSchemaFactory;
 import md.skin.colorschema.ColorSchemas;
 import md.skin.colorschema.i.IMDColorSchema;
 
+/*
+TODO
++1. MyDict new converter
+2. RootFinderHelper in TextAnalyser duplicates logic -think how to fix and necessity
+3. TextAnalyser new approach with knowing current position in string
+4. New approach in example finder (with current position)
+5. Phrasal Verbs to be added to TextAnalyser
+6. PhrasalVerbHelper to use resource with phrases instead of hardcoding
+ */
 public class Main extends Application {
     private static final double APP_WIDTH = 16*70;
     private static final double APP_HEIGHT = 9*70;

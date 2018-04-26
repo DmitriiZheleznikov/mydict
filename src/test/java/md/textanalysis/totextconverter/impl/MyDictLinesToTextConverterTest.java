@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MyDictLinesToTextConverterTest {
     private static final List<String> INPUT_LIST = new ArrayList<>(3);
-    private static final String EXPECTED = "test ; ssf ;sfsdfsd;snsf'kk sflkjsf;;;;;;;;;;";
+    private static final String EXPECTED = "test ; ssf ;sfsd-fsd;snsf'kk sflkjsf;;;;;;;;;;";
 
     static {
-        INPUT_LIST.add(" test , ssf ;sfsdfsd.");
+        INPUT_LIST.add(" test , ssf ;sfsd-fsd.");
         INPUT_LIST.add("   snsf'kk sflkjsf");
         INPUT_LIST.add("0923092349");
     }

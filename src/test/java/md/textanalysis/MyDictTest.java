@@ -14,7 +14,7 @@ class MyDictTest {
     static {
         EXPECTED.add("test");
         EXPECTED.add("ssf");
-        EXPECTED.add("sfsdfsd");
+        EXPECTED.add("sfsd-fsd");
         EXPECTED.add("snsf'kk sflkjsf");
     }
 
