@@ -19,10 +19,10 @@ import md.skin.colorschema.i.IMDColorSchema;
 TODO
 +1. MyDict new converter
 +2. RootFinderHelper and TextAnalyser duplicates logic -think how to fix and necessity
-3. TextAnalyser new approach with knowing current position in string
-4. New approach in example finder (with current position)
++3. TextAnalyser new approach with knowing current position in string
++4. New approach in example finder (with current position)
 5. Phrasal Verbs to be added to TextAnalyser
-6. PhrasalVerbHelper to use resource with phrases instead of hardcoding
++6. PhrasalVerbHelper to use resource with phrases instead of hardcoding
  */
 public class Main extends Application {
     private static final double APP_WIDTH = 16*70;

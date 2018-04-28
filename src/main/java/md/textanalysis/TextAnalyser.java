@@ -34,7 +34,7 @@ import java.util.StringTokenizer;
  */
 abstract public class TextAnalyser extends Task<Void> {
     private static final int MAX_WORK = 100;
-    private static final double AVERAGE_WORD_LENGTH = 4.646140999827917;  //Calculated value on big file
+    private static final int MIN_WORD_LENGTH = 3;
     private File fileToAnalyse;
     private MyDict myDict;
     private String rawTextToAnalyse;
@@ -86,8 +86,8 @@ abstract public class TextAnalyser extends Task<Void> {
             String textToAnalyse = TextAnalyserHelper.convertToLettersOnly(lowerTextToAnalyse);
             updateProgress(5, MAX_WORK);
 
-            textToAnalyse = TextAnalyserHelper.convertToSingleSpaces(textToAnalyse);
-            updateProgress(6, MAX_WORK);
+//            textToAnalyse = TextAnalyserHelper.convertToSingleSpaces(textToAnalyse);
+//            updateProgress(6, MAX_WORK);
 
             firstModelLine = convertToModel(textToAnalyse);
             myDict.applyFilterTo(firstModelLine);
@@ -104,19 +104,31 @@ abstract public class TextAnalyser extends Task<Void> {
         return null;
     }
 
-    private MDListLineModel convertToModel(String textToConvert) {
-        StringTokenizer st = new StringTokenizer(textToConvert);
+    /*
+       Have:
+       1. lower text without delimiters (except spaces) = textToAnalyse
+       2. lower original text = lowerTextToAnalyse
+       3. original text = rawTextToAnalyse
+       Reason:
+       1. is used for tokenizer and search words
+       2. is used for searching word position in the original text
+       3. is used for taking example
+     */
+    private MDListLineModel convertToModel(String textToAnalyse) {
+        StringTokenizer st = new StringTokenizer(textToAnalyse);
         double wordsCount = st.countTokens();
         double i = 0;
         Map<String, MDListLineModel> map = new HashMap<>((int)wordsCount);
         MDListLineModel lastLine = null;
+        int curPosInOriginalText = 0;
 
         while (st.hasMoreTokens()) {
             String word = st.nextToken();
             String key = null;
             String wordToUse = word;
+            curPosInOriginalText = lowerTextToAnalyse.indexOf(word, curPosInOriginalText+1);
 
-            if (word.length() < 3) continue;
+            if (word.length() < MIN_WORD_LENGTH) continue;
 
             String specialCase = SpecialCasesHelper.get(word);
             if (specialCase != null) {
@@ -139,13 +151,13 @@ abstract public class TextAnalyser extends Task<Void> {
 
             MDListLineModel line = map.get(key);
             if (line == null) {
-                String example = ExamplesHelper.get(word, 1, lowerTextToAnalyse, rawTextToAnalyse);
+                String example = ExamplesHelper.getExample(curPosInOriginalText, rawTextToAnalyse);
                 line = new MDListLineModel(wordToUse, example, lastLine);
                 lastLine = line;
                 if (this.firstModelLine == null) this.firstModelLine = line;
             } else {
                 if (line.getCount() < 2) {
-                    String example = ExamplesHelper.get(word, 2, lowerTextToAnalyse, rawTextToAnalyse);
+                    String example = ExamplesHelper.getExample(curPosInOriginalText, rawTextToAnalyse);
                     line.addExample(example);
                     if (line.getWord().length() < wordToUse.length()) {
                         line.setWord(wordToUse);
@@ -154,7 +166,7 @@ abstract public class TextAnalyser extends Task<Void> {
                 line.increaseCount();
             }
             map.put(key, line);
-            updateProgress((++i/wordsCount)*99 + 6, MAX_WORK);
+            updateProgress((++i/wordsCount)*99 + 5, MAX_WORK);
         }
 
         return firstModelLine;

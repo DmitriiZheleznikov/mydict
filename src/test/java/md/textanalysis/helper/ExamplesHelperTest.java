@@ -2,7 +2,7 @@ package md.textanalysis.helper;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ExamplesHelperTest {
     private static final String RAW_TEXT = "(CLOCKS TICKING) ANNOUNCER: October is inventory time, so right now, " +
@@ -18,15 +18,17 @@ class ExamplesHelperTest {
 
     @Test
     void get() {
+        int i = LOWER_TEXT.indexOf("officials");
         assertEquals("ley. That's Statler Toyota in downtown Hill Valley. NEWSCASTER: The Senate is expected to " +
                 "vote on this today. In other news, officials at the Pacific Nuclear research facility have denied the " +
                 "rumor that a case of missing plutonium was in fact stolen ",
-                ExamplesHelper.get("officials", 1, LOWER_TEXT, RAW_TEXT));
+                ExamplesHelper.get(i, RAW_TEXT));
 
+        i = LOWER_TEXT.indexOf("officials", i+1);
         assertEquals("eir vault two weeks ago. A Libyan terrorist group had claimed responsibility for the alleged " +
-                        "theft. (ALARM RINGING) However, officials now attribute the discrepancy to a simple clerical error. " +
-                        "The FBI, which is investigating the matter, had no commen",
-                ExamplesHelper.get("officials", 2, LOWER_TEXT, RAW_TEXT));
+                "theft. (ALARM RINGING) However, officials now attribute the discrepancy to a simple clerical error. " +
+                "The FBI, which is investigating the matter, had no commen",
+                ExamplesHelper.get(i, RAW_TEXT));
     }
 
 }
