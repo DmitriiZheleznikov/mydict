@@ -4,6 +4,7 @@ import heli.component.shape.list.centerlist.model.CListLineModel;
 import heli.htweener.HT;
 import heli.htweener.tween.ICallable;
 import md.shape.mdcenterlist.model.MDListLineModel;
+import md.textanalysis.callback.IProgressFunction;
 import md.textanalysis.helper.TextAnalyserHelper;
 
 import java.io.File;
@@ -37,6 +38,10 @@ public class MyDict {
     }
 
     public void init() throws IOException {
+        init(IProgressFunction.NULL);
+    }
+
+    public void init(IProgressFunction progressFunction) throws IOException {
         dict = new HashSet<>();
         if (fileMyDict == null) return;
 
@@ -54,6 +59,7 @@ public class MyDict {
                 dict.add(TextAnalyserHelper.getRoot(nxt));
             }
         }
+        progressFunction.step(1);
     }
 
     public void applyFilterTo(MDListLineModel line) {
@@ -101,5 +107,12 @@ public class MyDict {
 
     public Set<String> getDict() {
         return dict;
+    }
+
+    @Override
+    public String toString() {
+        return "MyDict{" +
+                "dict=" + dict +
+                '}';
     }
 }

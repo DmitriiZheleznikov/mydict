@@ -5,12 +5,23 @@ import md.textanalysis.helper.root.RootFinderHelper;
 import md.textanalysis.helper.root.SpecialCasesHelper;
 import md.textanalysis.totextconverter.LinesToTextConverterFactory;
 
+import java.io.File;
 import java.util.List;
 
 /**
  * Useful functions for text analysis
  */
 public class TextAnalyserHelper {
+
+    public static String getFileExt(File file) {
+        String fileName = file.getName();
+        int iDot = fileName.lastIndexOf(".");
+        if (iDot == -1 || iDot == fileName.length()) {
+            return "txt";
+        }
+        return fileName.substring(iDot+1);
+    }
+
     public static String convertToString(String ext, List<String> rawLinesToAnalyse) {
         if (ext == null || ext.length() == 0) {
             ext = "txt";

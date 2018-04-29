@@ -14,16 +14,8 @@ import md.settings.Settings;
 import md.skin.colorschema.ColorSchemaFactory;
 import md.skin.colorschema.ColorSchemas;
 import md.skin.colorschema.i.IMDColorSchema;
+import md.textanalysis.TextAnalyser;
 
-/*
-TODO
-+1. MyDict new converter
-+2. RootFinderHelper and TextAnalyser duplicates logic -think how to fix and necessity
-+3. TextAnalyser new approach with knowing current position in string
-+4. New approach in example finder (with current position)
-5. Phrasal Verbs to be added to TextAnalyser
-+6. PhrasalVerbHelper to use resource with phrases instead of hardcoding
- */
 public class Main extends Application {
     private static final double APP_WIDTH = 16*70;
     private static final double APP_HEIGHT = 9*70;
@@ -43,6 +35,7 @@ public class Main extends Application {
         setupResizeListeners(stage, scene, bg, content);
 
         stage.show();
+        TextAnalyser.init();
         wa();
 
         mainLoop = new HTLoop();

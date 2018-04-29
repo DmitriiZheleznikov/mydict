@@ -13,6 +13,6 @@ public class MyDictLinesToTextConverter extends AbstractLinesToTextConverter {
     protected String processLine(String line) {
         if (line == null || line.trim().length() == 0) return "";
 
-        return line.replaceAll("[^a-zA-Z' -]", ";");
+        return line.replaceAll("[^a-zA-Z' -]", ";") + ";";
     }
 }

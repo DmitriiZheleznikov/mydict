@@ -2,19 +2,12 @@ package md.textanalysis;
 
 import javafx.concurrent.Task;
 import md.shape.mdcenterlist.model.MDListLineModel;
-import md.textanalysis.helper.ExamplesHelper;
-import md.textanalysis.helper.TextAnalyserHelper;
-import md.textanalysis.helper.root.IrregularVerbHelper;
-import md.textanalysis.helper.root.RootFinderHelper;
-import md.textanalysis.helper.root.SpecialCasesHelper;
+import md.textanalysis.helper.root.PhrasalVerbHelper;
+import md.textanalysis.wordanalyse.WordAnalyserFacade;
 
 import java.io.File;
 import java.nio.charset.MalformedInputException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -35,17 +28,23 @@ import java.util.StringTokenizer;
 abstract public class TextAnalyser extends Task<Void> {
     private static final int MAX_WORK = 100;
     private static final int MIN_WORD_LENGTH = 3;
-    private File fileToAnalyse;
     private MyDict myDict;
-    private String rawTextToAnalyse;
-    private String lowerTextToAnalyse;
+    private TextToAnalyse textToAnalyse;
     private MDListLineModel firstModelLine;
     private Exception exception;
+    private WordAnalyserFacade wordAnalyserFacade;
+
+    private double workDone;
+
+    public static void init() throws Exception {
+        PhrasalVerbHelper.init();
+    }
 
     public TextAnalyser(File fileToAnalyse, MyDict myDict) {
-        this.fileToAnalyse = fileToAnalyse;
+        this.textToAnalyse = new TextToAnalyse(fileToAnalyse);
         this.firstModelLine = null;
         this.myDict = myDict;
+        this.wordAnalyserFacade = new WordAnalyserFacade();
     }
 
     abstract protected void successAction(MDListLineModel mdListLineModel);
@@ -63,36 +62,41 @@ abstract public class TextAnalyser extends Task<Void> {
         failAction(exception);
     }
 
+    private void addProgress(double add) {
+        workDone += add;
+        updateProgress(workDone, MAX_WORK);
+    }
+
+    private void addProgress(double wordsCount, double workDoneOnStart) {
+        addProgress((1/wordsCount)*(MAX_WORK-workDoneOnStart));
+    }
+
+    private void increaseProgress() {
+        updateProgress(++workDone, MAX_WORK);
+    }
+
+    private void zeroProgress() {
+        this.workDone = -1;
+        increaseProgress();
+    }
+
+    private void finishProgress() {
+        this.workDone = MAX_WORK;
+        updateProgress(MAX_WORK, MAX_WORK);
+    }
+
     @Override
     protected Void call() throws Exception {
-        updateProgress(0, MAX_WORK);
         try {
-            if (!fileToAnalyse.exists()) {
-                throw new IllegalArgumentException("File " + fileToAnalyse.getName() + " doesn't exist");
-            }
+            zeroProgress();
 
-            myDict.init();
-            updateProgress(1, MAX_WORK);
-
-            List<String> rawLinesToAnalyse = Files.readAllLines(Paths.get(fileToAnalyse.getAbsolutePath()), StandardCharsets.UTF_8);
-            updateProgress(2, MAX_WORK);
-
-            rawTextToAnalyse = TextAnalyserHelper.convertToString(getFileExt(fileToAnalyse), rawLinesToAnalyse);
-            updateProgress(3, MAX_WORK);
-
-            lowerTextToAnalyse = TextAnalyserHelper.convertToLowerCase(rawTextToAnalyse);
-            updateProgress(4, MAX_WORK);
-
-            String textToAnalyse = TextAnalyserHelper.convertToLettersOnly(lowerTextToAnalyse);
-            updateProgress(5, MAX_WORK);
-
-//            textToAnalyse = TextAnalyserHelper.convertToSingleSpaces(textToAnalyse);
-//            updateProgress(6, MAX_WORK);
+            myDict.init(i -> increaseProgress());
+            textToAnalyse.init(i -> increaseProgress());
 
             firstModelLine = convertToModel(textToAnalyse);
             myDict.applyFilterTo(firstModelLine);
 
-            updateProgress(MAX_WORK, MAX_WORK);
+            finishProgress();
         } catch (MalformedInputException e) {
             this.exception = new IllegalArgumentException("Encoding of file is not UTF-8", e);
             throw exception;
@@ -104,80 +108,47 @@ abstract public class TextAnalyser extends Task<Void> {
         return null;
     }
 
-    /*
-       Have:
-       1. lower text without delimiters (except spaces) = textToAnalyse
-       2. lower original text = lowerTextToAnalyse
-       3. original text = rawTextToAnalyse
-       Reason:
-       1. is used for tokenizer and search words
-       2. is used for searching word position in the original text
-       3. is used for taking example
-     */
-    private MDListLineModel convertToModel(String textToAnalyse) {
-        StringTokenizer st = new StringTokenizer(textToAnalyse);
+    private MDListLineModel convertToModel(TextToAnalyse textToAnalyse) {
+        StringTokenizer st = new StringTokenizer(textToAnalyse.getTextLowerNoDelimiters());
         double wordsCount = st.countTokens();
-        double i = 0;
         Map<String, MDListLineModel> map = new HashMap<>((int)wordsCount);
         MDListLineModel lastLine = null;
-        int curPosInOriginalText = 0;
+        double workDoneOnStart = workDone;
+        AContext context = new AContext(textToAnalyse);
 
         while (st.hasMoreTokens()) {
-            String word = st.nextToken();
-            String key = null;
-            String wordToUse = word;
-            curPosInOriginalText = lowerTextToAnalyse.indexOf(word, curPosInOriginalText+1);
+            context.newWord(st.nextToken());
 
-            if (word.length() < MIN_WORD_LENGTH) continue;
-
-            String specialCase = SpecialCasesHelper.get(word);
-            if (specialCase != null) {
-                key = specialCase;
-                wordToUse = specialCase;
+            if (context.getWordOriginal().length() < MIN_WORD_LENGTH) {
+                addProgress(wordsCount, workDoneOnStart);
+                continue;
             }
 
-            if (key == null) {
-                String irrVerbForm1 = IrregularVerbHelper.get(word);
-                if (irrVerbForm1 != null) {
-                    key = irrVerbForm1;
-                    wordToUse = irrVerbForm1;
-                }
-            }
+            wordAnalyserFacade.processSpecialCases(context);
+            wordAnalyserFacade.processIrregularVerbs(context);
+            wordAnalyserFacade.processPhrasalVerbs(context);
+            wordAnalyserFacade.processFinderRoots(context);
+            wordAnalyserFacade.processExamples(context);
 
-            if (key == null) {
-                key = RootFinderHelper.get(word);
-                wordToUse = word;
-            }
-
-            MDListLineModel line = map.get(key);
+            MDListLineModel line = map.get(context.getWordRoot());
             if (line == null) {
-                String example = ExamplesHelper.getExample(curPosInOriginalText, rawTextToAnalyse);
-                line = new MDListLineModel(wordToUse, example, lastLine);
+                line = new MDListLineModel(context.getWordToUse(), context.getExample(), lastLine);
                 lastLine = line;
                 if (this.firstModelLine == null) this.firstModelLine = line;
+                map.put(context.getWordRoot(), line);
             } else {
                 if (line.getCount() < 2) {
-                    String example = ExamplesHelper.getExample(curPosInOriginalText, rawTextToAnalyse);
-                    line.addExample(example);
-                    if (line.getWord().length() < wordToUse.length()) {
-                        line.setWord(wordToUse);
-                    }
+                    line.addExample(context.getExample());
+                }
+                if (line.getWord().length() < context.getWordToUse().length()) {
+                    line.setWord(context.getWordToUse());
                 }
                 line.increaseCount();
             }
-            map.put(key, line);
-            updateProgress((++i/wordsCount)*99 + 5, MAX_WORK);
+
+            addProgress(wordsCount, workDoneOnStart);
         }
 
         return firstModelLine;
-    }
-
-    private String getFileExt(File file) {
-        String fileName = file.getName();
-        int iDot = fileName.lastIndexOf(".");
-        if (iDot == -1 || iDot == fileName.length()) {
-            return "txt";
-        }
-        return fileName.substring(iDot+1);
     }
 }

@@ -21,19 +21,13 @@ public class PhrasalVerbHelper {
     private static final int WORDS_IN_LINE_COUNT = 5;
     public static final HashMap<String, List<PhVerb>> PH_VERB_MAP = new HashMap<>();
 
-    public static String get(String word, String text) throws IOException, URISyntaxException {
-        String key = IrregularVerbHelper.get(word);
-        if (key == null) key = TextAnalyserHelper.getRoot(key);
-        return get(key, word, text);
-    }
-
-    public static String get(String key, String word, String text) throws IOException, URISyntaxException {
-        init();
-        List<PhVerb> phVerbs = PH_VERB_MAP.get(key);
+    public static String get(int wordPos, String root, String word, String text) {
+        root = ((root == null) ? findRoot(word) : root);
+        List<PhVerb> phVerbs = PH_VERB_MAP.get(root);
 
         if (phVerbs != null) {
             PhVerb phVerbToUse = null;
-            String line = calcLine(word, text);//TODO find with start point!!!
+            String line = calcLine(wordPos, text);
             for (PhVerb phVerb : phVerbs) {
                 if (line.contains(phVerb.getPreposition())) {
                     if (phVerbToUse == null || phVerbToUse.getPreposition().length() < phVerb.getPreposition().length()) {
@@ -47,13 +41,18 @@ public class PhrasalVerbHelper {
         return null;
     }
 
-    /** Finds line with pointed word in text as: word + 3 more words */
-    private static String calcLine(String word, String text) {
-        int wordStart = text.indexOf(word);
+    private static String findRoot(String word) {
+        String root = IrregularVerbHelper.get(word);
+        if (root == null) root = TextAnalyserHelper.getRoot(word);
+        return root;
+    }
+
+    /** Finds line with pointed word in text as: word + few more words */
+    private static String calcLine(int wordPos, String text) {
         int spacesCount = 0;
         StringBuilder line = new StringBuilder();
 
-        for (int i = wordStart; i < text.length(); i++) {
+        for (int i = wordPos; i < text.length(); i++) {
             char ch = text.charAt(i);
             if (ch == ' ') spacesCount++;
             if (spacesCount == WORDS_IN_LINE_COUNT) break;
@@ -63,7 +62,7 @@ public class PhrasalVerbHelper {
         return line.toString();
     }
 
-    private static void init() throws IOException, URISyntaxException {
+    public static void init() throws IOException, URISyntaxException {
         if (PH_VERB_MAP.isEmpty()) {
             List<String> phVerbs = ResourceHelper.readTextFile(PhrasalVerbHelper.class, "/resources/data/PhrasalVerbs.list");//Files.readAllLines(Paths.get(), StandardCharsets.UTF_8);
             for (String phVerb : phVerbs) {
@@ -73,7 +72,6 @@ public class PhrasalVerbHelper {
     }
 
     private static void initPhVerb(String verb, String preposition) {
-        System.out.println("\""+verb+"\", \""+preposition+"\"");
         String key = TextAnalyserHelper.getRoot(verb);
         List<PhVerb> phVerbs = PH_VERB_MAP.computeIfAbsent(key, k -> new ArrayList<>());
         phVerbs.add(new PhVerb(verb, preposition));

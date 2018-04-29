@@ -1,2 +1,2 @@
 #!/bin/bash 
-java -jar mydict-1.0.jar
+java -jar mydict-1.1.jar
