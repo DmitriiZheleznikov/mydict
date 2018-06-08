@@ -7,9 +7,9 @@ public class CListModel {
     /** Size is required for window calculation and depends on view. Two of lines are usually invisible (one before visible list and one after) */
     public static final int SIZE = 7;
 
-    /** Very first element, in spite of its status (enabled/disabled) */
+    /** Very first text, in spite of its status (enabled/disabled) */
     private CListLineModel first;
-    /** Current element list is staying it */
+    /** Current text list is staying it */
     private CListLineModel current;
     /** Number of active (enabled) lines */
     private int length;
@@ -26,13 +26,13 @@ public class CListModel {
             return;
         }
 
-        //Search first element
+        //Search first text
         first = any;
         while (first.prev() != null) {
             first = first.prev();
         }
 
-        //Search last element and compute count
+        //Search last text and compute count
         lengthTotal = 1;
         length = first.isEnabled() ? 1 : 0;
         CListLineModel last = first;
@@ -42,7 +42,7 @@ public class CListModel {
             lengthTotal++;
         }
 
-        //Current element
+        //Current text
         initCurrent();
     }
 

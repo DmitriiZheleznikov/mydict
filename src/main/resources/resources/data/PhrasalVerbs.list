@@ -1,3 +1,7 @@
+#Phrasal verbs list: one phrasal verb on one line are expected
+#System detects them in this case as well 'bring him along' ('him' inside 'bring along')
+#Also converts all forms to form 1 (both regular and irregular verbs)
+
 abide by
 account for
 act up
@@ -197,6 +201,7 @@ fill in
 fill in for
 fill out
 fill up
+filter out
 find out
 fix up
 focus on
@@ -412,6 +417,7 @@ run off
 run out of
 run to
 save up
+screw over
 see about
 see off
 see out

@@ -1,0 +1,42 @@
+#'Root' finding process simply deletes parts of given word from text to detect common part, it's not real root of word, but covers lots of cases
+#Key (END, END_CAUSES_ANOTHER_ITERATION, BEGIN) and value followed by sing '=' are expected
+
+#Ends that supposed to be deleted (order is important)
+END=iness
+END=ness
+END=less
+END=full
+END=est
+END=ing
+END='ll
+END=’ll
+END='ve
+END=’ve
+END='em
+END=’em
+END=n't
+END=n’t
+END='re
+END=’re
+END=ed
+END=er
+END=es
+END=ly
+END='as
+END=’as
+END='s
+END=’s
+END='d
+END=’d
+END=e
+END=s
+
+#Ends that will cause one more iteration of "ends" processing (no ordering required)
+END_CAUSES_ANOTHER_ITERATION=s
+
+#Begins to be deleted from word (order is important)
+BEGIN=un
+BEGIN=dis
+
+#Replace ends
+END_REPLACE=tion t

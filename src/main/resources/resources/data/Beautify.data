@@ -1,0 +1,29 @@
+#Cut begins for words that will be deleted for representation in UI list
+#Order is taken into account
+CUT_BEGIN='
+CUT_BEGIN=’
+CUT_BEGIN=‘
+
+#Cut ends for words that will be deleted for representation in UI list
+#Order is taken into account
+CUT_END='ll
+CUT_END=’ll
+CUT_END='ve
+CUT_END=’ve
+CUT_END='em
+CUT_END=’em
+CUT_END=n't
+CUT_END=n’t
+CUT_END='re
+CUT_END=’re
+CUT_END='as
+CUT_END=’as
+CUT_END='s
+CUT_END=’s
+CUT_END='d
+CUT_END=’d
+CUT_END='
+CUT_END=’
+
+#Replace ends
+END_REPLACE=ts t

@@ -3,9 +3,9 @@ package heli.component.shape.list.centerlist.view.effect.scroll.impl;
 import heli.component.shape.list.centerlist.model.CListModelOperation;
 import heli.component.shape.list.centerlist.model.CListModelWindow;
 import heli.component.shape.list.centerlist.view.CListLineView;
+import heli.component.shape.list.centerlist.view.CListLineViewFuturePosition;
 import heli.component.shape.list.centerlist.view.CListView;
 import heli.component.shape.list.centerlist.view.effect.scroll.IScrollEffect;
-import heli.component.shape.list.centerlist.view.CListLineViewFuturePosition;
 import heli.htweener.Ease;
 import heli.htweener.HT;
 import heli.htweener.property.function.IPropFunction;
@@ -27,16 +27,18 @@ public class CommonScrollEffect implements IScrollEffect {
 
     @Override
     public void perform(CListView listView, CListModelWindow modelWindow, CListModelOperation op, ICallable onComplete) {
-        listView.setLocked(true);
-        listView.calcWindow(modelWindow);
+        if (listView.isVisible()) {
+            listView.setLocked(true);
+            listView.calcWindow(modelWindow);
 
-        performInternal(listView, modelWindow, op);
+            performInternal(listView, modelWindow, op);
 
-        HT.to(onCompleteTime()).onComplete(() -> {
-            listView.locate(modelWindow);
-            complete(onComplete);
-            listView.setLocked(false);
-        });
+            HT.to(onCompleteTime()).onComplete(() -> {
+                listView.locate(modelWindow);
+                complete(onComplete);
+                listView.setLocked(false);
+            });
+        }
     }
 
     protected void performInternal(CListView listView, CListModelWindow modelWindow, CListModelOperation op) {

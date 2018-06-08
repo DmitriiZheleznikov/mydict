@@ -12,6 +12,7 @@ public class SlideUpAppearEffect extends AbstractAppearEffect {
     public void appear(CListView listView, CListModelWindow window, ICallable onComplete) {
         listView.locate(window);
         saveState(listView);
+        listView.setVisible(false);
 
         for (CListLineView line : listView.lines()) {
             line.setY(line.getY() + listView.getBgRect().getHeight()*1.5);
@@ -39,13 +40,14 @@ public class SlideUpAppearEffect extends AbstractAppearEffect {
         listView.clip();
 
         for (CListLineView line : listView.lines()) {
-            if (line.isActive()) HT.to(line, 400).prop(1, 0, lineCoreOpacity);
+            if (line.isActive())
+                HT.to(line, 400).prop(1, 0, lineCoreOpacity);
         }
 
         for (int i = CListView.SIZE-1; i >=0 ; i--) {
             HT.to(listView.lines()[i], 800 + (CListView.SIZE-i)*100, Ease.cubicIn, NAME).addY(listView.getBgRect().getHeight()*1.5)
                     .o(listView.lines()[i].getOpacity()/2);
-            finishTime = (CListView.SIZE-i)*100;
+            finishTime = Math.max(finishTime, (CListView.SIZE-i)*100);
         }
 
         HT.to(900+finishTime).onComplete(onComplete);

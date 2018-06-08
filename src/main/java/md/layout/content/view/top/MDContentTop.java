@@ -4,12 +4,12 @@ import heli.htweener.fx.ext.HRectangle;
 import heli.htweener.tweenable.ITweenableShape;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import md.layout.content.view.AbstractMDContentBase;
 import md.layout.content.control.ILoadFileEvent;
+import md.layout.content.view.AbstractMDContentBase;
 import md.shape.MDButton;
 import md.shape.MDText;
 import md.skin.colorschema.i.IMDColorSchema;
-import md.textanalysis.MyDict;
+import md.textanalysis.ctrl.MyDict;
 
 import static md.layout.content.view.helper.visibility.VisibilityHelper.Type.TOP;
 

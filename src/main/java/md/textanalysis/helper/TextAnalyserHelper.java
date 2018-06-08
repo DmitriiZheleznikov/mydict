@@ -1,17 +1,28 @@
 package md.textanalysis.helper;
 
-import md.textanalysis.helper.root.IrregularVerbHelper;
-import md.textanalysis.helper.root.RootFinderHelper;
-import md.textanalysis.helper.root.SpecialCasesHelper;
-import md.textanalysis.totextconverter.LinesToTextConverterFactory;
+import md.textanalysis.callback.IProgressFunction;
+import md.textanalysis.converter.ITextConverter;
+import md.textanalysis.converter.TextConverterFactory;
+import md.textanalysis.text.analyse.AnalyserFacade;
+import md.textanalysis.text.element.word.AbstractWord;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 /**
  * Useful functions for text analysis
  */
 public class TextAnalyserHelper {
+
+    public static void init() throws IOException, URISyntaxException {
+        init(IProgressFunction.NULL);
+    }
+
+    public static void init(IProgressFunction progressFunction) throws IOException, URISyntaxException {
+        AnalyserFacade.init(progressFunction);
+    }
 
     public static String getFileExt(File file) {
         String fileName = file.getName();
@@ -22,11 +33,13 @@ public class TextAnalyserHelper {
         return fileName.substring(iDot+1);
     }
 
-    public static String convertToString(String ext, List<String> rawLinesToAnalyse) {
+    public static List<AbstractWord> convertTextToWords(String ext, List<String> rawLinesToAnalyse) {
         if (ext == null || ext.length() == 0) {
             ext = "txt";
         }
-        return LinesToTextConverterFactory.get(ext, rawLinesToAnalyse).perform();
+        ITextConverter converter = TextConverterFactory.get(ext, rawLinesToAnalyse);
+        converter.perform();
+        return converter.getResult();
     }
 
     public static String convertToLowerCase(String textToConvert) {
@@ -37,29 +50,51 @@ public class TextAnalyserHelper {
         return textToConvert.replaceAll("([^a-z'-])", " ");
     }
 
+    public static String trimIfNeeded(String line) {
+        if (line == null || line.isEmpty()) return line;
+        if (line.charAt(0) == ' ' || line.charAt(line.length()-1) == ' ') {
+            return line.trim();
+        }
+        return line;
+    }
+
+    public static String lowerCaseIfNeeded(String line) {
+        if (line == null || line.isEmpty()) return line;
+        if (containsUpper(line)) {
+            return line.toLowerCase();
+        }
+        return line;
+    }
+
+    public static String singleSpacesIfNeeded(String line) {
+        if (line == null || line.isEmpty()) return line;
+        if (containsExtraSpaces(line)) {
+            return convertToSingleSpaces(line);
+        }
+        return line;
+    }
+
+    public static boolean containsUpper(String entity) {
+        return entity.matches(".*[A-Z].*");
+    }
+
+    public static boolean containsExtraSpaces(String entity) {
+        return entity.matches(".*  .*");
+    }
+
+    public static boolean isWord(String entity) {
+        return entity.matches("[\"A-Za-z'’-]+");
+    }
+
+    public static boolean isNumber(String entity) {
+        return entity.matches("[0-9]+");
+    }
+
     public static String convertToSingleSpaces(String textToConvert) {
         return textToConvert.replaceAll(" +", " ");
     }
 
     public static String getRoot(String word) {
-        String key = null;
-
-        String specialCase = SpecialCasesHelper.get(word);
-        if (specialCase != null) {
-            key = specialCase;
-        }
-
-        if (key == null) {
-            String irrVerbForm1 = IrregularVerbHelper.get(word);
-            if (irrVerbForm1 != null) {
-                key = irrVerbForm1;
-            }
-        }
-
-        if (key == null) {
-            key = RootFinderHelper.get(word);
-        }
-
-        return key;
+        return AnalyserFacade.getWordRoot(word);
     }
 }

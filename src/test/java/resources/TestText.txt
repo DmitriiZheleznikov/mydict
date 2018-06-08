@@ -6,3 +6,4 @@ It saves our time
 4. During removing a word you will automatically add it to the "MyDictionary" file
 5. Programm can save state so you can close it and return later
 It saves it up several times )))
+One more phrasal verbs test: bring him along.

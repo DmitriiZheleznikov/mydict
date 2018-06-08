@@ -13,8 +13,8 @@ import md.settings.Settings;
 import md.shape.mdcenterlist.model.MDListLineModel;
 import md.shape.mdcenterlist.model.MDListModel;
 import md.skin.colorschema.i.IMDColorSchema;
-import md.textanalysis.MyDict;
 import md.textanalysis.TextAnalyser;
+import md.textanalysis.ctrl.MyDict;
 
 import java.io.File;
 import java.io.IOException;

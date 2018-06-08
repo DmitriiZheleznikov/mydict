@@ -1,1 +1,1 @@
-java -jar mydict-1.1.jar
+java -jar -Xmx400M mydict-1.2.jar

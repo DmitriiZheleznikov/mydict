@@ -2,14 +2,17 @@ package md.textanalysis;
 
 import javafx.concurrent.Task;
 import md.shape.mdcenterlist.model.MDListLineModel;
-import md.textanalysis.helper.root.PhrasalVerbHelper;
-import md.textanalysis.wordanalyse.WordAnalyserFacade;
+import md.textanalysis.ctrl.AContext;
+import md.textanalysis.ctrl.MyDict;
+import md.textanalysis.ctrl.TextToAnalyse;
+import md.textanalysis.helper.TextAnalyserHelper;
+import md.textanalysis.text.analyse.AnalyserFacade;
+import md.textanalysis.text.element.word.AbstractWord;
 
 import java.io.File;
 import java.nio.charset.MalformedInputException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringTokenizer;
 
 /**
  * Provides 'task' for parallel text analysis with progress update, forming list and its filtration<ul>
@@ -20,31 +23,24 @@ import java.util.StringTokenizer;
  *     <li>remove everything except words divided by spaces</li>
  *     <li>get words (no filtration)</li>
  *     <li>union irregular verbs</li>
- *     <li>union words by root</li>
+ *     <li>union words by impl</li>
  *     <li>find examples</li>
  *     <li>filter by MyDict</li>
  * </ul>
  */
 abstract public class TextAnalyser extends Task<Void> {
     private static final int MAX_WORK = 100;
-    private static final int MIN_WORD_LENGTH = 3;
     private MyDict myDict;
     private TextToAnalyse textToAnalyse;
     private MDListLineModel firstModelLine;
     private Exception exception;
-    private WordAnalyserFacade wordAnalyserFacade;
 
     private double workDone;
-
-    public static void init() throws Exception {
-        PhrasalVerbHelper.init();
-    }
 
     public TextAnalyser(File fileToAnalyse, MyDict myDict) {
         this.textToAnalyse = new TextToAnalyse(fileToAnalyse);
         this.firstModelLine = null;
         this.myDict = myDict;
-        this.wordAnalyserFacade = new WordAnalyserFacade();
     }
 
     abstract protected void successAction(MDListLineModel mdListLineModel);
@@ -89,64 +85,87 @@ abstract public class TextAnalyser extends Task<Void> {
     protected Void call() throws Exception {
         try {
             zeroProgress();
+            //System.out.println("zeroProgress end");
 
-            myDict.init(i -> increaseProgress());
-            textToAnalyse.init(i -> increaseProgress());
+            TextAnalyserHelper.init(this::increaseProgress);
+            //System.out.println("TextAnalyserHelper.init end");
+
+            myDict.init(this::increaseProgress);
+            //System.out.println("myDict.init end");
+
+            textToAnalyse.init(this::increaseProgress);
+            //System.out.println("textToAnalyse.init end");
+
+            initAllWords();
+            //System.out.println("initAllWords end");
 
             firstModelLine = convertToModel(textToAnalyse);
-            myDict.applyFilterTo(firstModelLine);
+            //System.out.println("convertToModel end");
 
             finishProgress();
         } catch (MalformedInputException e) {
             this.exception = new IllegalArgumentException("Encoding of file is not UTF-8", e);
             throw exception;
         } catch (Exception e) {
-            //e.printStackTrace();
+            e.printStackTrace();
             this.exception = e;
             throw e;
         }
         return null;
     }
 
+    private void initAllWords() {
+        double workDoneOnStart = workDone;
+        double wordsCount = textToAnalyse.getEntities().size();
+        AbstractWord entity;
+        for (int i = 0; i < textToAnalyse.getEntities().size(); i++) {
+            entity = textToAnalyse.getEntities().get(i);
+            entity.init();
+            addProgress(wordsCount*2, workDoneOnStart);
+        }
+    }
+
     private MDListLineModel convertToModel(TextToAnalyse textToAnalyse) {
-        StringTokenizer st = new StringTokenizer(textToAnalyse.getTextLowerNoDelimiters());
-        double wordsCount = st.countTokens();
+        double wordsCount = textToAnalyse.calcCountValidEntities();
         Map<String, MDListLineModel> map = new HashMap<>((int)wordsCount);
         MDListLineModel lastLine = null;
         double workDoneOnStart = workDone;
         AContext context = new AContext(textToAnalyse);
 
-        while (st.hasMoreTokens()) {
-            context.newWord(st.nextToken());
+        AbstractWord entity;
+        for (int i = 0; i < textToAnalyse.getEntities().size(); i++) {
+            entity = textToAnalyse.getEntities().get(i);
+            if (!entity.isValid()) continue;
 
-            if (context.getWordOriginal().length() < MIN_WORD_LENGTH) {
-                addProgress(wordsCount, workDoneOnStart);
-                continue;
+            context.nextWord(i);
+            AnalyserFacade.findAndSetSpecialCases(context);
+            AnalyserFacade.findAndSetPhrasalVerb(context);
+
+            MDListLineModel line = map.get(context.getRoot());
+            if (line == null || line.getCount() < 2) {
+                AnalyserFacade.findAndSetExample(context);
             }
 
-            wordAnalyserFacade.processSpecialCases(context);
-            wordAnalyserFacade.processIrregularVerbs(context);
-            wordAnalyserFacade.processPhrasalVerbs(context);
-            wordAnalyserFacade.processFinderRoots(context);
-            wordAnalyserFacade.processExamples(context);
+            AnalyserFacade.beautifyWord(context);
 
-            MDListLineModel line = map.get(context.getWordRoot());
             if (line == null) {
-                line = new MDListLineModel(context.getWordToUse(), context.getExample(), lastLine);
+                line = new MDListLineModel(context.getLower(), context.getExample(), lastLine);
                 lastLine = line;
                 if (this.firstModelLine == null) this.firstModelLine = line;
-                map.put(context.getWordRoot(), line);
+                map.put(context.getRoot(), line);
             } else {
                 if (line.getCount() < 2) {
                     line.addExample(context.getExample());
                 }
-                if (line.getWord().length() < context.getWordToUse().length()) {
-                    line.setWord(context.getWordToUse());
+                if (line.getWord().length() > context.getLower().length()) {
+                    line.setWord(context.getLower());
                 }
                 line.increaseCount();
             }
 
-            addProgress(wordsCount, workDoneOnStart);
+            if (myDict.containsRoot(context.getRoot())) line.disable();
+
+            addProgress(wordsCount*2, workDoneOnStart);
         }
 
         return firstModelLine;

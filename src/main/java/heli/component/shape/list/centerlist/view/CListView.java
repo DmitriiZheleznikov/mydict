@@ -6,7 +6,9 @@ import heli.component.shape.list.centerlist.model.CListModel;
 import heli.component.shape.list.centerlist.model.CListModelOperation;
 import heli.component.shape.list.centerlist.model.CListModelWindow;
 import heli.component.shape.list.centerlist.view.effect.appear.IListAppearEffect;
-import heli.component.shape.list.centerlist.view.effect.appear.impl.*;
+import heli.component.shape.list.centerlist.view.effect.appear.impl.FadeListAppearEffect;
+import heli.component.shape.list.centerlist.view.effect.appear.impl.SlideLeftAppearEffect;
+import heli.component.shape.list.centerlist.view.effect.appear.impl.SlideUpAppearEffect;
 import heli.component.shape.list.centerlist.view.effect.scroll.CListViewAnimation;
 import heli.component.shape.list.centerlist.view.effect.scroll.ScrollEffectsFactory;
 import heli.htweener.fx.ext.HRectangle;
@@ -230,6 +232,7 @@ public class CListView {
     }
 
     public void setVisible(boolean isVisible) {
+        this.isVisible = isVisible;
         for (CListLineView line : lines) {
             if (isVisible) {
                 line.show();
@@ -237,6 +240,10 @@ public class CListView {
                 line.hide();
             }
         }
+    }
+
+    public boolean isVisible() {
+        return isVisible;
     }
 
     public Group getGroup() {

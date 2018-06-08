@@ -12,6 +12,7 @@ public class SlideLeftAppearEffect extends AbstractAppearEffect {
     public void appear(CListView listView, CListModelWindow window, ICallable onComplete) {
         listView.locate(window);
         saveState(listView);
+        listView.setVisible(false);
 
         for (CListLineView line : listView.lines()) {
             line.setX(line.getX() + listView.getBgRect().getWidth()*1.5);
@@ -39,7 +40,8 @@ public class SlideLeftAppearEffect extends AbstractAppearEffect {
         listView.clip();
 
         for (CListLineView line : listView.lines()) {
-            if (line.isActive()) HT.to(line, 250).prop(1, 0, lineCoreOpacity);
+            if (line.isActive())
+                HT.to(line, 250).prop(1, 0, lineCoreOpacity);
         }
 
         for (int i = 0; i < CListView.SIZE ; i++) {

@@ -14,7 +14,6 @@ import md.settings.Settings;
 import md.skin.colorschema.ColorSchemaFactory;
 import md.skin.colorschema.ColorSchemas;
 import md.skin.colorschema.i.IMDColorSchema;
-import md.textanalysis.TextAnalyser;
 
 public class Main extends Application {
     private static final double APP_WIDTH = 16*70;
@@ -35,7 +34,6 @@ public class Main extends Application {
         setupResizeListeners(stage, scene, bg, content);
 
         stage.show();
-        TextAnalyser.init();
         wa();
 
         mainLoop = new HTLoop();

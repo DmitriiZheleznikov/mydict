@@ -1,7 +1,7 @@
 package md.textanalysis.callback;
 
 public interface IProgressFunction {
-    IProgressFunction NULL = i -> {};
+    IProgressFunction NULL = () -> {};
 
-    void step(int i);
+    void step();
 }
