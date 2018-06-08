@@ -21,7 +21,7 @@ class WordAnalyserTest {
         assertEquals("happ", analyser.getRoot("\"unhappiness"));
         assertEquals("gust", analyser.getRoot("disgusting"));
         assertEquals("print", analyser.getRoot("printer"));
-        assertEquals("hamburg", analyser.getRoot("hamburger's"));
+        assertEquals("hamburger", analyser.getRoot("hamburger's"));
         assertEquals("una", analyser.getRoot("unaness"));
         assertEquals("aaa", analyser.getRoot("unaaaness"));
         assertEquals("i", analyser.getRoot("i've"));
