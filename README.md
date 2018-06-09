@@ -1,5 +1,7 @@
 # mydict
 
+Suggested command to run: java -jar -Xmx400M mydict-1.2.jar
+
 This is a simple program with graphical interface to analize English texts and create a dictionary for learning.
 
 It takes only UTF-8 encoding and following formats: txt, srt (subtitles for movies) and fb2.
