@@ -3,36 +3,28 @@ package md.shape.mdcenterlist.view;
 import heli.component.shape.list.centerlist.ext.CText;
 import heli.component.shape.list.centerlist.model.CListLineModel;
 import heli.component.shape.list.centerlist.view.CListLineView;
+import heli.component.shape.text.htext.HStringFlow;
+import heli.component.shape.text.htext.HTextFlow;
 import heli.htweener.fx.ext.HRectangle;
 import javafx.scene.Scene;
 import md.shape.mdcenterlist.model.MDListLineModel;
-import md.shape.mdcenterlist.view.helper.ExampleViewHelper;
+
+import java.util.List;
 
 import static md.FontConstant.*;
-import static md.FontConstant.FONT_UBUTNU_RI_SIZE_DEFAULT;
-import static md.FontConstant.FONT_UBUTNU_RI_URL;
 
 public class MDListLineView extends CListLineView {
     private CText tCount;
     private HRectangle tCountClip;
-
-    private CText tExample1;
-    private HRectangle tExample1Clip;
-
-    private CText tExample2;
-    private HRectangle tExample2Clip;
+    private HTextFlow tExample1;
+    private HTextFlow tExample2;
 
     public MDListLineView(MDListView parent) {
         super(parent);
         this.tCount = new CText("", parent.getColorSchema().text(), FONT_UBUTNU_R_URL, FONT_UBUTNU_R_SIZE_DEFAULT-4);
-        this.tExample1 = new CText("", parent.getColorSchema().example1(), FONT_UBUTNU_RI_URL, FONT_UBUTNU_RI_SIZE_DEFAULT);
-        this.tExample2 = new CText("", parent.getColorSchema().example2(), FONT_UBUTNU_RI_URL, FONT_UBUTNU_RI_SIZE_DEFAULT);
+        this.tExample1 = new HTextFlow(parent.getColorSchema().example1(), FONT_UBUTNU_RI_URL, FONT_UBUTNU_BI_URL, FONT_UBUTNU_RI_SIZE_DEFAULT);
+        this.tExample2 = new HTextFlow(parent.getColorSchema().example2(), FONT_UBUTNU_RI_URL, FONT_UBUTNU_BI_URL, FONT_UBUTNU_RI_SIZE_DEFAULT);
         this.tCountClip = new HRectangle();
-        this.tExample1Clip = new HRectangle();
-        this.tExample2Clip = new HRectangle();
-
-        tExample1.setClip(tExample1Clip);
-        tExample2.setClip(tExample2Clip);
 
         tCount.setColor(parent.getColorSchema().countNumber());
         bDelete.setColor(parent.getColorSchema().buttonDeleteNormal());
@@ -56,11 +48,11 @@ public class MDListLineView extends CListLineView {
         return tCount;
     }
 
-    public CText gettExample1() {
+    public HTextFlow gettExample1() {
         return tExample1;
     }
 
-    public CText gettExample2() {
+    public HTextFlow gettExample2() {
         return tExample2;
     }
 
@@ -69,15 +61,15 @@ public class MDListLineView extends CListLineView {
         super.renewContent(modelLine);
         MDListLineModel lineModel = (MDListLineModel) modelLine;
 
+        tExample1.clear();
+        tExample2.clear();
         if (lineModel == null) {
             tCount.setText("");
-            tExample1.setText("");
-            tExample2.setText("");
         } else {
             tCount.setText(Integer.valueOf(lineModel.getCount()).toString());
-            double size = tText.getScene().getWidth() - parent.getSizeBetween() * 8;
-            ExampleViewHelper.setExampleText(tExample1, ExampleViewHelper.getExampleText(lineModel.getExamples(), 0), size);
-            ExampleViewHelper.setExampleText(tExample2, ExampleViewHelper.getExampleText(lineModel.getExamples(), 1), size);
+            List<HStringFlow> examplesFlow = ((MDListLineModel) modelLine).getExamples();
+            if (examplesFlow.size() > 0) tExample1.renewContent(examplesFlow.get(0));
+            if (examplesFlow.size() > 1) tExample2.renewContent(examplesFlow.get(1));
         }
     }
 
@@ -86,13 +78,12 @@ public class MDListLineView extends CListLineView {
         super.renewContentBy(lineView);
         MDListLineView row = (MDListLineView) lineView;
         tCount.setText((row.gettCount().getText() == null || "".equals(row.gettCount().getText())) ? "" : row.gettCount().getText());
-        tExample1.setText(row.gettExample1().getText());
-        tExample2.setText(row.gettExample2().getText());
+        tExample1.renewContentBy(row.gettExample1());
+        tExample2.renewContentBy(row.gettExample2());
     }
 
     @Override
     public void resize(double sf) {
-        ExampleViewHelper.resetCache();
         dropShadow.setRadius(3f * sf);
         dropShadow.setOffsetX(2f * sf);
         dropShadow.setOffsetY(2f * sf);
@@ -107,7 +98,7 @@ public class MDListLineView extends CListLineView {
 
     @Override
     public void addToScene(Scene scene) {
-        parent.getGroup().getChildren().addAll(bg, tText, tCount, bDelete, tExample1, tExample2);
+        parent.getGroup().getChildren().addAll(bg, tText, tCount, bDelete, tExample1.getGroup(), tExample2.getGroup());
     }
 
     @Override
@@ -120,16 +111,12 @@ public class MDListLineView extends CListLineView {
     @Override
     public void unsetClip() {
         super.unsetClip();
-        tExample1.setClip(null);
-        tExample2.setClip(null);
         tCount.setClip(null);
     }
 
     @Override
     public void setClip() {
         super.setClip();
-        tExample1.setClip(tExample1Clip);
-        tExample2.setClip(tExample2Clip);
         tCount.setClip(tCountClip);
     }
 
@@ -139,8 +126,6 @@ public class MDListLineView extends CListLineView {
         tCount.setX(x + parent.getSizeBetween() * 2);
         tExample1.setX(x + parent.getSizeBetween() * 2);
         tExample2.setX(x + parent.getSizeBetween() * 2);
-        tExample1Clip.setX(x);
-        tExample2Clip.setX(x);
     }
 
     @Override
@@ -149,8 +134,6 @@ public class MDListLineView extends CListLineView {
         tCount.setY(y + tText.getHeight() * 1.5);
         tExample1.setY(tText.getY() + tText.getHeight() * 1.2);
         tExample2.setY(tExample1.getY() + tExample1.getHeight());
-        tExample1Clip.setY(y);
-        tExample2Clip.setY(y);
     }
 
     @Override
@@ -177,14 +160,20 @@ public class MDListLineView extends CListLineView {
     @Override
     protected void setWidthInner(double value) {
         super.setWidthInner(value);
-        tExample1Clip.setWidth(value);
-        tExample2Clip.setWidth(value);
+        double size = getExampleWidth(value);
+        tExample1.getFlow().setMaxWidth(size);
+        tExample2.getFlow().setMaxWidth(size);
+    }
+
+    private double getExampleWidth(double value) {
+        if (tText != null && tText.getScene() != null && parent != null) {
+            return tText.getScene().getWidth() - parent.getSizeBetween() * 8;
+        }
+        return value;
     }
 
     @Override
     protected void setHeightInner(double value) {
         super.setHeightInner(value);
-        tExample1Clip.setHeight(value);
-        tExample2Clip.setHeight(value);
     }
 }

@@ -27,7 +27,6 @@ public class SpecialCasesAnalyser extends AbstractWordAnalyser {
     public void process(AContext context) {
         String found = get(context.getLower());
         if (found != null) {
-            context.setOriginal(found);
             context.setLower(found);
             context.setRoot(found);
         }

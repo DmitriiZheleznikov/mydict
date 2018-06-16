@@ -1,14 +1,15 @@
 package md.shape.mdcenterlist.model;
 
 import heli.component.shape.list.centerlist.model.CListLineModel;
+import heli.component.shape.text.htext.HStringFlow;
 
 import java.util.ArrayList;
 
 public class MDListLineModel extends CListLineModel {
     private int count;
-    private ArrayList<String> examples;
+    private ArrayList<HStringFlow> examples;
 
-    public MDListLineModel(String word, String example, MDListLineModel prev) {
+    public MDListLineModel(String word, HStringFlow example, MDListLineModel prev) {
         super(word, prev);
         this.count = 1;
         this.examples = new ArrayList<>();
@@ -27,11 +28,11 @@ public class MDListLineModel extends CListLineModel {
         return count;
     }
 
-    public ArrayList<String> getExamples() {
+    public ArrayList<HStringFlow> getExamples() {
         return examples;
     }
 
-    public String getExampleSafe(int n) {
+    public HStringFlow getExampleSafe(int n) {
         return getExamples().size() > n ? getExamples().get(n) : null;
     }
 
@@ -39,11 +40,11 @@ public class MDListLineModel extends CListLineModel {
         count++;
     }
 
-    public void addExample(String example) {
+    public void addExample(HStringFlow example) {
         if (example != null) examples.add(example);
     }
 
-    public void addExample(String example, int count) {
+    public void addExample(HStringFlow example, int count) {
         if (examples.size() < count) {
             addExample(example);
         }

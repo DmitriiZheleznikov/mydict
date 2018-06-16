@@ -17,6 +17,7 @@ public class Word extends AbstractWord {
     }
 
     public void init() {
+        super.init();
         this.setLower(TextAnalyserHelper.convertToLowerCase(this.getOriginal()));
         this.setRoot(AnalyserFacade.getWordRoot(this.getLower()));
     }

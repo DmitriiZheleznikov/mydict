@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -40,15 +41,15 @@ class PhrasalVerbTest {
         phVerb.addEntity(new Word("break"));
         phVerb.addEntity(new Word("down"));
         phVerb.init();
-        assertEquals(false, phraseBig.contains(phVerb, 5));
-        assertEquals(true, phraseBig.contains(phVerb, 7));
-        assertEquals(false, phraseBig.contains(phVerb, 8));
+        assertEquals(Phrase.EMPTY_LIST_INT, phraseBig.contains(phVerb, 5));
+        assertEquals(Arrays.asList(7, 9), phraseBig.contains(phVerb, 7));
+        assertEquals(Phrase.EMPTY_LIST_INT, phraseBig.contains(phVerb, 8));
 
         phVerb = new PhrasalVerb(0);
         phVerb.addEntity(new Word("break"));
         phVerb.addEntity(new Word("test"));
         phVerb.init();
-        assertEquals(false, phraseBig.contains(phVerb, 0));
+        assertEquals(Phrase.EMPTY_LIST_INT, phraseBig.contains(phVerb, 0));
 
         phVerb = new PhrasalVerb(0);
         phVerb.addEntity(new Word("bring"));
@@ -59,7 +60,7 @@ class PhrasalVerbTest {
         phrase.addEntity(new Word("him"));
         phrase.addEntity(new Word("along"));
         phrase.init();
-        assertEquals(true, phrase.contains(phVerb, 0));
+        assertEquals(Arrays.asList(0, 2), phrase.contains(phVerb, 0));
     }
 
     @Test

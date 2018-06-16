@@ -1,33 +1,26 @@
 package md.textanalysis.text.element.phrase;
 
+import heli.component.shape.text.htext.HString;
+import heli.component.shape.text.htext.HStringFlow;
 import md.textanalysis.callback.IProgressFunction;
 import md.textanalysis.text.element.word.AbstractWord;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 public class Phrase {
     public static final int NUM_LIMIT_DURING_CONTAINS = 30;
+    public static final List<Integer> EMPTY_LIST_INT = Collections.emptyList();
 
     protected List<AbstractWord> entities;
-//    protected Phrase prev;
-//    protected Phrase next;
     protected int num;
 
     public Phrase(int globalNum) {
         this.entities = new ArrayList<>();
         this.num = globalNum;
-//        this.prev = null;
-//        this.next = null;
     }
-
-//    public Phrase(int num, Phrase prev) {
-//        this.entities = new ArrayList<>();
-//        this.num = num;
-//        this.prev = prev;
-//        this.next = null;
-//        if (prev != null) prev.next = this;
-//    }
 
     public void init() {
         init(IProgressFunction.NULL);
@@ -52,53 +45,75 @@ public class Phrase {
         return entities;
     }
 
-//    public Phrase getPrev() {
-//        return prev;
-//    }
-//
-//    public Phrase getNext() {
-//        return next;
-//    }
-
-    public boolean contains(Phrase phrase, int startPos) {
+    public List<Integer> contains(Phrase phrase, int startPos) {
         return phrase.isContainedIn(this, startPos);
     }
 
-    protected boolean isContainedIn(Phrase phrase, int startPos) {
-        if (phrase.entities.size() < this.entities.size()) return false;
+    protected List<Integer> isContainedIn(Phrase phrase, int startPos) {
+        if (phrase.entities.size() < this.entities.size()) return EMPTY_LIST_INT;
+
         int firstEntityNum = -1;
+        List<Integer> numbers = new ArrayList<>();
         for (int i = startPos; i < phrase.entities.size(); i++) {
             if (firstEntityNum < 0) {
                 //Search for first words overlap
                 if (this.entities.get(0).equals(phrase.entities.get(i))) {
+                    numbers.add(i);
                     firstEntityNum = i;
                 }
             } else {
                 //Check other words
                 if (!this.entities.get(i-firstEntityNum).equals(phrase.entities.get(i))) {
-                    return false;
+                    return EMPTY_LIST_INT;
                 }
-                if (this.entities.size() == (i-firstEntityNum+1)) return true;
+                numbers.add(i);
+                if (this.entities.size() == (i-firstEntityNum+1)) return numbers;
             }
-            if (i >= NUM_LIMIT_DURING_CONTAINS+startPos) return false;
+            if (i >= NUM_LIMIT_DURING_CONTAINS+startPos) return EMPTY_LIST_INT;
         }
 
-        return firstEntityNum >= 0;
+        return firstEntityNum >= 0 ? numbers : EMPTY_LIST_INT;
     }
 
-    public int getWordPosInText(int wordNum) {
-        StringBuilder sb = new StringBuilder();
+    public int countLenLeftOf(int wGlobalNum) {
+        int localNum = wGlobalNum - num;
+        if (localNum == 0) return 0;
+
+        int l = 0;
         boolean isFirst = true;
-        for (int i = 0; i < wordNum; i++) {
+        AbstractWord entityPrev = null;
+        for (int i = 0; i < entities.size(); i++) {
             AbstractWord entity = entities.get(i);
+
             if (isFirst) {
                 isFirst = false;
             } else {
-                sb.append(entity.getSeparatorBefore());
+                if (entityPrev.isSeparatorAfterRequired()) l += entity.getSeparatorBefore().length();
             }
-            sb.append(entity);
+
+            if (i == localNum) break;
+
+            l += entity.getOriginal().length();
+            entityPrev = entity;
         }
-        return sb.length() + 1;
+        return l;
+    }
+
+    public int countLenRightOf(int wGlobalNum) {
+        int localNum = wGlobalNum - num;
+        if (localNum == (entities.size()-1)) return 0;
+
+        int l = 0;
+        AbstractWord entityPrev = entities.get(localNum);
+        for (int i = localNum+1; i < entities.size(); i++) {
+            AbstractWord entity = entities.get(i);
+
+            if (entityPrev.isSeparatorAfterRequired()) l += entity.getSeparatorBefore().length();
+
+            l += entity.getOriginal().length();
+            entityPrev = entity;
+        }
+        return l;
     }
 
     @Override
@@ -140,5 +155,40 @@ public class Phrase {
 
     public String toLowerString(int startPos) {
         return toString(startPos, true);
+    }
+
+    public HStringFlow toStringFlow(Set<Integer> globalNumbersBold) {
+        HStringFlow flow = new HStringFlow();
+        StringBuilder sb = new StringBuilder();
+        boolean isFirst = true;
+        boolean isBold = false;
+        boolean flush = false;
+        AbstractWord entityPrev = null;
+
+        for (int i = 0; i < entities.size(); i++) {
+            flush = false;
+            AbstractWord entity = entities.get(i);
+            if (isFirst) {
+                isFirst = false;
+            } else {
+                if (entityPrev.isSeparatorAfterRequired()) sb.append(entity.getSeparatorBefore());
+            }
+
+            boolean isBoldNew = globalNumbersBold.contains(i + num);
+            if (isBold != isBoldNew) flush = true;
+
+            if (flush && sb.length() > 0) {
+                flow.add(new HString(sb.toString(), isBold ? HString.FontWeight.BOLD : HString.FontWeight.REGULAR));
+                sb = new StringBuilder();
+            }
+            isBold = isBoldNew;
+
+            sb.append(entity.getOriginal());
+            entityPrev = entity;
+        }
+
+        flow.add(new HString(sb.toString(), isBold ? HString.FontWeight.BOLD : HString.FontWeight.REGULAR));
+
+        return flow;
     }
 }

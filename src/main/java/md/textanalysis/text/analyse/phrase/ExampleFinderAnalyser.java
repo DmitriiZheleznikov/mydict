@@ -1,8 +1,13 @@
 package md.textanalysis.text.analyse.phrase;
 
+import heli.component.shape.text.htext.HString;
+import heli.component.shape.text.htext.HStringFlow;
 import md.textanalysis.ctrl.AContext;
 import md.textanalysis.text.analyse.AbstractAnalyser;
 import md.textanalysis.text.element.phrase.Phrase;
+
+import java.util.Collections;
+import java.util.Set;
 
 public class ExampleFinderAnalyser extends AbstractAnalyser {
     private static final int COUNT_SYMBOLS_SIDE = 125;
@@ -20,29 +25,34 @@ public class ExampleFinderAnalyser extends AbstractAnalyser {
 
     public void process(AContext context) {
         Phrase phrase = context.getCurrentPhrase();
-        String example = phrase.toString();
-        if (example.length() > MAX_SYMBOLS) {
-            int wordPosInText = phrase.getWordPosInText(context.getCurWordNumber()-phrase.getNum());
-            example = example.substring(
-                    getLeftBoundary(wordPosInText-COUNT_SYMBOLS_SIDE),
-                    getRightBoundary(wordPosInText+COUNT_SYMBOLS_SIDE, example.length())
-            );
+        HStringFlow flow = phrase.toStringFlow(context.getWNumBold());
+        if (!checkLength(flow)) {
+            cutLeft(flow, phrase, context.getWNumBold());
+            cutRight(flow, phrase, context.getWNumBold());
         }
-
-        context.setExample(example.replaceAll("([\r\n])", " "));
+        context.setExample(flow);
     }
 
-    private static int getLeftBoundary(int indx) {
-        if (indx > COUNT_SYMBOLS_SIDE) {
-            return indx - COUNT_SYMBOLS_SIDE;
-        }
-        return 0;
+    private boolean checkLength(HStringFlow flow) {
+        return flow == null || flow.getStringLength() <= MAX_SYMBOLS;
     }
 
-    private static int getRightBoundary(int indx, int textLen) {
-        if ((indx + COUNT_SYMBOLS_SIDE) > textLen) {
-            return textLen;
-        }
-        return indx + COUNT_SYMBOLS_SIDE;
+    private void cutLeft(HStringFlow flow, Phrase phrase, Set<Integer> wNums) {
+        int l = phrase.countLenLeftOf(Collections.min(wNums));
+        if (l <= COUNT_SYMBOLS_SIDE) return;
+
+        flow.cutLeft(l-COUNT_SYMBOLS_SIDE);
+        HString str = flow.getData().get(0);
+        str.setString("..." + str.getString());
     }
+
+    private void cutRight(HStringFlow flow, Phrase phrase, Set<Integer> wNums) {
+        int l = phrase.countLenRightOf(Collections.max(wNums));
+        if (l <= COUNT_SYMBOLS_SIDE) return;
+
+        flow.cutRight(l-COUNT_SYMBOLS_SIDE);
+        HString str = flow.getData().get(flow.getData().size()-1);
+        str.setString(str.getString() + "...");
+    }
+
 }

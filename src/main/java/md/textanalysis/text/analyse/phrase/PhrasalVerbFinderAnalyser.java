@@ -6,6 +6,7 @@ import md.textanalysis.text.analyse.AnalyserFacade;
 import md.textanalysis.text.element.TextElementFactory;
 import md.textanalysis.text.element.phrase.PhrasalVerb;
 import md.textanalysis.text.element.phrase.Phrase;
+import md.textanalysis.text.element.word.enums.State;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,11 +44,15 @@ public class PhrasalVerbFinderAnalyser extends AbstractAnalyser {
         if (phVerbs == null) return;
 
         for (PhrasalVerb phVerb : phVerbs) {
-            if (phraseToSearchIn.contains(phVerb, wordPosGlobal - phraseToSearchIn.getNum())) {
+            List<Integer> numbers = phraseToSearchIn.contains(phVerb, wordPosGlobal - phraseToSearchIn.getNum());
+            if (!numbers.isEmpty()) {
                 String found = phVerb.toLowerString(0);
-                context.setOriginal(found);
                 context.setLower(found);
                 context.setRoot(AnalyserFacade.getPhraseRoot(found));
+                for (Integer i : numbers) {
+                    context.boldWordByGlobalNum(i + phraseToSearchIn.getNum());
+                    phraseToSearchIn.getEntities().get(i).setState(State.SKIPPED);
+                }
                 return;
             }
         }

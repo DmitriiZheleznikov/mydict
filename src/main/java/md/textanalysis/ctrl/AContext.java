@@ -1,27 +1,33 @@
 package md.textanalysis.ctrl;
 
+import heli.component.shape.text.htext.HStringFlow;
 import md.textanalysis.text.element.phrase.Phrase;
 import md.textanalysis.text.element.word.AbstractWord;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class AContext {
     private TextToAnalyse textToAnalyse;
-    private String original;
     private String lower;
     private String root;
-    private String example;
+    private HStringFlow example;
     private int curWordNumber;
+    private Set<Integer> wNumBold;
 
     public AContext(TextToAnalyse textToAnalyse) {
         this.textToAnalyse = textToAnalyse;
         this.curWordNumber = -1;
+        this.wNumBold = new HashSet<>();
     }
 
     public void nextWord(int curWordNumber) {
         this.curWordNumber = curWordNumber;
-        this.original = textToAnalyse.getEntities().get(curWordNumber).getOriginal();
         this.lower = textToAnalyse.getEntities().get(curWordNumber).getLower();
         this.root = textToAnalyse.getEntities().get(curWordNumber).getRoot();
         this.example = null;
+        this.wNumBold.clear();
+        this.wNumBold.add(curWordNumber);
     }
 
     public AbstractWord getCurrentWord() {
@@ -32,14 +38,6 @@ public class AContext {
         return getCurrentWord().getPhrase();
     }
 
-    public String getOriginal() {
-        return original;
-    }
-
-    public void setOriginal(String original) {
-        this.original = original;
-    }
-
     public String getRoot() {
         return root;
     }
@@ -48,11 +46,11 @@ public class AContext {
         this.root = root;
     }
 
-    public String getExample() {
+    public HStringFlow getExample() {
         return example;
     }
 
-    public void setExample(String example) {
+    public void setExample(HStringFlow example) {
         this.example = example;
     }
 
@@ -76,10 +74,17 @@ public class AContext {
         return textToAnalyse;
     }
 
+    public void boldWordByGlobalNum(int num) {
+        wNumBold.add(num);
+    }
+
+    public Set<Integer> getWNumBold() {
+        return wNumBold;
+    }
+
     @Override
     public String toString() {
         return "AContext{" +
-                "original='" + original + '\'' +
                 ", lower='" + lower + '\'' +
                 ", root='" + root + '\'' +
                 '}';

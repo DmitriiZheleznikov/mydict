@@ -1,7 +1,6 @@
 package md.textanalysis.text.element.phrase;
 
 import md.textanalysis.text.element.word.AbstractWord;
-import md.textanalysis.text.element.word.enums.State;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,12 +13,12 @@ public class PhrasalVerb extends Phrase {
     }
 
     @Override
-    protected boolean isContainedIn(Phrase phrase, int startPos) {
-        if (phrase.entities.size() < this.entities.size()) return false;
+    protected List<Integer> isContainedIn(Phrase phrase, int startPos) {
+        if (phrase.entities.size() < this.entities.size()) return EMPTY_LIST_INT;
 
         AbstractWord verb = entities.get(0);
 
-        List<AbstractWord> toMarkAsSkip = new ArrayList<>();
+        List<Integer> numbers = new ArrayList<>();
         boolean isVerbFound = false;
         int i = startPos;
         int foundWordsCount = 0;
@@ -30,29 +29,24 @@ public class PhrasalVerb extends Phrase {
                 //Same verb has been found again
                 //(this should be an any verb, but it requires a dictionary... may be later,
                 // for now I'll add limitation of 3 extra words in between verb and preposition)
-                if (isVerbFound && thatEntity.equals(verb)) return false;
+                if (isVerbFound && thatEntity.equals(verb)) return EMPTY_LIST_INT;
 
                 //Next word found
                 if (thatEntity.equals(thisEntity)) {
+                    numbers.add(i);
                     isVerbFound = true;
                     i++;
                     foundWordsCount++;
-                    toMarkAsSkip.add(thatEntity);
                     break;
                 }
 
                 //Limitation should cover 90% of cases (I hope it's so :) )
                 if (i >= NUM_WORDS_IN_BETWEEN+startPos+this.entities.size()) {
-                    return false;
+                    return EMPTY_LIST_INT;
                 }
             }
         }
 
-        boolean result = foundWordsCount == this.entities.size();
-        if (result) {
-            for (AbstractWord entity : toMarkAsSkip) entity.setState(State.SKIPPED);
-        }
-
-        return result;
+        return foundWordsCount == this.entities.size() ? numbers : EMPTY_LIST_INT;
     }
 }

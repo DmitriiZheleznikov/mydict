@@ -25,6 +25,7 @@ abstract public class AbstractWord {
     }
 
     public void init() {
+        if (original.contains("\r") || original.contains("\n")) original = original.replaceAll("([\\r\\n])", " ");
         lower = original;
         root = original;
     }
