@@ -55,8 +55,11 @@ public class CommonScrollEffect implements IScrollEffect {
         for (CListLineView line : listView.lines()) {
             if (line.equals(exclude1)) continue;
             if (line.equals(exclude2)) continue;
+            if (line.getModelLineNum() == -1) continue;
+
             CListLineViewFuturePosition wLine = line.getFuturePosition();
             CListLineView lineTo = lineTo(listView, line);
+
             HT.to(line, duration(), Ease.sineOut, NAME)
                     .x(wLineTo(lineTo, wLine).getX())
                     .y(wLineTo(lineTo, wLine).getY())
@@ -74,18 +77,6 @@ public class CommonScrollEffect implements IScrollEffect {
     protected int onCompleteTime() {
         return duration() + 20;
     }
-
-//    protected boolean isDirectionUp(CListView listView, CListModelWindow modelWindow) {
-//        CListLineView curLine = listView.getCurrentLine();
-//        CListLineView toLine = lineTo(listView, curLine);
-//        if (toLine == null) return false;
-//
-//        if (curLine.equals(toLine)) {
-//            return listView.getCurrentLineNumber() > modelWindow.getCurrent();
-//        }
-//
-//        return curLine.getModelLineNum() < toLine.getModelLineNum();
-//    }
 
     protected CListLineViewFuturePosition wLineTo(CListLineView lineTo, CListLineViewFuturePosition wCurLine) {
         return lineTo == null ? wCurLine : lineTo.getFuturePosition();
