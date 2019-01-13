@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class WordsTokenizerTest {
     @Test
     void nextToken() {
-        String testText = "This is father’s text, \"MyDictionary\" file (words you know)<name_1><name-2><name3>name_4&amp;&#8482;";
+        String testText = "This is father’s text, \"MyDictionary\" file (words you know)< name_1><name-2 ><name3>name_4&amp;&#8482;";//do  not do";
         String[] expected = new String[31];
         expected[0] = "This";
         expected[1] = "is";
@@ -40,6 +40,8 @@ class WordsTokenizerTest {
         expected[28] = "#";
         expected[29] = "8482";
         expected[30] = ";";
+//        expected[31] = "don't";
+//        expected[32] = "do";
 
         int i = 0;
         WordsTokenizer wt = new WordsTokenizer(testText);
@@ -49,4 +51,21 @@ class WordsTokenizerTest {
         assertEquals(expected.length, i);
     }
 
+    @Test
+    void nextTokenNoHTML() {
+        String testText = "< name_1>";
+        String[] expected = new String[5];
+        expected[0] = "<";
+        expected[1] = "name";
+        expected[2] = "_";
+        expected[3] = "1";
+        expected[4] = ">";
+
+        int i = 0;
+        WordsTokenizer wt = new WordsTokenizer(testText, false);
+        while (wt.hasMoreTokens()) {
+            assertEquals(expected[i++], wt.nextToken());
+        }
+        assertEquals(expected.length, i);
+    }
 }

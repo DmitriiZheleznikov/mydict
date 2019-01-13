@@ -148,7 +148,9 @@ public class CList {
                 CListModelOperation reverseOp = op.getReverseOperation();
                 reverseOp = listModel.applyOperation(reverseOp);
                 currentWindow = getWindow(currentWindow);
-                if (onListRestoreCustom != null) onListRestoreCustom.call(prevLine, listModel.getCurrentLine(), reverseOp, currentWindow);
+                if (onListRestoreCustom != null && reverseOp.getAction() == CListModelOperation.Action.RESTORE) {
+                    onListRestoreCustom.call(prevLine, listModel.getCurrentLine(), reverseOp, currentWindow);
+                }
                 applyAnimation(reverseOp, prevWindowPos);
                 onTotals();
             }

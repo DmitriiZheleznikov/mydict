@@ -6,6 +6,7 @@ import md.textanalysis.text.element.word.enums.State;
 abstract public class AbstractWord {
     private static final int MIN_WORD_LENGTH = 3;
 
+    protected int orderNumber;
     protected String original;
     protected String lower;
     protected String root;
@@ -17,17 +18,18 @@ abstract public class AbstractWord {
         this.state = State.PLANNED;
     }
 
-    public AbstractWord(String original, Phrase phrase) {
-        this.original = original;
-        this.state = State.PLANNED;
-        this.phrase = phrase;
-        if (phrase != null) phrase.addEntity(this);
-    }
-
     public void init() {
         if (original.contains("\r") || original.contains("\n")) original = original.replaceAll("([\\r\\n])", " ");
         lower = original;
         root = original;
+    }
+
+    public int getOrderNumber() {
+        return orderNumber;
+    }
+
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public boolean isPhraseBreak() {
@@ -64,8 +66,9 @@ abstract public class AbstractWord {
         return phrase;
     }
 
-    public void setPhrase(Phrase phrase) {
+    public void addToPhrase(Phrase phrase) {
         this.phrase = phrase;
+        if (phrase != null) phrase.addEntity(this);
     }
 
     public String getLower() {
@@ -82,6 +85,31 @@ abstract public class AbstractWord {
 
     public void setRoot(String root) {
         this.root = root;
+    }
+
+    public void append(AbstractWord word) {
+        if (word == null) return;
+
+        AbstractWord clonedWord = word.clone();
+        clonedWord.init();
+
+        this.setOriginal(this.getOriginal() + " " + clonedWord.getOriginal());
+        this.setLower(this.getLower() + " " + clonedWord.getLower());
+        this.setRoot(this.getRoot() + " " + clonedWord.getRoot());
+    }
+
+    abstract protected AbstractWord cloneOnlyOriginal();
+
+    public AbstractWord clone() {
+        AbstractWord cloned = cloneOnlyOriginal();
+        cloned.setOrderNumber(this.orderNumber);
+        cloned.setLower(this.lower);
+        cloned.setRoot(this.root);
+        cloned.setState(this.state);
+        cloned.setOrderNumber(this.orderNumber);
+        cloned.phrase = this.phrase;
+
+        return cloned;
     }
 
     @Override

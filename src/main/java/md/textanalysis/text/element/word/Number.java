@@ -1,6 +1,5 @@
 package md.textanalysis.text.element.word;
 
-import md.textanalysis.text.element.phrase.Phrase;
 import md.textanalysis.text.element.word.enums.State;
 
 public class Number extends AbstractWord {
@@ -9,10 +8,10 @@ public class Number extends AbstractWord {
         this.state = State.SKIPPED;
     }
 
-    public Number(String original, Phrase phrase) {
-        super(original, phrase);
-        this.state = State.SKIPPED;
-    }
+//    public Number(String original, Phrase phrase) {
+//        super(original, phrase);
+//        this.state = State.SKIPPED;
+//    }
 
     @Override
     public String getSeparatorBefore() {
@@ -22,5 +21,9 @@ public class Number extends AbstractWord {
     @Override
     public boolean isSeparatorAfterRequired() {
         return true;
+    }
+
+    protected AbstractWord cloneOnlyOriginal() {
+        return new Number(this.original);
     }
 }

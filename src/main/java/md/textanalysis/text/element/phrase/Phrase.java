@@ -5,21 +5,18 @@ import heli.component.shape.text.htext.HStringFlow;
 import md.textanalysis.callback.IProgressFunction;
 import md.textanalysis.text.element.word.AbstractWord;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Phrase {
     public static final int NUM_LIMIT_DURING_CONTAINS = 30;
     public static final List<Integer> EMPTY_LIST_INT = Collections.emptyList();
 
     protected List<AbstractWord> entities;
-    protected int num;
+    //protected int orderNumberGlobal;
 
-    public Phrase(int globalNum) {
+    public Phrase() {//int orderNumberGlobal) {
         this.entities = new ArrayList<>();
-        this.num = globalNum;
+        //this.orderNumberGlobal = orderNumberGlobal;
     }
 
     public void init() {
@@ -33,12 +30,20 @@ public class Phrase {
         progressFunction.step();
     }
 
-    public int getNum() {
-        return num;
+    public int getOrderNumberGlobal() {
+        return entities.get(0).getOrderNumber();
     }
 
     public void addEntity(AbstractWord entity) {
         entities.add(entity);
+    }
+
+    public void addAllEntities(Collection<AbstractWord> entities) {
+        if (entities == null) return;
+
+        for (AbstractWord entity : entities) {
+            addEntity(entity);
+        }
     }
 
     public List<AbstractWord> getEntities() {
@@ -75,8 +80,8 @@ public class Phrase {
         return firstEntityNum >= 0 ? numbers : EMPTY_LIST_INT;
     }
 
-    public int countLenLeftOf(int wGlobalNum) {
-        int localNum = wGlobalNum - num;
+    public int countLenLeftOf(int wordOrderNumberGlobal) {
+        int localNum = wordOrderNumberGlobal - getOrderNumberGlobal();
         if (localNum == 0) return 0;
 
         int l = 0;
@@ -99,8 +104,8 @@ public class Phrase {
         return l;
     }
 
-    public int countLenRightOf(int wGlobalNum) {
-        int localNum = wGlobalNum - num;
+    public int countLenRightOf(int wordOrderNumberGlobal) {
+        int localNum = wordOrderNumberGlobal - getOrderNumberGlobal();
         if (localNum == (entities.size()-1)) return 0;
 
         int l = 0;
@@ -174,7 +179,7 @@ public class Phrase {
                 if (entityPrev.isSeparatorAfterRequired()) sb.append(entity.getSeparatorBefore());
             }
 
-            boolean isBoldNew = globalNumbersBold.contains(i + num);
+            boolean isBoldNew = globalNumbersBold.contains(i + getOrderNumberGlobal());
             if (isBold != isBoldNew) flush = true;
 
             if (flush && sb.length() > 0) {

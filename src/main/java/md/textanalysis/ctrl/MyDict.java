@@ -3,8 +3,9 @@ package md.textanalysis.ctrl;
 import heli.htweener.HT;
 import heli.htweener.tween.ICallable;
 import md.textanalysis.callback.IProgressFunction;
-import md.textanalysis.converter.impl.MyDictConverter;
-import md.textanalysis.text.analyse.AnalyserFacade;
+import md.textanalysis.text.analyser.AnalyserFacade;
+import md.textanalysis.text.converter.ITextConverter;
+import md.textanalysis.text.converter.TextConverterFactory;
 import md.textanalysis.utils.PhrasesTreeSet;
 
 import java.io.File;
@@ -38,7 +39,7 @@ public class MyDict {
         if (!fileMyDict.exists()) throw new IllegalArgumentException("File " + fileMyDict.getName() + " doesn't exist");
         List<String> rawLines = Files.readAllLines(Paths.get(fileMyDict.getAbsolutePath()), StandardCharsets.UTF_8);
 
-        MyDictConverter converter = new MyDictConverter(rawLines);
+        ITextConverter converter = TextConverterFactory.get("mydict", rawLines);
         converter.perform();
         initFromOriginalsSet(converter.getResult());
 

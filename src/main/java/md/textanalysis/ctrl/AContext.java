@@ -8,30 +8,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class AContext {
-    private TextToAnalyse textToAnalyse;
+    private AbstractWord currentWord;
     private String lower;
     private String root;
     private HStringFlow example;
-    private int curWordNumber;
     private Set<Integer> wNumBold;
 
-    public AContext(TextToAnalyse textToAnalyse) {
-        this.textToAnalyse = textToAnalyse;
-        this.curWordNumber = -1;
+    public AContext() {
         this.wNumBold = new HashSet<>();
     }
 
-    public void nextWord(int curWordNumber) {
-        this.curWordNumber = curWordNumber;
-        this.lower = textToAnalyse.getEntities().get(curWordNumber).getLower();
-        this.root = textToAnalyse.getEntities().get(curWordNumber).getRoot();
+    public void nextWord(AbstractWord currentWord) {
+        this.currentWord = currentWord;
+        this.lower = currentWord.getLower();
+        this.root = currentWord.getRoot();
         this.example = null;
         this.wNumBold.clear();
-        this.wNumBold.add(curWordNumber);
+        this.wNumBold.add(currentWord.getOrderNumber());
     }
 
     public AbstractWord getCurrentWord() {
-        return textToAnalyse.getEntities().get(curWordNumber);
+        return currentWord;
     }
 
     public Phrase getCurrentPhrase() {
@@ -55,11 +52,7 @@ public class AContext {
     }
 
     public int getCurWordNumber() {
-        return curWordNumber;
-    }
-
-    public void setCurWordNumber(int curWordNumber) {
-        this.curWordNumber = curWordNumber;
+        return currentWord.getOrderNumber();
     }
 
     public String getLower() {
@@ -68,10 +61,6 @@ public class AContext {
 
     public void setLower(String lower) {
         this.lower = lower;
-    }
-
-    public TextToAnalyse getTextToAnalyse() {
-        return textToAnalyse;
     }
 
     public void boldWordByGlobalNum(int num) {
@@ -85,6 +74,7 @@ public class AContext {
     @Override
     public String toString() {
         return "AContext{" +
+                "word='" + currentWord + '\'' +
                 ", lower='" + lower + '\'' +
                 ", root='" + root + '\'' +
                 '}';

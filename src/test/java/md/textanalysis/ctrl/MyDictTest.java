@@ -1,6 +1,6 @@
 package md.textanalysis.ctrl;
 
-import md.textanalysis.text.analyse.AnalyserFacade;
+import md.textanalysis.text.analyser.AnalyserFacade;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

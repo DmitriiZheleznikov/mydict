@@ -1,14 +1,16 @@
 package md.textanalysis.helper;
 
 import md.textanalysis.callback.IProgressFunction;
-import md.textanalysis.converter.ITextConverter;
-import md.textanalysis.converter.TextConverterFactory;
-import md.textanalysis.text.analyse.AnalyserFacade;
+import md.textanalysis.text.analyser.AnalyserFacade;
+import md.textanalysis.text.converter.ITextConverter;
+import md.textanalysis.text.converter.TextConverterFactory;
 import md.textanalysis.text.element.word.AbstractWord;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -24,6 +26,15 @@ public class TextAnalyserHelper {
         AnalyserFacade.init(progressFunction);
     }
 
+    public static int calcProgressStep(int count, int workLeftInPercent) {
+        return workLeftInPercent == 0 ? 0 : (count / workLeftInPercent);
+    }
+
+    public static void increaseProgress(int i, int progressStepEach, IProgressFunction progressFunction) {
+        if (progressFunction == null || progressStepEach <= 0) return;
+        if (i % progressStepEach == 0) progressFunction.step();
+    }
+
     public static String getFileExt(File file) {
         String fileName = file.getName();
         int iDot = fileName.lastIndexOf(".");
@@ -33,13 +44,22 @@ public class TextAnalyserHelper {
         return fileName.substring(iDot+1);
     }
 
-    public static List<AbstractWord> convertTextToWords(String ext, List<String> rawLinesToAnalyse) {
-        if (ext == null || ext.length() == 0) {
-            ext = "txt";
-        }
+    public static List<AbstractWord> convertToWords(String ext, List<String> rawLinesToAnalyse) {
         ITextConverter converter = TextConverterFactory.get(ext, rawLinesToAnalyse);
         converter.perform();
         return converter.getResult();
+    }
+
+    public static List<AbstractWord> convertTxtLineToWordsArray(String rawLineToAnalyse) {
+        ITextConverter converter = TextConverterFactory.get("txt", Collections.singletonList(rawLineToAnalyse));
+        converter.perform(new ArrayList());
+        return converter.getResult();
+    }
+
+    public static void initWords(List<AbstractWord> list) {
+        for (AbstractWord entity : list) {
+            entity.init();
+        }
     }
 
     public static String convertToLowerCase(String textToConvert) {

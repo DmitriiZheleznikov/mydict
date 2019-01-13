@@ -1,0 +1,3054 @@
+#Idioms and phrases are searched in text as is (not like phrasal verbs 'bring him along', 'him' inside 'bring along'), this is a list of phrases
+#Prases in lower case are expected, one phrase on one line
+
+# 1. several versions ==
+#There is ability to point special case, when some idiom/phrase are used in wrong way,
+#for example in movie "Back To The Future I" Biff uses phrase "make like a tree and get out of here" with mistake,
+#correct version is "make like a tree and leave" and actually they are equal and it would be nice if it would be detected.
+#In this case special construction "==" can be used, like this:
+#"make like a tree and get out of here == make like a tree and leave"
+#program will find first part (before "==") and will use second one (after "==") as a result (examples will be highlighted with first version)
+#It also can be used for several version of one idiom, like "easy as ABC == easy as pie"
+
+# 2. pronouns, possessive pronouns, prepositions
+#Program equals all these words:
+# - my, your, his, her, its, our, their
+# - on, in, at
+# - i, me, you , he, she, it, they, we
+# - mine, yours, hers, ours, theirs
+#Following phases are equals:
+# - ants in my pants
+# - ants at their pants
+# - ants on her pants
+
+# 3. skip articles
+# "a", "an", "the" are skipped (to cover mistakes)
+
+# 4. skip word _
+# in case phrase contains underscore symbol _ it will be tracked as any word in this place
+# Following phases will be taken as same:
+# - in someone's good books
+# - in his good books
+# - in their good books
+
+# Useful URLs
+# https://www.multitran.ru
+# http://www.macmillandictionary.com/
+# http://idioms.thefreedictionary.com/
+# https://www.phrases.org.uk/meanings/
+
+make like a tree and leave
+make like a tree and get out of here == make like a tree and leave
+
+# https://www.researchgate.net/publication/281114360_330_ESSENTIAL_IDIOMS
+drink like a fish
+bad blood
+black and blue
+blue blood
+ants in my pants
+feeling my oats
+bee in my bonnet idea
+hit the roof
+on the verge of
+behind the eight ball
+hot under the collar
+bloody murder
+jump down their throat
+buried my head in the sand
+jumping off the walls
+burned the candle at both ends
+mad as a wet hen
+everything but the kitchen sinks
+monkey business
+faster than a speeding bullet
+sitting duck
+the eleventh hour
+a bolt from the blue
+clean as a hound's tooth
+a bull in a china shop
+down in the mouth
+all ears raining cats and dogs
+down in the dumps
+backseat driver
+goody two shoes
+blow my stack
+like two peas in a pod
+burn the midnight oil
+through thick and thin
+called the shots
+off your rocker
+like a fish out of water
+bit off more than i could chew
+a dead duck
+by the skin of my teeth
+like a lazy dog
+seventh heaven
+have egg on your face
+my bread and butter
+couch potato
+flash in the pan
+knuckle sandwich
+piece of cake
+recipe for disaster
+chew the fat
+chew the rag == chew the fat
+easy as pie
+easy as abc == easy as pie
+eat humble pie
+eat your words
+go down a treat
+grease _ palm
+half-baked
+hard to swallow
+in a nutshell
+junk food
+not your cup of tea
+on the back burner
+backseat driver goody two shoes
+fill somebody in
+blessing in disguise
+add insult to injury
+clean as a whistle
+hang in there
+hang on in there == hang in there
+leave well enough alone
+let well enough alone == leave well enough alone
+kill the goose that lays the golden egg
+quick on the trigger
+quick on the draw == quick on the trigger
+read between the lines
+under wraps
+you can say that again
+stands to reason
+name is mud
+escapes you
+a bag of tricks
+wake-up call
+agree to differ
+agree to disagree == agree to differ
+get a look in
+i owe you one
+keep a low profile
+the x-factor
+all ears
+keep this under our hat
+little pitchers have big ears
+cat got your tongue
+long-toothed going in circles
+hearts in their mouths
+pink slip
+keep your fingers
+scared to death
+i am through
+i am through with == i am through
+drop a bombshell
+full of yourself
+hold your own
+just the ticket
+nothing to write home about
+the back of beyond
+the back of the beyond == the back of beyond
+the last straw
+the real mccoy
+tie the knot
+worth your while
+occurs to you
+chip off the old block
+means to an end
+question mark over someone
+vicious circle
+add fuel to the fire
+end in itself
+if all else fails
+keep abreast of
+safe and sound
+dead duck
+apple of my eye
+pushing up daises
+going bananas
+getting under my skin
+pay her back
+see eye to eye
+open a can of worms
+airing her dirty laundry in public
+bee in your bonnet
+on top of the world
+ate her heart out
+driving you up the wall
+call it a day
+bowl of cherries
+beyond a shadow of a doubt
+dot the i's and cross the t's
+going great guns
+in _ good books
+over the top
+rub it in
+movers and shakers
+pros and cons
+throw _ in at the deep end
+vis-a-vis
+narrow escape
+pipe dream
+war of words
+fight fire with fire
+if push comes to shove
+keep _ in mind
+pop the question
+save the day
+cost the earth
+charge the earth == cost the earth
+button your lip
+a bowl of cherries
+war stories
+butterflies in your stomach
+the black sheep of the family
+The Black Sheep == the black sheep of the family
+saved it for a rainy day
+chewed the fat
+blood is thicker than water
+once in a blue moon
+dog day of summer
+raw deal
+vote of confidence
+all hell broke loose
+carte blanche
+each to their own
+get a word in edgeways
+keep up with
+neither here nor there
+take _ the wrong way
+worse for wear
+jack of all trades
+back to the drawing board
+dig up dirt
+fly off the handle
+have a soft spot for
+leave no stone unturned
+No Stone Unturned == leave no stone unturned
+ring a bell
+take the plunge
+up in the air
+knock me over with a feather
+keep an eye on
+raining cats and dogs
+fair-weather friend
+ray of sunshine
+have your head in the clouds
+make hay while the sun shines
+quick as a flash
+quick as a wink == quick as a flash
+quick as lightning == quick as a flash
+snowed under
+under a cloud
+under the weather
+weather a storm
+roller coaster
+roller-coaster ride == roller coaster
+zebra crossing
+burn your bridges
+burn your boats == burn your bridges
+cross that bridge when we come to it
+jump on the bandwagon
+plain sailing
+put the brakes on
+rock the boat
+steer clear of
+upset the applecart
+early bird catches the worm
+butterflies in her stomach
+as quiet as a mouse
+on top of _
+a question of time
+a whale of a time
+around the clock
+behind the times
+day to day
+day-to-day == day to day
+for the time being
+from now on
+from time to time
+in the long run
+high time
+just in time == just in the nick of time
+just in the nick of time
+kill time
+now and then
+now and again == now and then
+now or never
+the moment of truth
+the year dot
+the year one == the year dot
+time after time
+time and time again
+year in, year out
+heads in the clouds
+as mad as a wet hen
+a ballpark figure
+a ballpark estimate
+a night on the town
+out on the town
+burn your boats
+light at the end of the tunnel
+paint the town red
+the new kid on the block
+under lock and key
+water under the bridge
+water over the dam
+bark up the wrong tree
+beat around the bush
+beat about the bush == beat around the bush
+can’t see the wood for the trees
+everything's coming up roses
+fresh as a daisy
+go out on a limb
+nip it in the bud
+the cream of the crop
+up a gum tree
+a tough nut to crack
+finding a needle in a haystack
+bite the dust
+keep it under your hat
+making a mountain out of a molehill
+left no stone unturned
+barking up the wrong tree
+surfing the web
+burning the midnight oil
+every cloud has a silver lining
+lend an ear
+top banana
+second fiddle
+until the cows come home
+a true-blue friend
+take the bull by the horns
+up against the wall
+sell like hot cakes
+an ivory tower
+chickens come home to roost
+hold the fort
+make yourself at home
+put your own house in order
+get your own house in order == put your own house in order
+run-of-the-mill
+handwriting is on the wall
+waiting in the wings
+a matter of life and death
+dead in the water
+dead to the world
+dig _ own grave
+kick the bucket
+kill two birds with one stone
+make a killing
+never say die
+two peas in a pod
+born with a silver spoon in his mouth
+born with chicken feed
+fat cat a bolt from the blue
+chewed up the scenery
+hit the road
+in the dog house
+in the doghouse == in the dog house
+out of the clear blue sky
+a hot potato
+tickled pink
+more than one way to skin a cat
+jumped down his throat
+saw eye to eye
+
+# # https://www.phrases.org.uk/meanings/phrases-and-sayings-list.html
+a bird in the hand is worth two in the bush
+a bunch of fives
+a chain is only as strong as its weakest link
+a countenance more in sorrow than in anger
+a daniel come to judgement
+a diamond in the rough
+a diamond is forever
+a different kettle of fish
+a dish fit for the gods
+a dog is a man's best friend
+a drop in the bucket
+a drop in the ocean
+a fate worse than death
+a feather in one's cap
+a fish rots from the head down
+a fish out of water == like a fish out of water
+a fly in the ointment
+a fool and his money are soon parted
+a fool's paradise
+a foot in the door
+a foregone conclusion
+a friend in need is a friend indeed
+a golden key can open any door
+a good man is hard to find
+a hard man is good to find
+on a hiding to nothing
+a hiding to nothing == on a hiding to nothing
+a house divided against itself cannot stand
+a knight in shining armour
+à la carte
+à la mode
+a legend in one's own lifetime
+a leopard cannot change its spots
+a little bird told me
+a little knowledge is a dangerous thing
+a little of what you fancy does you good
+a load of cobblers
+a load of codswallop
+a man after my own heart
+a man who is his own lawyer has a fool for a client
+a millstone around one's neck
+a ministering angel shall my sister be
+a miss is as good as a mile
+a nation of shopkeepers
+a nest of vipers
+a no-brainer
+a nod is as good as a wink
+a norange
+a penny for your thoughts
+a picture is worth a thousand words
+a piece of the action
+a pig in a poke
+a place for everything and everything in its place
+a plague on both your houses
+a priori
+a red rag to a bull
+a riddle wrapped up in an enigma
+a rolling stone gathers no moss
+a rose by any other name would smell as sweet
+a rose is a rose is a rose
+a safe pair of hands
+a sea change
+a skeleton in the closet
+a sledgehammer to crack a nut
+a shot in the arm
+a sight for sore eyes
+a sorry sight
+a stitch in time saves nine
+a stone's throw
+a thing of beauty is a joy forever
+a tinker's damn
+a turn up for the books
+a watched pot never boils
+a wolf in sheep's clothing
+a woman needs a man like a fish needs a bicycle
+a woman's place is in the home
+a word in edgeways
+a word in your shell-like
+a1 at lloyds
+abandon all hope ye who enter here
+abide with me
+about face
+about turn
+above board
+abracadabra
+absence makes the heart grow fonder
+absent without leave
+absolute power corrupts absolutely
+accidentally on purpose
+accidents will happen
+according to hoyle
+ace in the hole
+achilles' heel
+acid test
+acronyms
+across the board
+act of god
+act the giddy goat
+action man
+adam's ale
+aga saga
+against the grain
+age before beauty
+age cannot wither her, nor custom stale her infinite variety
+agree to disagree
+aid and abet
+aide-mémoire
+air kiss
+air quotes
+al fresco
+alike as two peas in a pod
+alive and kicking
+all agog
+all at sea
+all fingers and thumbs
+all greek to me
+all in all
+all intents and purposes
+all of a sudden
+all present and correct
+all publicity is good publicity
+all singing, all dancing
+all that glitters is not gold
+all that glisters is not gold == all that glitters is not gold
+all the tea in china
+for all the tea in china == all the tea in china
+not for all the tea in china == all the tea in china
+all things come to he who waits
+all things must pass
+all you can eat
+alter ego
+amber nectar
+an albatross around one's neck
+an apple a day keeps the doctor away
+an arm and a leg
+an axe to grind
+an englishman's home is his castle
+an eye for an eye, a tooth for a tooth
+an ill wind
+an offer he can't refuse
+an oxford scholar
+anchors aweigh
+angry young man
+ankle biter
+annus horribilis
+another think coming
+the apple of my eye
+apple pie order
+april fool
+ear candy
+eye candy == ear candy
+arm candy == ear candy
+arms akimbo
+ars longa, vita brevis
+arty-farty
+as soon as possible
+asap == as soon as possible
+as x as y
+as alike as two peas in a pod
+as bald as a coot
+as black as newgate's knocker
+as brown as a berry
+as busy as a bee
+as cold as any stone
+as cool as a cucumber
+as cute as a bug's ear
+as daft as a brush
+as dead as a dodo
+as dead as a doornail
+as different as chalk and cheese
+as easy as pie
+as fast as greased lightning
+as fine as frog's hair
+as fit as a butcher's dog
+as fit as a fiddle
+as good as gold
+as good luck would have it
+as happy as
+as happy as _ == as happy as
+as happy as a clam == as happy as
+as happy as a sandboy == as happy as
+as happy as larry == as happy as
+as high as a kite
+as keen as mustard
+as mad as a hatter
+as mad as a march hare
+as nice as ninepence
+as old as methuselah
+as old as the hills
+as pleased as punch
+as pure as the driven snow
+as safe as houses
+as queer as a nine bob note
+as snug as a bug in a rug
+as straight as a die
+as the crow flies
+as thick as thieves
+thick as two short planks
+as white as snow
+ashes to ashes dust to dust
+ask a silly question and you'll get a silly answer
+for whom the bell tolls
+asta la vista, baby
+hasta la vista, baby == asta la vista, baby
+at loggerheads
+at one fell swoop
+at one's beck and call
+at one's wit's end
+at sixes and sevens
+augur well
+auld lang syne
+away with the fairies
+baby blues
+baby boomer
+baby father
+theback of beyond
+back-seat driver
+back the field
+back to basics
+back to square one
+backroom boy
+backward in coming forward
+bring home the bacon
+bad books
+bad egg
+bad hair day
+badger to death
+bag and baggage
+baker's dozen
+the balance of power
+the balance of trade
+bald as a coot
+bale out
+bail out == bale out
+ball and chain
+bandy words
+bane of your life
+bang on about
+baptism of fire
+wouldn't touch with a barge-pole
+wouldn't touch with a _ pole == wouldn't touch with a barge-pole
+barking mad
+barrel of laughs
+basket case
+bated breath
+bats in the belfry
+batten down the hatches
+battle royal
+be afraid, be very afraid
+be enthralled
+be still, my beating heart
+on your beam ends
+bean counter
+beast with two backs
+beat a hasty retreat
+beat swords into ploughshares
+beat the living daylights out of someone
+beauty is in the eye of the beholder
+beauty is only skin deep
+beck and call
+bed of roses
+beef and reef
+beelzebub has a devil for a sideboard
+been there, done that
+beer and skittles
+make a beeline for
+make a beeline to == make a beeline for
+make a bee-line for == make a beeline for
+the bee's knees
+beetle browed
+beetle-browed == beetle browed
+before you can say jack robinson
+beg the question
+beggar belief
+beggars can't be choosers
+behind every great man there's a great woman
+bell, book and candle
+bell the cat
+belle of the ball
+below the belt
+below the salt
+bells and whistles
+belt and braces
+belt up
+best bib and tucker
+the best laid schemes of mice and men
+bet your bottom dollar
+better half
+better late than never
+better to have loved and lost than never to have loved at all
+between a rock and a hard place
+between the devil and the deep blue sea
+between two stools
+between you, me and the bedpost
+between you, me and the bed-post == between you, me and the bedpost
+beware of greeks bearing gifts
+beware the ides of march
+beyond belief
+beyond our ken
+beyond the pale
+biblical phrases
+the big apple
+the big cheese
+the big easy
+a big fish in a small pond
+big wig
+a bigger bang for your buck
+bill stickers is innocent
+like billy-o
+billy no mates
+binge drinking
+the birds and the bees
+birds of a feather flock together
+bite the bullet
+the bitter end
+black as newgate's knocker
+black-on-black
+black sheep of the family
+a blast from the past
+blaze a trail
+the blind leading the blind
+blind-man's buff
+blind man's buff == blind-man's buff
+bling-bling
+bling bling == bling-bling
+blonde bombshell
+blood and thunder
+blood toil tears and sweat
+blood, sweat and tears
+bloody minded
+bloody-minded == bloody minded
+blot on the landscape
+raspberry tart
+blow a raspberry == raspberry tart
+blow your mind
+blow your own trumpet
+blown to smithereens
+blue-plate special
+blue plate special == blue-plate special
+bob's your uncle
+bode well
+bodice ripper
+body surfing
+bog standard
+bolt from the blue
+bone dry
+bone idle
+bone up on
+booby prize
+booby trap
+boogie-woogie
+boogie woogie == boogie-woogie
+to big for your boots
+booze cruise
+born again
+born with a silver spoon in one's mouth
+born within the sound of bow bells
+boss eyed
+bottle out
+bottom drawer
+bottomup
+bottom-up == bottomup
+bought the farm
+bowled a maiden over
+box and cox
+in the box-seat
+in the box seat == in the box-seat
+boxing day
+brand spanking new
+brass monkey weather
+get down to brass tacks
+brass tacks == get down to brass tacks
+bread always falls buttered side down
+the bread of life
+break a leg
+break the ice
+bricks and clicks
+broad in the beam
+if it ain't broke, don't fix it
+brook no truck with
+bronx cheer
+brown as a berry
+browned off
+brownie points
+brummagem screwdriver
+bubble and squeak
+the buck stops here
+bucket list
+buckle down
+bugger bognor!
+buggins' turn
+bit the bullet == bite the bullet
+bums on seats
+bun in the oven
+bunny boiler
+burn the candle at both ends
+bury the hatchet
+bury your head in the sand
+busy as a bee
+the butt end of the stick
+fine words butter no parsnips
+fine words butter no parsnips == fine words butter no parsnips
+fine words butter no cabbage == fine words butter no parsnips
+fine words butter no fish == fine words butter no parsnips
+fine words butter no connie == fine words butter no parsnips
+fine words butter no rabbit == fine words butter no parsnips
+fair words butter no parsnips == fine words butter no parsnips
+fair words butter no cabbage == fine words butter no parsnips
+fair words butter no fish == fine words butter no parsnips
+fair words butter no connie == fine words butter no parsnips
+fair words butter no rabbit == fine words butter no parsnips
+soft words butter no parsnips == fine words butter no parsnips
+soft words butter no cabbage == fine words butter no parsnips
+soft words butter no fish == fine words butter no parsnips
+soft words butter no connie == fine words butter no parsnips
+soft words butter no rabbit == fine words butter no parsnips
+butter side down
+butter wouldn't melt in his mouth
+butterfingers
+by and large
+by dint of
+by gum
+by hook or by crook
+by the board
+by the book
+by the short hairs
+by the skin of your teeth
+by your leave
+let bygones be bygones
+caesar salad
+call a spade a spade
+the call of the wild
+the camera cannot lie
+can't be overestimated
+can't be underestimated
+can't hold a candle to
+canteen culture
+canterbury pace
+carbon copy
+carbon-copy == carbon copy
+carbon footprint
+card-sharp
+card-shark == card-sharp
+cardshark == card-sharp
+cardsharp == card-sharp
+on carey street
+carpe diem
+carry coals to newcastle
+put the cart before the horse
+cash on the nail
+ne'er cast a clout till may be out
+cast a clout till may be out == ne'er cast a clout till may be out
+cast the first stone
+cat got your tongue?
+a cat may look at a king
+in the catbird seat
+catch 22
+cat's cradle
+caught in a cleft stick
+caught by the short hairs
+caught red handed
+caught red-handed == caught red handed
+chaise lounge
+chalk and cheese
+champ at the bit
+chance would be a fine thing
+channel surfing
+charity begins at home
+charley horse
+charm offensive
+charmed life
+cheap at half the price
+cheek by jowl
+cherchez la femme
+chew the cud
+chick flick
+children should be seen and not heard
+chinese whispers
+chinless wonder
+chip on your shoulder
+chit-chat
+chitchat == chit-chat
+chit chat == chit-chat
+chock-a-block
+chop and change
+chop-chop
+chow down
+a christmas box
+christmas card verses
+make a clean breast
+clear blue water
+in a cleft stick
+cliff-hanger
+cliffhanger == cliff-hanger
+cliff hanger == cliff-hanger
+climb on the bandwagon
+cloak and dagger
+clod-hopper
+clodhopper == clod-hopper
+clod hopper == clod-hopper
+clog up
+close, but no cigar
+close quarters
+close your eyes and think of england
+cloud cuckoo land
+cloud nine
+club sandwich
+have a clue
+I have no clue = have a clue
+clutch at straws
+cock-a-hoop
+cock-sure
+cocksure == cock-sure
+cock sure == cock-sure
+cock a snook
+cock and bull story
+cock-up
+cockup == cock-up
+cock up == cock-up
+cockney rhyming slang
+cogito ergo sum
+coin a phrase
+cold as any stone
+cold comfort
+cold enough to freeze the balls off a brass monkey
+cold feet
+cold shoulder
+cold turkey
+the collywobbles
+colour up
+come a cropper
+come clean
+come on down
+come up trumps
+come what come may
+when it comes to the crunch
+on a wing and a prayer
+common sense
+comparisons are odious
+compassion fatigue
+complete shambles
+cook the books
+cookie cutter
+cool as a cucumber
+cool britannia
+cop an attitude
+copper-bottomed
+copperbottomed == copper-bottomed
+copper bottomed == copper-bottomed
+cor blimey
+cordon bleu
+cost an arm and a leg
+cotton on to
+cotton-picking
+cotton picking == cotton-picking
+counting sheep
+country bumpkin
+the course of true love never did run smooth
+the crack of doom
+crackpot
+the crapper
+crocodile tears
+crop up
+crown jewels
+cry havoc and let slip the dogs of war
+curate's egg
+curiosity killed the cat
+curry favour
+the customer is always right
+cut and run
+the cut of your jib
+cut off without a penny
+cut off your nose to spite your face
+cut the mustard
+cut to the chase
+cute as a bug's ear
+daft as a brush
+damp squib
+dance attendance on
+daniel come to judgement
+darby and joan
+dark horse
+the darkest hour
+the darkest hour is just before the dawn
+the dark side
+darling buds of may
+dash to pieces
+date rape
+davy jones' locker
+daylight robbery
+dead as a dodo
+dead as a doornail
+dead cat bounce
+dead ringer
+delusions of grandeur
+derring-do
+designer stubble
+deus ex machina
+devil and the deep blue sea
+the devil incarnate
+the devil take the hindmost
+the devil to pay
+devil's advocate
+diamond in the rough
+not a dicky-bird
+dicky-bird == not a dicky-bird
+dickey-bird == not a dicky-bird
+dickybird == not a dicky-bird
+dickeybird == not a dicky-bird
+dickie-bird == not a dicky-bird
+dickiebird == not a dicky-bird
+dicky bird == not a dicky-bird
+dickey bird == not a dicky-bird
+dickie bird == not a dicky-bird
+die-hard
+diehard == die-hard
+die hard == die-hard
+the die has been cast
+different as chalk and cheese == as different as chalk and cheese
+different kettle of fish
+differently abled
+dirt bag
+do unto others as you would have them do to you
+dock your pay
+doesn't know shit from shinola
+know shit from shinola == doesn't know shit from shinola
+doff your hat
+dog days
+dog in the manger
+dog is a man's best friend
+dog's bollocks
+dog's breakfast
+dog's dinner
+in the doldrums
+dollars to doughnuts
+done a runner
+done to a turn
+donkey's years
+don't call us, we'll call you
+don't change horses in midstream
+don't count your chickens before they are hatched
+don't die like i did
+don't go there
+don't have a clue
+don't keep a dog and bark yourself
+don't know shit from shinola
+don't let the bastards grind you down
+don't look a gift horse in the mouth
+don't shut the stable door after the horse has bolted
+don't throw the baby out with the bathwater
+don't try to teach your grandma to suck eggs
+doom and gloom
+double cross
+double dutch
+double entendre
+double whammy
+down at heel
+down to the wire
+down the pan
+down the tubes
+drag race
+dragged through a hedge backwards
+draw a blank
+draw your horns in
+dreams of empire
+dressed to the nines
+driving while black
+drop-dead gorgeous
+dropdead gorgeous == drop-dead gorgeous
+drop dead gorgeous == drop-dead gorgeous
+dropping like flies
+drummed out of the army
+ducks and drakes
+dumb blonde
+dust up
+my old dutch
+dutch courage
+dutch treat
+duvet day
+the early bird catches the worm
+early to bed and early to rise makes a man healthy, wealthy and wise
+ear-mark
+earmark == ear-mark
+ear mark == ear-mark
+eat drink and be merry
+eat my hat
+eaten out of house and home
+economical with the truth
+eeny, meeny, miny, mo
+egg on
+eighty six
+elbow-grease
+elbowgrease == elbow-grease
+elbow grease == elbow-grease
+elementary my dear watson
+elephant in the room
+elvis has left the building
+emperor's new clothes
+end of story
+the ends of the earth
+enough is as good as a feast
+enough is enough
+englishman's home is his castle
+eponymous phrases
+et tu, brute
+ethnic cleansing
+euphemisms
+even at the turning of the tide
+everybody out
+exceedingly well read
+the exception that proves the rule
+excuse me while i kiss this guy
+excuse my french
+extraordinary rendition
+eye for an eye, a tooth for a tooth
+eye of newt and toe of frog, wool of bat and tongue of dog
+the face that launched a thousand ships
+face the music
+faff about
+failing to plan is planning to fail
+faint-hearted
+fainthearted == faint-hearted
+faint hearted == faint-hearted
+fair and square
+fair dinkum
+fair exchange is no robbery
+fair play
+fair to middling
+fairy-tale ending
+fairytale ending == fairy-tale ending
+fairy tale ending == fairy-tale ending
+fait accompli
+faith will move mountains
+fall from grace
+fall guy
+fall off the back of a lorry
+fall on your sword
+famous for fifteen minutes
+famous last words
+fancy free
+fancy pants
+sweet fanny adams
+fanny adams == sweet fanny adams
+far be it from me
+far from the madding crowd
+farmers
+fashion victim
+the word fast, and phrases that derive from it.
+fast and loose
+fast asleep
+fathom out
+the fat of the land
+fed up
+feeding frenzy
+it fell off the back of a truck
+fell off the back of a truck == it fell off the back of a truck
+at one fail swoop == at one fell swoop
+at one foul swoop == at one fell swoop
+at one fail stoop == at one fell swoop
+at one foul stoop == at one fell swoop
+fellow traveller
+the female of the species is more deadly then the male
+fend off
+fiddlesticks
+fiddling while rome burns
+fie, foh, fum, i smell the blood of an englishman
+field day
+fifteen minutes of fame
+fifth column
+fight the good fight
+filthy rich
+finagle's law
+fine as frog's hair
+finger lickin good
+fingers and thumbs
+first water
+first world
+fish rot from the head down
+fish or cut bait
+fit as a fiddle
+fifth estate
+fits and starts
+fits to a tee
+five o'clock shadow
+fixer-upper
+fixer upper == fixer-upper
+flat out
+flavor of the month
+flesh and blood
+flogging a dead horse
+the floozie in the jacuzzi
+flotsam and jetsam
+fly by the seat of one's pants
+fly in the ointment
+fly on the wall
+foam at the mouth
+fobbed off
+the whole nine yards
+freeze the balls off a brass monkey == cold enough to freeze the balls off a brass monkey
+the full monty
+the 'coffin quartet'
+scot free
+fools rush in where angels fear to tread
+fool's errand
+fool's gold
+the foot of our stairs
+for all intents and purposes
+for crying out loud
+for ever and a day
+for every thing there is a season
+for good measure
+for keeps
+for the birds
+forbidden fruit
+foregone conclusion
+forewarned is forearmed
+forgive them for they know not what they do
+forlorn hope
+foul play
+four by two
+four corners of the earth
+frailty, thy name is woman
+freezing temperatures
+french phrases
+friday afternoon car
+friends, romans, countrymen, lend me your ears
+a frog in the throat
+as _ as frog's hair == as fine as frog's hair
+from pillar to post
+from sea to shining sea
+from strength to strength
+fruits of your loins
+fuddy-duddy
+fuddyduddy == fuddy-duddy
+fuddy duddy == fuddy-duddy
+full of piss and vinegar
+full tilt
+full to the gunwales
+funny farm
+fuzzy wuzzy
+gad zooks
+gadzooks == gad zooks
+gad-zooks == gad zooks
+the game is afoot
+the game is up
+game of two halves
+gee whiz
+generation x
+genius is one percent inspiration and 99 percent perspiration
+get medieval
+get off on the wrong foot
+get off your high horse
+get on my wick
+get one's dander up
+get over it
+get the pip
+get the sack
+get the upper hand
+get thee behind me satan
+get underway
+get used to it
+get your dander up
+get your goat
+giddy aunt
+giddy goat
+gild the lily
+gilt off the gingerbread
+ginned up
+ginger
+ginger up
+give a man a fish and you will feed him for a day
+give a wide berth
+give no quarter
+give the devil his due
+give up the ghost
+glass ceiling
+gloom and doom
+go and boil your head
+go berserk
+go by the board
+go by the book
+go dolally
+go-faster
+go for a burton
+go haywire
+go like the clappers
+go off at half cock
+go off half-cocked == go off at half cock
+go postal
+go over like a lead balloon
+going to hell in a handbasket
+go pound sand
+go the whole hog
+go to pot
+go to the dogs
+go to the foot of our stairs
+go to the mattresses
+go whole hog
+god is dead
+god rot them
+godfrey daniel
+going for a burton
+golf == gentlemen only, ladies forbidden
+gone for a burton
+good as gold
+good in parts
+good measure == for good measure
+good men and true
+good riddance
+good samaritan
+goody, goody gumdrops
+goody two-shoes
+goody two shoes == goody two-shoes
+gordon bennett
+got my mojo working
+there but for the grace of god, go i
+there but for the grace of god == there but for the grace of god, go i
+grace of god
+take with a grain of salt
+a grain of salt == take with a grain of salt
+grand slam
+grandfather clock
+granny dumping
+grasp the nettle
+grass up
+graveyard shift
+greased lightning
+great balls of fire
+great minds think alike
+the great unwashed
+green eyed monster
+gregory peck
+gridlock
+grind to a halt
+grinning like a cheshire cat
+grist to the mill
+words ending in gry
+guinea pig
+gung ho
+gussy up
+gussy-up == gussy up
+gussied-up == gussy up
+guts for garters
+hair of the dog that bit you
+hairy eyeball
+halcyon days
+half a loaf is better than no bread
+half-cocked
+half cocked == half-cocked
+half-hearted
+half hearted == half-hearted
+half inch
+hand over fist
+handbags at ten paces
+handle with kid gloves
+hands down
+hanged, drawn and quartered
+hanky-panky
+happy as a clam
+happy as a sandboy
+happy as larry
+happy clappy
+happy slapping
+harbinger of doom
+hard and fast
+hard cases make bad law
+hard cheese
+hard hearted
+hard lines
+hark, hark! the lark at heaven's gate sings
+the lark at heaven's gate sings == hark, hark! the lark at heaven's gate sings
+harp on
+harvest moon
+has the cat got your tongue?
+hasta la vista, baby
+haste makes waste
+hat trick
+have a captain cook
+have a dekko
+have an axe to grind
+have an inkling
+have no truck with
+haven't got a clue
+have your guts for garters
+he who can, does; he who cannot, teaches
+he who can, does == he who can, does; he who cannot, teaches
+he who laughs last laughs longest
+he will give the devil his due
+head over heels
+heads up
+hear hear
+heard it through the grapevine
+heart's content
+heavens to betsy
+heavens to murgatroyd
+heavy metal
+the heebie-jeebies
+the heebie jeebies == the heebie-jeebies
+hedge your bets
+hell in a handbasket
+hell has no fury like a woman scorned
+hell or high water
+helter-skelter
+helter skelter == helter-skelter
+here lies one whose name is writ in water
+het up
+hiding to nothing == on a hiding to nothing
+higgledy-piggledy
+higgledy piggledy == higgledy-piggledy
+high and dry
+high and mighty
+high as a kite
+high five
+high-flyer
+high flyer == high-flyer
+high on the hog
+high, wide and handsome
+hissy fit
+history is bunk
+hit the ground running
+hit the hay
+hit the nail on the head
+hither and yon
+hobson's choice
+hobby-horse
+hobby horse == hobby-horse
+hocus pocus
+hoi polloi
+hoist with your own petard
+hoity-toity
+hoity toity == hoity-toity
+hold a candle to == can't hold a candle to
+hold your horses
+homonyms
+honesty is the best policy
+hooray henry
+horse and cart
+horse feathers
+horse-sense
+horse sense == horse-sense
+a horse, a horse, my kingdom for a horse
+a horse, my kingdom for a horse == a horse, a horse, my kingdom for a horse
+my kingdom for a horse == a horse, a horse, my kingdom for a horse
+straight from the horse's mouth
+horse's mouth == straight from the horse's mouth
+hot-blooded
+hot blooded == hot-blooded
+hot off the press
+hot on the heels
+house divided against itself cannot stand == a house divided against itself cannot stand
+household words
+houston, we have a problem
+how are the mighty fallen?
+how do you do?
+how now brown cow?
+how sharper than a serpent's tooth it is to have a thankless child
+hugger-mugger
+hugger mugger == hugger-mugger
+hung, drawn and quartered
+hunky-dory
+hunky dory == hunky-dory
+hunt and peck
+hush puppies
+i bear a charmed life
+i have not slept one wink
+i have nothing to declare but my genius
+i have nothing to offer but blood toil tears and sweat
+i haven't got a clue
+i see you stand like greyhounds in the slips
+i spy with my little eye
+i told you is was ill
+i will swing for you
+i will wear my heart upon my sleeve
+identity theft
+ides of march == beware the ides of march
+if i had my druthers
+if music be the food of love, play on
+if the cap fits
+if the mountain will not come to muhammad, then muhammad must go to the mountain
+if the shoe fits
+if wishes were horses, beggars would ride
+if you can't stand the heat, get out of the kitchen
+if you think that, you have another think coming
+ill wind
+i'll be there with bells on
+i'll go to the foot of our stairs
+i'll have your guts for garters
+i'm stumped
+imitation is the sincerest form of flattery
+in a pickle
+in a pig's eye
+in a quandary
+in a trice
+in an interesting condition
+in for a penny, in for a pound
+in like flynn
+in limbo
+in my minds eye
+in _ bad books
+in spades
+in stitches
+in the bag
+in the buff
+in the cart
+in the club
+in the doghouse
+in the limelight
+in the nick of time
+in the pink
+in the red
+in the same boat
+in your face
+indian giver
+indian summer
+infra dig
+innocent until proven guilty
+inside out
+intents and purposes == for all intents and purposes
+iron hoof
+is the pope catholic?
+is the pope polish?
+is this a dagger which i see before me?
+it ain't over till the fat lady sings
+it came like a bolt from the blue
+it is meat and drink to me
+it never rains but it pours
+it's all greek to me
+it's all grist to the mill
+it's better to give than to receive
+it's better to light a candle than curse the darkness
+it's not rocket science
+it's that man again
+ivory tower
+jack in the box
+jack of all trades, master of none
+jack palancing
+jack robinson == before you can say jack robinson
+jack the lad
+jam tomorrow
+jerry built
+jet-black
+jimmy horner
+jimmy riddle
+jobs for the boys
+join the colours
+joined at the hip
+johnny on the spot
+jot or tittle
+jump the gun
+jump the shark
+jury is still out
+just deserts
+just in time
+kangaroo court
+katy bar the door
+keep a wide berth
+keen as mustard
+keep body and soul together
+keep schtum
+keep a stiff upper lip
+keep at bay
+keep the ball rolling
+keep up with the joneses
+keep your chin up
+keep your distance
+keep your hands clean
+keep your nose clean
+keep your nose to the grindstone
+keep your pecker up
+keep your powder dry
+keeping up with the joneses
+keepy-uppy
+keepy uppy == keepy-uppy
+kettle of fish
+khyber pass
+kick your heels
+alive and kickin'
+kickin' == alive and kickin'
+kilroy was here
+king james' version of the bible
+kiss and tell
+kiss me hardy
+the whole kit and caboodle
+kit and caboodle == the whole kit and caboodle
+kith and kin
+knee-jerk reaction
+knee jerk reaction == knee-jerk reaction
+knick-knack
+knick knack == knick-knack
+knight in shining armour
+knock back
+knock into a cocked hat
+knock off
+knock on wood
+know the ropes
+know your onions
+know which side your bread is buttered
+know which way the wind blows
+knuckle down
+knuckle under
+kowtow to
+la-di-da
+la di da == la-di-da
+ladida == la-di-da
+la dolce vita
+dolce vita == la dolce vita
+labour of love
+lackadaisical
+ladies' room
+lager frenzy
+laid out in lavender
+la-la land
+la la land == la-la land
+lala land == la-la land
+lalaland == la-la land
+lamb to the slaughter
+lame duck
+the land of nod
+land of nod == the land of nod
+lardy-dardy
+lardy dardy == lardy-dardy
+lark about
+last but not least
+last straw == the last straw
+latin phrases
+laugh like a drain
+laughing-stock
+laughing stock == laughing-stock
+rest on _ laurels
+the law is an ass
+law is an ass == the law is an ass
+lay it on with a trowel
+lead balloon == go over like a lead balloon
+lead-pipe cinch
+learn the ropes
+left hand doesn't know what the right hand is doing
+left in the lurch
+legend in one's own lifetime
+less is more
+let a thousand flowers bloom
+let not poor nelly starve
+let not the sun go down on your wrath
+let or hindrance
+let sleeping dogs lie
+let them eat cake
+let there be light
+let your hair down
+let's roll
+level playing field
+lick and a promise
+lick into shape
+lickety-split
+lickety split == lickety-split
+lie low
+lies, damned lies and statistics
+life begins at forty
+life of riley
+life's not all beer and skittles
+life's too short
+like a chicken with its head cut off
+like a moth to a flame
+like being savaged by a dead sheep
+like billy o == like billy-o
+like billyo == like billy-o
+like it or lump it
+like the clappers
+like the dickens
+lily-livered
+lily livered == lily-livered
+lions led by donkeys
+live long and prosper
+living daylights
+living off the fat of the land
+living on borrowed time
+lo and behold
+load of cobblers
+load of codswallop
+loaf of bread
+local derby
+lock stock and barrel
+long in the tooth
+look before you leap
+loose cannon
+loose lips sink ships
+lose face
+lose your marbles
+love is blind
+the love that dare not speak _ name
+loved-up
+loved up == loved-up
+lunatic fringe
+mad as a hatter
+mad as a march hare
+magical realism
+main chance
+make a bee-line for
+make a clean breast of it
+make a pig's ear of
+make a virtue of necessity
+make haste
+make him an offer he can't refuse
+make my day
+make no bones about
+make your hair stand on end
+mal de mer
+man does not live by bread alone
+man's best friend == a dog is a man's best friend
+man's inhumanity to man
+many a little makes a mickle
+many are called but few are chosen
+many happy returns
+many a true word is spoken in jest
+march in janiveer
+march in january == march in janiveer
+janiveer in march i fear == march in janiveer
+janiveer in march == march in janiveer
+january in march i fear == march in janiveer
+january in march == march in janiveer
+march hack ham, comes in like a lion, goes out like a lamb
+march hackande, comes in like a lion, goes out like a lamb == march hack ham, comes in like a lion, goes out like a lamb
+a bushel of march dust is worth a king's ransom
+march grass never did good
+march winds and may fun, makes clothes white and maid's dun
+march many weathers
+mare's nest
+marital aid
+market forces
+marry in haste, repent at leisure
+may you live in interesting times
+mccoy == the real mccoy
+mea culpa
+meat and drink
+meat and two veg.
+meet your waterloo
+men in suits
+mend fences
+men's evil manners live in brass; their virtues we write in water
+merry christmas
+method in my madness
+mexican wave
+mickey finn
+middle for diddle
+middle of the road
+might and main
+the pen is mightier than the sword
+mightier than the sword == the pen is mightier than the sword
+mighty oaks from little acorns grow
+milk of human kindness
+minced oaths
+minced words
+mind your ps and qs
+mind's ear
+mind's eye
+mint condition
+misery acquaints a man with strange bedfellows
+misquotes
+miss is as good as a mile
+moaning minnie
+mondegreens
+montezuma's revenge
+dock one's pay
+fools' gold
+good money after bad
+more bang for your buck
+not worth a plugged nickel
+overpaid, oversexed, and over here
+pennies from heaven
+penny dreadful
+petty cash
+pin money
+plugged nickel
+silver bullet
+slush fund
+spend a penny
+stinking rich
+take the gilt off the gingerbread
+the penny drops
+throw good money after bad
+two cents worth
+whip round
+your money or your life
+money for old rope
+monstrous regiment of women
+moot point
+morbid obesity
+more fool you
+more haste, less speed
+more honoured in the breach than in the observance
+more light!
+morning person
+mother country
+motley crew
+mouth-watering
+mouth watering == mouth-watering
+movable feast
+the moving finger writes
+moving the goalposts
+much ado about nothing
+much of a muchness
+your name is mud
+mud == your name is mud
+mull _ over
+multitude of sins
+mumbo jumbo
+mum's the word
+murphy's law
+music has charms to soothe the savage breast
+the mutt's nuts
+mutt and jeff
+mutton dressed as lamb
+my bad
+my better half
+my cup of tea
+my cup runneth over
+my giddy aunt
+my husband and i
+my mind's eye
+my old china
+my salad days
+my stars and garters
+nail your colours to the mast
+namby-pamby
+namby pamby == namby-pamby
+name and shame
+nasty, brutish and short
+nautical phrases
+near the knuckle
+necessity is the mother of invention
+ne'er do well
+needs must
+neither a borrower nor a lender be
+neither fish nor flesh, nor good red herring
+nest-egg
+nest egg == nest-egg
+never give a sucker an even break
+never knowingly undersold
+never look a gift horse in the mouth
+never-never land
+never never land == never-never land
+never the twain shall meet
+new kid on the block
+nice as ninepence
+nice kettle of fish
+nick of time == in the nick of time
+night owl
+nine days' wonder
+nip and tuck
+nip in the bud
+nitty-gritty
+nitty gritty == nitty-gritty
+no-brainer
+no dice
+no holds barred
+no laughing matter
+no man is an island
+no more cakes and ale?
+no names: no pack-drill
+no quarter given
+no rest for the wicked
+no room to swing a cat
+no truck with
+no way, jose
+nosy parker
+not a dicky bird == not a dicky-bird
+not by a long chalk
+not my cup of tea
+not for all the tea in china
+not playing with a full deck
+not rocket science
+not tonight josephine
+not worth the candle
+nothing is certain but death and taxes
+nothing succeeds like success
+nothing ventured, nothing gained
+now is the winter of our discontent
+to the nth degree
+nth degree == to the nth degree
+nul points
+nutshell == in a nutshell
+o romeo, romeo! wherefore art thou romeo?
+o ye, of little faith
+odds bodkins
+off his own bat
+off the record
+off with his head
+in the offing
+oh, my stars and garters
+oh, they have slain the earl of moray and lady mondegreen
+okay
+okey-dokey
+okey dokey == okey-dokey
+old as methuselah
+old as the hills
+old chestnut
+old codger
+old hat
+on cloud nine
+on queer street
+on tenterhooks
+on the ball
+on the bubble
+on the button
+on the dole
+on the fiddle
+on the pig's back
+on the qt
+on the shoulders of giants
+on the side of the angels
+on the wagon
+on the warpath
+on with the motley
+on your tod
+once more unto the breach, dear friends, once more
+one-hit wonder
+one hit wonder == one-hit wonder
+one fell swoop == at one fell swoop
+one for the road
+one foot in the grave
+one good turn deserves another
+one over the eight
+one sandwich short of a picnic
+one small step for man
+one stop shop
+one swallow doesn't make a summer
+oops-a-daisy
+upsidaisy == oops-a-daisy
+upsa daesy == oops-a-daisy
+upsy-daisy == oops-a-daisy
+oops-a-daisy == oops-a-daisy
+oopsy-daisy == oops-a-daisy
+hoops-a-daisy == oops-a-daisy
+open season
+the order of the boot
+out of sight, out of mind
+out of sight == out of sight, out of mind
+out of sorts
+out of the jaws of death
+out of the mouths of babes and sucklings
+out on a limb
+over a barrel
+over the moon
+oxo cube
+packed to the gunwales
+paddle your own canoe
+panic stations
+paper tiger
+parting shot
+parthian shot == parting shot
+pass over to the other side
+pass the buck
+a paying guest
+pretty damn quick
+p.d.q. == pretty damn quick
+pdq == pretty damn quick
+pearls before swine
+pears for your heirs
+peeping tom
+peg out
+pell-mell
+pell mell == pell-mell
+pellmell == pell-mell
+penny pinching
+a penny saved is a penny earned
+penny wise and pound foolish
+pester power
+peter out
+phrases that people get wrong
+physician heal thyself
+pick 'n' mix
+pick n mix == pick 'n' mix
+picknmix == pick 'n' mix
+pick ’n’ mix == pick 'n' mix
+picture-perfect
+picture perfect == picture-perfect
+pie in the sky
+a piece of cake
+piece of piss
+piece of the action
+pig in a poke
+pigeon-chested
+pigeon chested == pigeon-chested
+pig's back == on the pig's back
+pig's ear
+pig's eye == in a pig's eye
+pig and whistle
+piggyback
+pigs might fly
+take with a pinch of salt == take with a grain of salt
+pinch of salt == take with a grain of salt
+got the pip == get the pip
+have the pip == get the pip
+pipe down
+a pipe dream
+piping hot
+piss and vinegar == full of piss and vinegar
+pitch black
+pitch dark
+plates of meat
+play by ear
+play devil's advocate
+play ducks and drakes
+play fast and loose
+play it again sam
+play second fiddle
+play silly buggers
+play the giddy goat
+play the race card
+pleased as punch
+plug-ugly
+plug ugly == plug-ugly
+plugugly == plug-ugly
+poetic justice
+point-and-click
+point and click == point-and-click
+point percy at the porcelain
+politically correct
+point-blank
+point blank == point-blank
+point to point
+pommy bashing
+pomp and circumstance
+pond life
+pony and trap
+pony up
+pop goes the weasel
+pop your clogs
+pork pies
+port out, starboard home
+posh == port out, starboard home
+the pot calling the kettle black
+take potluck
+pound of flesh
+pour oil on troubled waters
+power corrupts; absolute power corrupts absolutely
+power corrupts == power corrupts; absolute power corrupts absolutely
+power dressing
+the powers that be
+praying at the porcelain altar
+preaching to the choir
+preposterous
+press into service
+pretty kettle of fish
+a pretty penny
+prick up your ears
+prime time
+primrose path
+procrastination is the thief of time
+the proof of the pudding is in the eating
+a bad penny always turns up
+a barking dog never bites
+a change is as good as a rest
+a drowning man will clutch at a straw
+a fish always rots from the head down
+a good beginning makes a good ending
+a person is known by the company he keeps
+a house is not a home
+a journey of a thousand miles begins with a single step
+a little learning is a dangerous thing
+a man is known by his friends
+a man who is his own lawyer has a fool for his client
+a new broom sweeps clean
+a nod's as good as a wink to a blind horse
+a picture paints a thousand words
+a poor workman always blames his tools
+a problem shared is a problem halved
+a prophet is not recognized in his own land
+a rising tide lifts all boats
+a soft answer turneth away wrath
+a swarm in may is worth a load of hay; a swarm in june is worth a silver spoon; but a swarm in july is not worth a fly
+a trouble shared is a trouble halved
+a volunteer is worth twenty pressed men
+a woman is only a woman, but a good cigar is a smoke
+a woman's work is never done
+a word to the wise is enough
+accidents will happen in the best-regulated families
+accidents will happen in the best regulated families == accidents will happen in the best-regulated families
+accidents will happen == accidents will happen in the best-regulated families
+accidents will occur in the best-regulated families == accidents will happen in the best-regulated families
+accidents will occur in the best regulated families == accidents will happen in the best-regulated families
+accidents will occur == accidents will happen in the best-regulated families
+actions speak louder than words
+adversity makes strange bedfellows
+after a storm comes a calm
+all good things come to he who waits
+all good things must come to an end
+all is grist that comes to the mill
+all roads lead to rome
+all that glisters is not gold
+all the world loves a lover
+all things come to those that wait
+all work and no play makes jack a dull boy
+all you need is love
+all's fair in love and war
+all's for the best in the best of all possible worlds
+all's well that ends well
+an army marches on its stomach
+an ounce of prevention is worth a pound of cure
+another day, another dollar
+any port in a storm
+appearances can be deceptive
+april is the cruellest month
+april showers bring forth may flowers
+as you make your bed, so you must lie upon it
+as you sow so shall you reap
+ask no questions and hear no lies
+attack is the best form of defence
+bad money drives out good
+bad news travels fast
+barking dogs seldom bite
+be careful what you wish for
+beggars should not be choosers
+better safe than sorry
+better the devil you know than the devil you don't
+better to light a candle than to curse the darkness
+better to remain silent and be thought a fool that to speak and remove all doubt
+big fish eat little fish
+blessed are the peacemakers
+blue are the hills that are far away
+boys will be boys
+brevity is the soul of wit
+business before pleasure
+caesar's wife must be above suspicion
+pluck the day == carpe diem
+seize the day == carpe diem
+charity covers a multitude of sins
+cheaters never win and winners never cheat
+cheats never prosper
+children and fools tell the truth
+christmas comes but once a year
+cleanliness is next to godliness
+clothes maketh the man
+cold hands, warm heart
+count your blessings
+cowards may die many times before their death
+crime doesn't pay
+cut your coat to suit your cloth
+dead men tell no tales
+devil take the hindmost
+different strokes for different folks
+discretion is the better part of valour
+distance lends enchantment to the view
+do as i say, not as i do
+do as you would be done by
+don't bite the hand that feeds you
+don't burn your bridges behind you
+don't cast your pearls before swine
+don't cross the bridge till you come to it
+don't cut off your nose to spite your face
+don't get mad, get even
+don't leave your manners on the doorstep
+don't let the cat out of the bag
+let the cat out of the bag == don't let the cat out of the bag
+don't let the grass grow under your feet
+don't meet troubles half-way
+don't mix business with pleasure
+don't put all your eggs in one basket
+don't put the cart before the horse
+don't put new wine into old bottles
+don't rock the boat
+don't shoot the messenger
+don't spoil the ship for a ha'porth of tar
+don't sweat the small stuff
+don't throw pearls to swine
+don't teach your grandma to suck eggs
+don't throw good money after bad
+don't trust anyone over thirty
+don't try to run before you can walk
+don't try to walk before you can crawl
+don't upset the apple-cart
+don't wash your dirty linen in public
+doubt is the beginning not the end of wisdom
+early to bed and early to rise, makes a man healthy, wealthy and wise
+early to bed and early to rise, makes a man healthy == early to bed and early to rise, makes a man healthy, wealthy and wise
+east is east, and west is west
+east, west, home's best
+easy come, easy go
+eat, drink and be merry, for tomorrow we die
+empty vessels make the most noise
+even a worm will turn
+every dog has its day
+every little helps
+every man for himself, and the devil take the hindmost
+every man has his price
+every picture tells a story
+every stick has two ends
+everyone wants to go to heaven but nobody wants to die
+everything comes to him who waits
+faint heart never won fair lady
+familiarity breeds contempt
+feed a cold and starve a fever
+finders keepers, losers weepers
+first come, first served
+first impressions are the most lasting
+first things first
+fish always stink from the head down
+fish and guests smell after three days
+flattery will get you nowhere
+for everything there is a season
+for want of a nail the shoe was lost; for want of a shoe the horse was lost; and for want of a horse the man was lost
+for want of a nail the shoe was lost == for want of a nail the shoe was lost; for want of a shoe the horse was lost; and for want of a horse the man was lost
+forgive and forget
+fortune favours the brave
+from the sublime to the ridiculous is only one step
+genius is an infinite capacity for taking pains
+genius is one percent inspiration, ninety-nine percent perspiration
+genius is one percent inspiration, ninety nine percent perspiration == genius is one percent inspiration, ninety-nine percent perspiration
+give a man a fish and you will feed him for a day...
+give a dog a bad name and hang him
+give a man enough rope and he will hang himself
+give credit where credit is due
+go the extra mile
+god helps those who help themselves
+good fences make good neighbours
+good talk saves the food
+good things come in small packages
+good things come to those that wait
+handsome is as handsome does
+hard work never did anyone any harm
+he that goes a-borrowing, goes a-sorrowing
+he that goes a borrowing, goes a sorrowing == he that goes a-borrowing, goes a-sorrowing
+he who can does, he who cannot, teaches
+he who fights and runs away, may live to fight another day
+he who hesitates is lost
+he who lives by the sword shall die by the sword
+he who pays the piper calls the tune
+he who sups with the devil should have a long spoon
+hell hath no fury like a woman scorned
+hindsight is always twenty-twenty
+hindsight is always twenty twenty == hindsight is always twenty-twenty
+history repeats itself
+you can't hold with the hare and run with the hounds
+hold with the hare and run with the hounds == you can't hold with the hare and run with the hounds
+home is where the heart is
+hope springs eternal
+horses for courses
+if anything can go wrong, it will
+if a job is worth doing it is worth doing well
+if at first you don't succeed try, try and try again
+if god had meant us to fly he'd have given us wings
+if ifs and ands were pots and pans there'd be no work for tinkers
+if life deals you lemons, make lemonade
+if the cap fits, wear it
+if the mountain won't come to mohammed, then mohammed must go to the mountain
+if the mountain won't come to mohammed == if the mountain won't come to mohammed, then mohammed must go to the mountain
+if the shoe fits, wear it
+if you build it they will come
+if you can't be good, be careful
+if you can't beat em, join em
+if you can't stand the heat get out of the kitchen
+if you lie down with dogs, you will get up with fleas
+if you pay peanuts, you get monkeys
+if you want a thing done well, do it yourself
+ignorance is bliss
+in the kingdom of the blind the one eyed man is king
+in the midst of life we are in death
+into every life a little rain must fall
+it goes without saying
+it is best to be on the safe side
+it is better to give than to receive
+it is easy to be wise after the event
+it takes a thief to catch a thief
+it takes all sorts to make a world
+it takes one to know one
+it takes two to tango
+it's an ill wind that blows no one any good
+it's better to have loved and lost than never to have loved at all
+it's better to travel hopefully than to arrive
+it's never too late
+it's no use crying over spilt milk
+it's no use locking the stable door after the horse has bolted
+it's the early bird that catches the worm
+it's the empty can that makes the most noise
+it's the singer not the song
+it's the squeaky wheel that gets the grease
+judge not, that ye be not judged
+keep your friends close and your enemies closer
+laugh and the world laughs with you, weep and you weep alone
+laughter is the best medicine
+least said, soonest mended
+let the buyer beware
+let the dead bury the dead
+let the punishment fit the crime
+let well alone
+life is just a bowl of cherries
+life is what you make it
+lightning never strikes twice in the same place
+like father, like son
+little strokes fell great oaks
+little things please little minds
+live and learn
+live for today for tomorrow never comes
+love of money is the root of all evil
+love makes the world go round
+love thy neighbour as thyself
+love will find a way
+make love not war
+manners maketh man
+many a mickle makes a muckle
+many hands make light work
+march comes in like a lion, and goes out like a lamb
+march winds and april showers bring forth may flowers
+marriages are made in heaven
+might is right
+misery loves company
+moderation in all things
+money doesn't grow on trees
+money is the root of all evil
+money isn't everything
+money makes the world go round
+money talks
+nature abhors a vacuum
+needs must when the devil drives
+never go to bed on an argument
+never judge a book by its cover
+never let the sun go down on your anger
+never put off until tomorrow what you can do today
+never speak ill of the dead
+never tell tales out of school
+nine tailors make a man
+no man can serve two masters
+no names, no pack-drill
+no names, no pack drill == no names, no pack-drill
+no names, no packdrill == no names, no pack-drill
+no news is good news
+no one can make you feel inferior without your consent
+no pain, no gain
+nothing new under the sun
+oil and water don't mix
+old soldiers never die, they just fade away
+once a thief, always a thief
+once bitten, twice shy
+one half of the world does not know how the other half lives
+one hand washes the other
+one man's meat is another man's poison
+one might as well be hanged for a sheep as a lamb
+one law for the rich and another for the poor
+one swallow does not make a summer
+one volunteer is worth ten pressed men
+one year's seeding makes seven years weeding
+only fools and horses work
+opportunity never knocks twice at any man's door
+opposites attract
+parsley seed goes nine times to the devil
+patience is a virtue
+pearls of wisdom
+people who live in glass houses shouldn't throw stones
+physician, heal thyself
+possession is nine points of the law
+practice makes perfect
+practice what you preach
+prevention is better than cure
+pride goes before a fall
+put your best foot forward
+quid pro quo
+rain before seven, fine before eleven
+red sky at night shepherd's delight; red sky in the morning, shepherd's warning
+red sky at night shepherd's delight == red sky at night shepherd's delight; red sky in the morning, shepherd's warning
+red sky in the morning, shepherd's warning == red sky at night shepherd's delight; red sky in the morning, shepherd's warning
+revenge is a dish best served cold
+revenge is sweet
+rob peter to pay paul
+rome wasn't built in a day
+see a pin and pick it up, all the day you'll have good luck; see a pin and let it lie, bad luck you'll have all day
+see no evil, hear no evil, speak no evil
+seeing is believing
+seek and ye shall find
+set a thief to catch a thief
+share and share alike
+shrouds have no pockets
+silence is golden
+slow but sure
+softly, softly, catchee monkey
+spare the rod and spoil the child
+speak as you find
+speak softly and carry a big stick
+sticks and stones may break my bones, but words will never hurt me
+still waters run deep
+strike while the iron is hot
+stupid is as stupid does
+success has many fathers, while failure is an orphan
+take care of the pence and the pounds will take care of themselves
+talk is cheap
+talk of the devil, and he is bound to appear
+that which does not kill us makes us stronger
+the age of miracles is past
+the apple never falls far from the tree
+the best defence is a good offence
+the best is the enemy of the good
+the best-laid schemes of mice and men gang aft agley
+the best things in life are free
+the bigger, the better
+the bigger they are, the harder they fall
+the bottom line is the bottom line
+the boy is father to the man
+the bread always falls buttered side down
+the child is the father of the man
+the cobbler always wears the worst shoes
+the devil makes work for idle hands to do
+the devil is in the details
+the devil looks after his own
+the end justifies the means
+the exception which proves the rule
+the fat is in the fire
+the female of the species is more deadly than the male
+the fruit does not fall far from the tree
+the good die young
+the grass is always greener on the other side of the fence
+the hand that rocks the cradle rules the world
+the husband is always the last to know
+the labourer is worthy of his hire
+the leopard does not change his spots
+the longest journey starts with a single step
+the more the merrier
+the more things change, the more they stay the same
+the only good indian is a dead indian
+the opera ain't over till the fat lady sings
+the pen is mightier than sword
+the price of liberty is eternal vigilance
+the road to hell is paved with good intentions
+the shoemaker's son always goes barefoot
+the squeaking wheel gets the grease
+the truth will out
+the wages of sin is death
+the way to a man's heart is through his stomach
+the whole is greater than the sum of the parts
+there are more ways of killing a cat than choking it with cream
+there are none so blind as those, that will not see
+there are two sides to every question
+there's a time and a place for everything
+there's an exception to every rule
+there's always more fish in the sea
+there's honour among thieves
+there's many a good tune played on an old fiddle
+there's many a slip 'twixt cup and lip
+there's more than one way to skin a cat
+there's no accounting for tastes
+there's no fool like an old fool
+there's no place like home
+there's no smoke without fire
+there's no such thing as a free lunch
+there's no such thing as bad publicity
+there's no time like the present
+there's none so blind as those who will not see
+there's none so deaf as those who will not hear
+there's nowt so queer as folk
+there's one born every minute
+there's safety in numbers
+they that sow the wind, shall reap the whirlwind
+third time lucky
+those who do not learn from history are doomed to repeat it
+those who live in glass houses shouldn't throw stones
+those who sleep with dogs will rise with fleas
+thou shalt not kill
+time and tide wait for no man
+time flies
+time is a great healer
+time is money
+time will tell
+'tis better to have loved and lost, than never to have loved at all
+to err is human; to forgive divine
+to every thing there is a season
+to the victor go the spoils
+to travel hopefully is a better thing than to arrive
+tomorrow is another day
+tomorrow never comes
+too many cooks spoil the broth
+truth is stranger than fiction
+truth will out
+two blacks don't make a white
+two heads are better than one
+two is company, but three's a crowd
+two wrongs don't make a right
+variety is the spice of life
+virtue is its own reward
+walls have ears
+walnuts and pears you plant for your heirs
+waste not want not
+what can't be cured must be endured
+what goes up must come down
+what you lose on the swings you gain on the roundabouts
+what's sauce for the goose is sauce for the gander
+when in rome, do as the romans do
+when the cat's away the mice will play
+when the going gets tough, the tough get going
+when the oak is before the ash, then you will only get a splash; when the ash is before the oak, then you may expect a soak
+what the eye doesn't see, the heart doesn't grieve over
+where there's a will there's a way
+where there's muck there's brass
+while there's life there's hope
+whom the gods love die young
+why keep a dog and bark yourself?
+women and children first
+wonders will never cease
+work expands so as to fill the time available
+worrying never did anyone any good
+you are never too old to learn
+you are what you eat
+you can choose your friends but you can't choose your family
+you can have too much of a good thing
+you can lead a horse to water, but you can't make it drink
+you can't have your cake and eat it too
+you can't get blood out of a stone
+you can't get blood out of a turnip
+you can't make a silk purse from a sow's ear
+you can't make an omelette without breaking eggs
+you can't make bricks without straw
+you can't run with the hare and hunt with the hounds
+you can't take it with you when you die
+you can't take it with you == you can't take it with you when you die
+you can't teach an old dog new tricks
+you can't judge a book by its cover
+you can't win them all
+you catch more flies with honey than with vinegar
+you pays your money and you takes your choice
+you reap what you sow
+you win some, you lose some
+youth is wasted on the young
+pull in your horns
+pull out all the stops
+pull the other one, it's got bells on
+pull the wool over your eyes
+pull up stakes
+pull your horns in
+pull your finger out
+pull yourself up by your bootstraps
+pulling _ leg
+punch above _ weight
+pure as the driven snow
+purple patch
+push the boat out
+push the envelope
+put a damper on
+put a sock in it
+put a spanner in the works
+put on the wooden overcoat
+put on your thinking cap
+put paid to
+put the mockers on
+put the wood in the hole
+put up your dukes
+put your back up
+put your nose out of joint
+pyrric victory
+quality time
+quantum leap
+queer as a nine bob note
+queer street
+queer the pitch
+the quick and the dead
+quicker than lager turns to piss
+quotations
+rabbit and pork
+rack and ruin
+rag-and-bone man
+rag and bone man == rag-and-bone man
+rack your brains
+rag, tag and bobtail
+raining stair-rods
+raining stair rods == raining stair-rods
+raise cain
+rank and file
+raze to the ground
+rat arsed
+read the riot act
+real mccoy
+caught red-handed
+caught red handed == caught red-handed
+red herring
+red in tooth and claw
+red-letter day
+red letter day == red-letter day
+red sky at night ...
+red tape
+reduplicated phrases
+religion is the opium of the people
+rest on his laurels
+rhyme nor reason
+rhyming slang
+richard of york gave battle in vain
+richard the third
+riding shotgun
+riff-raff
+riff raff == riff-raff
+the life of riley
+rings a bell
+ring a ring o'roses, a pocketful of posies, atishoo, atishoo, all fall down
+ring a ring o'roses, a pocketful of posies, atishoo, all fall down == ring a ring o'roses, a pocketful of posies, atishoo, atishoo, all fall down
+ring down the curtain
+ring-fencing
+ring fencing == ring-fencing
+ring the changes
+rinky-dink
+rinky dink == rinky-dink
+rise and shine
+the road less travelled
+road apples
+road rage
+roasted to a turn
+rock and roll
+romeo, romeo, wherefore art thou romeo?
+rose is a rose is a rose
+rosie lea
+rough diamond
+round robin
+route one
+rub of the green
+rule of thumb
+rum do
+rumpy-pumpy
+run a mile
+run amok
+run of the mill
+run out of steam
+run rings around
+run the gauntlet
+sacred cow
+safe sex
+salad days
+the salt of the earth
+san fairy ann
+sandwich short of a picnic
+save face
+save one's bacon
+saved by the bell
+savoir faire
+say cheese
+say goodnight gracie
+scapegoat
+scarper
+scot-free
+scot free == scot-free
+screw your courage to the sticking place
+'scuse me while i kiss this guy == excuse me while i kiss this guy
+sea change
+sealed with a loving kiss
+season of mists and mellow fruitfulness
+second-guess
+second guess == second-guess
+security blanket
+see a pin and pick it up, all the day you'll have good luck; see a pin and pick it up, all the day you'll have good luck
+see a pin and pick it up, all the day you'll have good luck == see a pin and pick it up, all the day you'll have good luck; see a pin and pick it up, all the day you'll have good luck
+see a pin and let it lie, bad luck you'll have all day == see a pin and pick it up, all the day you'll have good luck; see a pin and pick it up, all the day you'll have good luck
+see red
+seen better days
+send packing
+senior citizen
+sent to coventry
+separate the sheep from the goats
+set _ cap at
+set your teeth on edge
+sex and shopping
+sexton blake
+the whole shebang
+shaggy dog story
+shake a leg
+shakers and movers
+alas, poor yorick! i knew him, horatio
+poor yorick == alas, poor yorick! i knew him, horatio
+all corners of the world
+all one to me
+all the world's a stage, and all the men and women merely players
+an ill-favoured thing sir, but mine own
+an ill favoured thing sir, but mine own == an ill-favoured thing sir, but mine own
+and shining morning face, creeping like a snail unwillingly to school
+and thereby hangs a tale
+as merry as the day is long
+be all and end all
+blow, winds, and crack your cheeks
+but screw your courage to the sticking-place
+but, for my own part, it was greek to me
+come the three corners of the world in arms
+comparisons are odorous
+double, double toil and trouble, fire burn, and cauldron bubble
+fie, foh, and fum, i smell the blood of a british man
+his beard was as white as snow
+hoist by your own petard
+in my mind's eye, horatio
+in the twinkling of an eye
+it beggar'd all description
+make an ass of yourself
+o romeo, romeo! wherefore art thou romeo
+oh, that way madness lies
+sans teeth, sans eyes, sans taste, sans everything
+send him packing
+shall i compare thee to a summer's day?
+short shrift
+shuffle off this mortal coil
+sleep like a top
+smooth runs the water where the brook is deep
+some are born great, some achieve greatness, and some have greatness thrust upon 'em
+something is rotten in the state of denmark
+son of a bitch
+star crossed lovers
+stiffen the sinews
+stony hearted
+such stuff as dreams are made on
+the be all and end all
+the quality of mercy is not strained
+the queen's english
+the slings and arrows of outrageous fortune
+the smallest worm will turn, being trodden on
+there's method in my madness
+thereby hangs a tale
+this is the short and the long of it
+this is very midsummer madness
+this precious stone set in the silver sea, this sceptered isle
+though this be madness, yet there is method in it
+thus far into the bowels of the land
+to be or not to be, that is the question
+to gild refined gold, to paint the lily
+too much of a good thing
+under the greenwood tree
+uneasy lies the head that wears a crown
+vanish into thin air
+we few, we happy few, we band of brothers
+we have seen better days
+wear your heart on your sleeve
+what a piece of work is man
+what's in a name? that which we call a rose by any other name would smell as sweet
+when sorrows come, they come not single spies, but in battalions
+where the bee sucks, there suck i
+while you live, tell truth and shame the devil!
+tell the truth and shame the devil == while you live, tell truth and shame the devil!
+who wooed in haste, and means to wed at leisure
+wild goose chase
+woe is me
+shambles
+shanks' mare/shanks' pony
+shilly-shally
+shilly shally == shilly-shally
+ship shape and bristol fashion
+the shit end of the stick
+shit for brains
+shiver my timbers
+shoddy
+the short end of the stick
+shot across the bows
+the shot heard 'round the world
+shot in the arm
+shot in the dark
+shoot through
+show a leg == shake a leg
+show your mettle
+shrinking violet
+shut your cake-hole
+shut your cake hole == shut your cake-hole
+siamese twins
+a sick puppy
+a aight for sore eyes
+silly billy
+silly season
+similes
+sitting pretty
+skeleton in the closet
+skid row
+skin and blister
+the sky's the limit
+sleep on a clothesline
+sleep tight
+sleeveless errand
+sloane ranger
+the smallest room in the house
+smart casual
+smoke and mirrors
+snug as a bug in a rug
+so sue me
+soap-dodger
+soap dodger == soap-dodger
+sod's law
+sold down the river
+some men are born mediocre, some men achieve mediocrity, and some men, have mediocrity thrust upon them
+someone is walking over my grave
+something for the weekend sir?
+something nasty in the woodshed
+something old, something new, something borrowed, something blue
+son of a gun
+sorry sight
+sound bite
+sound out
+sour grapes
+space, the final frontier
+speak of the devil
+special relationship
+spelling-bee
+spelling bee == spelling-bee
+spick and span
+spill the beans
+spin doctor
+spitting feathers
+spitting image
+spoonerisms
+spring forward, fall back
+spruce-up
+spruce up == spruce-up
+square meal
+squeaky bum time
+stand and deliver
+stand up guy
+standing on the shoulders of giants
+star-crossed lovers
+star crossed lovers == star-crossed lovers
+stark, raving mad
+start from scratch
+steal a march
+steal my thunder
+step up to the plate
+stick in the mud
+sticks and stones may break my bones
+sticky wicket
+stiff upper lip
+stone the crows
+stone's throw
+stony-hearted
+stool pigeon
+storm in a teacup
+straight as a die
+strain at the leash
+strait-laced
+strait laced == strait-laced
+strait and narrow
+stranger danger
+stuff and nonsense
+stump up
+such is life
+surf and turf
+surfing the internet
+surfing the net == surfing the internet
+surfing the web == surfing the internet
+survival of the fittest
+suspension of disbelief
+swan song
+swing for you
+swing the lead
+the tail wagging the dog
+take a back seat
+take down a peg or two
+take the bit between your teeth
+take the cake
+take the mickey
+take the upper hand
+take umbrage
+taken aback
+taken for a ride
+talk of the devil
+talk the talk
+talk through one's hat
+talk to the hand
+tall story
+tattoo phrases and sayings
+tawdry
+tea leaf
+technicolor yawn
+tell it to the marines
+tell me about it
+tempest in a teapot
+test your mettle - see show your mettle
+that's all folks!
+that's all she wrote
+that's one small step for a man, a giant leap for mankind
+the ants are my friends, they're blowing in the wind
+the bane of my life
+the belle of the ball
+the chickens come home to roost
+the elephant in the room
+the emperor's new clothes
+the fifth estate
+the fly in the ointment
+the hair of the dog that bit you
+the hairy eyeball
+the jury is still out
+the living daylights
+the love that dare not speak its name
+the monstrous regiment of women
+the nth degree
+the seven-year itch
+the seven year itch == the seven-year itch
+the shoemaker always wears the worst shoes
+the straw that broke the camel's back
+the toast of the town
+the third degree
+the triumph of hope over experience
+the upper hand
+the usual suspects
+the writing is on the wall
+the wrong side of the blanket
+the yellow peril
+there is more than one way to kill a cat
+there are three kinds of lies...
+there is no alternative
+there's an r in the month
+tanstaafl == there's no such thing as a free lunch
+there's _ born every minute
+they couldn't hit an elephant at this distance
+thick and thin
+as thick as two short planks
+things that go bump in the night
+think outside the box
+thinking cap
+the writings of thomas paine
+thorn in the flesh
+three score and ten
+three sheets to the wind
+three strikes and you are out
+throw in the towel
+throw your hat into the ring
+thumbs up
+ticked off
+tickle the ivories
+tide over
+till the cows come home
+tinker's damn
+tilting at windmills
+tissue of lies
+titfer
+tit for tat
+tits up
+to a t
+to all intents and purposes
+to beggar belief
+to boldly go where no man has gone before
+to boot
+to cast the first stone
+to err is human == to err is human; to forgive divine
+to the manner born
+toast of the town
+toe the line
+toe-curling
+toe curling == toe-curling
+toffee-nosed
+toffee nosed == toffee-nosed
+tommy atkins
+tongue in cheek
+too big for your breeches
+toodle-oo
+toodleoo == toodle-oo
+tooth and nail
+top dog
+top drawer
+top notch
+topsy-turvy
+topsy turvy == topsy-turvy
+total shambles
+touch and go
+wouldn't touch with a barge pole == wouldn't touch with a barge-pole
+touch wood
+touchy-feely
+touchy feely == touchy-feely
+tout de suite
+tower of strength
+train surfing
+trick or treat
+trip the light fantastic
+trouble and strife
+true blue
+tuckered out
+turn a blind eye
+turn of phrase
+turn the tables
+turn up for the books
+turn up trumps
+twelve good men and true
+twenty three skidoo
+twenty four seven
+under the thumb
+under the auspices of
+union jack
+the unkindest cut of all
+up a blind alley
+up in arms
+up shit creek without a paddle
+up the apples and pears
+up the duff
+up the pole
+up the wooden hill to bedfordshire
+up to snuff
+upper crust
+upper hand
+ups-a-daisy
+ups a daisy == ups-a-daisy
+upset the apple-cart
+upset the apple cart == upset the apple-cart
+up the ante
+upside down
+urban myth
+use your loaf
+usual suspects - the
+using a sledgehammer to crack a nut
+valentine's day poems and sayings
+van surfing
+veg out
+verbosity leads to unclear, inarticulate things
+vice versa
+vis a vis == vis-a-vis
+visit the ladies' room
+vorsprung durch technik
+walk free
+walk the walk
+walk the plank
+warts and all
+watch the birdie
+watching brief
+wave a red rag to a bull
+wax lyrical
+wax poetic
+we are a grandmother
+we are not amused
+we know where you live
+weakest link = a chain is only as strong as its weakest link
+wear the trousers
+weasel words
+wee-wee
+wee wee == wee-wee
+well heeled
+well read
+wet behind the ears
+wet blanket
+what are you like?
+what football is all about
+what god has joined together let no man put asunder
+what part of no don't you understand?
+what you see is what you get
+wysiwyg == what you see is what you get
+what's not to like?
+what's up doc?
+when pigs fly
+when the shit hits the fan
+whet your appetite
+which is which?
+which witch is which?
+whipper snapper
+whipping boy
+whistle and flute
+whistle blower
+whistle down the wind
+white as snow
+white bread
+white elephant
+whole-hearted
+whole hearted == whole-hearted
+whoops-a-daisy
+whoops a daisy == whoops-a-daisy
+why does bread always fall butter side down?
+you get on my wick
+wild and woolly
+willy nilly
+win hands down
+win one for the gipper
+wing it
+winter drawers on
+wish you were here
+with bells on
+without let or hindrance
+without so much as a by your leave
+woe betide you
+wolf in sheep's clothing
+wooden hill to bedfordshire
+word association football
+word for word
+a word in edge ways
+a word in edgeways == a word in edge ways
+a word in your shell like == a word in your shell-like
+worth one's salt
+wotcher
+wreak havoc
+the wrong end of the stick
+yada yada
+yadayada == yada yada
+yada == yada yada
+yellow-belly
+yellow belly == yellow-belly
+yellow peril
+you can lead a horse to water but you can't make it drink
+you can lead a whore to culture but you can't make her think
+you look as if you've been dragged through a hedge backwards
+you'll wonder where the yellow went when you brush your teeth with pepsodent
+young turk
+you've never had it so good
+zero tolerance
+zig-zag
+zig zag == zig-zag
+zigzag == zig-zag
+
+# https://www.udemy.com/english-idioms-for-the-modern-learner/
+Go with the Flow
+Yuck my Yum
+Bite my Head Off
+Blood Runs Cold
+Hit the Books
+Bite off More than _ can Chew
+A Taste of _ own Medicine
+Butter Up
+Born Yesterday
+Blow Off Steam
+Spice Things Up
+Hit Below the Belt
+Hit the Sack
+A Snowball's Chance in Hell

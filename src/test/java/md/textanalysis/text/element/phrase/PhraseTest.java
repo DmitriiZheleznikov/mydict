@@ -23,7 +23,7 @@ class PhraseTest {
     @BeforeEach
     void setUp() throws IOException, URISyntaxException {
         TextAnalyserHelper.init();
-        phraseBig = new Phrase(0);
+        phraseBig = new Phrase();
         phraseBig.addEntity(new Word("Test"));
         phraseBig.addEntity(new Word("Phrase"));
         phraseBig.addEntity(new Word("where"));
@@ -41,7 +41,7 @@ class PhraseTest {
 
     @Test
     void contains() {
-        Phrase phrase = new Phrase(0);
+        Phrase phrase = new Phrase();
         phrase.addEntity(new Word("be"));
         phrase.addEntity(new Separator(","));
         phrase.addEntity(new Word("also"));
@@ -51,7 +51,7 @@ class PhraseTest {
         assertEquals(Arrays.asList(5, 6, 7, 8), phraseBig.contains(phrase, 5));
         assertEquals(Phrase.EMPTY_LIST_INT, phraseBig.contains(phrase, 6));
 
-        phrase = new Phrase(0);
+        phrase = new Phrase();
         phrase.addEntity(new Word("be"));
         phrase.addEntity(new Separator(","));
         phrase.addEntity(new Word("also"));

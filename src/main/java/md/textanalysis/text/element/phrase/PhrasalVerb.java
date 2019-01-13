@@ -8,8 +8,8 @@ import java.util.List;
 public class PhrasalVerb extends Phrase {
     public static final int NUM_WORDS_IN_BETWEEN = 3;
 
-    public PhrasalVerb(int pos) {
-        super(pos);
+    public PhrasalVerb() {//int pos) {
+        super();
     }
 
     @Override

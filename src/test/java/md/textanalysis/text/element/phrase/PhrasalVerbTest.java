@@ -18,7 +18,7 @@ class PhrasalVerbTest {
     @BeforeEach
     void setUp() throws IOException, URISyntaxException {
         TextAnalyserHelper.init();
-        phraseBig = new Phrase(0);
+        phraseBig = new Phrase();
         phraseBig.addEntity(new Word("How"));
         phraseBig.addEntity(new Word("did"));
         phraseBig.addEntity(new Word("you"));
@@ -37,7 +37,7 @@ class PhrasalVerbTest {
 
     @Test
     void contains() {
-        PhrasalVerb phVerb = new PhrasalVerb(0);
+        PhrasalVerb phVerb = new PhrasalVerb();
         phVerb.addEntity(new Word("break"));
         phVerb.addEntity(new Word("down"));
         phVerb.init();
@@ -45,17 +45,17 @@ class PhrasalVerbTest {
         assertEquals(Arrays.asList(7, 9), phraseBig.contains(phVerb, 7));
         assertEquals(Phrase.EMPTY_LIST_INT, phraseBig.contains(phVerb, 8));
 
-        phVerb = new PhrasalVerb(0);
+        phVerb = new PhrasalVerb();
         phVerb.addEntity(new Word("break"));
         phVerb.addEntity(new Word("test"));
         phVerb.init();
         assertEquals(Phrase.EMPTY_LIST_INT, phraseBig.contains(phVerb, 0));
 
-        phVerb = new PhrasalVerb(0);
+        phVerb = new PhrasalVerb();
         phVerb.addEntity(new Word("bring"));
         phVerb.addEntity(new Word("along"));
         phVerb.init();
-        Phrase phrase = new Phrase(2);
+        Phrase phrase = new Phrase();
         phrase.addEntity(new Word("bring"));
         phrase.addEntity(new Word("him"));
         phrase.addEntity(new Word("along"));
@@ -65,7 +65,7 @@ class PhrasalVerbTest {
 
     @Test
     void toStringTest() {
-        PhrasalVerb phVerb = new PhrasalVerb(0);
+        PhrasalVerb phVerb = new PhrasalVerb();
         phVerb.addEntity(new Word("break"));
         phVerb.addEntity(new Word("down"));
         phVerb.init();

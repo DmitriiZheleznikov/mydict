@@ -2,6 +2,9 @@ package md.textanalysis.ctrl;
 
 import md.textanalysis.callback.IProgressFunction;
 import md.textanalysis.helper.TextAnalyserHelper;
+import md.textanalysis.text.analyser.AnalyserFacade;
+import md.textanalysis.text.analyser.text.TextOrderNumberSetter;
+import md.textanalysis.text.analyser.text.TextPhrasesCreator;
 import md.textanalysis.text.element.word.AbstractWord;
 
 import java.io.File;
@@ -13,7 +16,8 @@ import java.util.List;
 
 public class TextToAnalyse {
     private File file;
-    private List<AbstractWord> entities;
+    private List<String> rawLinesToAnalyse;
+    List<AbstractWord> entities;
 
     public TextToAnalyse(File file) {
         this.file = file;
@@ -28,54 +32,45 @@ public class TextToAnalyse {
             throw new IllegalArgumentException("File " + file.getName() + " doesn't exist");
         }
 
-        List<String> rawLinesToAnalyse = Files.readAllLines(Paths.get(file.getAbsolutePath()), StandardCharsets.UTF_8);
+        rawLinesToAnalyse = Files.readAllLines(Paths.get(file.getAbsolutePath()), StandardCharsets.UTF_8);
         progressFunction.step();
-
-        entities = TextAnalyserHelper.convertTextToWords(TextAnalyserHelper.getFileExt(file), rawLinesToAnalyse);
-        progressFunction.step();
-
-//        String textRaw = TextAnalyserHelper.convertToString(TextAnalyserHelper.getFileExt(file), rawLinesToAnalyse);
-//        progressFunction.step();
-//        System.out.println("convertToString end");
-//
-//        String[] rawEntities = TextAnalyserHelper.convertToList(textRaw);
-//        progressFunction.step();
-//        System.out.println("convertToList end");
-//
-//        createEntities(rawEntities);
-//        progressFunction.step();
-//        System.out.println("createEntities end");
-
-
     }
 
-//    private void createEntities(String[] rawEntities) {
-//        entities = new AbstractWord[rawEntities.length];
-//        Phrase phrase = new Phrase(0);
-//        for (int i = 0; i < entities.length; i++) {
-//            AbstractWord entity = TextElementFactory.create(rawEntities[i], phrase);
-//            entities[i] = entity;
-//            if (entity.isPhraseBreak()) {
-//                phrase = new Phrase(i+1/*, phrase*/);
-//            }
-//        }
-//    }
+    public void prepare(IProgressFunction progressFunction) throws IOException {
+        entities = TextAnalyserHelper.convertToWords(TextAnalyserHelper.getFileExt(file), rawLinesToAnalyse);
+        progressFunction.step();
+
+        initAllWords(progressFunction);
+
+        AnalyserFacade.modifyTextSpecialCases(entities);
+        progressFunction.step();
+
+        new TextPhrasesCreator().perform(entities);
+        progressFunction.step();
+
+        new TextOrderNumberSetter().perform(entities);
+        progressFunction.step();
+    }
+
+    private void initAllWords(IProgressFunction progressFunction) {
+        int wordsCount = getEntities().size();
+        int progressStepEach = TextAnalyserHelper.calcProgressStep(wordsCount, 25);
+        int i = 0;
+        for (AbstractWord entity : getEntities()) {
+            entity.init();
+            TextAnalyserHelper.increaseProgress(i++, progressStepEach, progressFunction);
+        }
+    }
 
     public File getFile() {
         return file;
     }
 
+    public List<String> getRawLinesToAnalyse() {
+        return rawLinesToAnalyse;
+    }
+
     public List<AbstractWord> getEntities() {
         return entities;
     }
-
-    public int calcCountValidEntities() {
-        int res = 0;
-        for (AbstractWord entity : entities) {
-            if (entity.isValid()) res++;
-        }
-
-        return res;
-    }
-
 }

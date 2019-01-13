@@ -6,7 +6,7 @@ import md.textanalysis.ctrl.AContext;
 import md.textanalysis.ctrl.MyDict;
 import md.textanalysis.ctrl.TextToAnalyse;
 import md.textanalysis.helper.TextAnalyserHelper;
-import md.textanalysis.text.analyse.AnalyserFacade;
+import md.textanalysis.text.analyser.AnalyserFacade;
 import md.textanalysis.text.element.word.AbstractWord;
 
 import java.io.File;
@@ -15,18 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Provides 'task' for parallel text analysis with progress update, forming list and its filtration<ul>
- *     <li>read file to RAM</li>
- *     <li>convert SRT/FB2 format to TXT</li>
- *     <li>union text into 1 big string (because words can be divided into two lines)</li>
- *     <li>lower text</li>
- *     <li>remove everything except words divided by spaces</li>
- *     <li>get words (no filtration)</li>
- *     <li>union irregular verbs</li>
- *     <li>union words by impl</li>
- *     <li>find examples</li>
- *     <li>filter by MyDict</li>
- * </ul>
+ * Provides 'task' for text analysis with progress update, forming list and its filtration
  */
 abstract public class TextAnalyser extends Task<Void> {
     private static final int MAX_WORK = 100;
@@ -58,15 +47,6 @@ abstract public class TextAnalyser extends Task<Void> {
         failAction(exception);
     }
 
-    private void addProgress(double add) {
-        workDone += add;
-        updateProgress(workDone, MAX_WORK);
-    }
-
-    private void addProgress(double wordsCount, double workDoneOnStart) {
-        addProgress((1/wordsCount)*(MAX_WORK-workDoneOnStart));
-    }
-
     private void increaseProgress() {
         updateProgress(++workDone, MAX_WORK);
     }
@@ -85,22 +65,10 @@ abstract public class TextAnalyser extends Task<Void> {
     protected Void call() throws Exception {
         try {
             zeroProgress();
-            //System.out.println("zeroProgress end");
+            init();
+            prepare();
 
-            TextAnalyserHelper.init(this::increaseProgress);
-            //System.out.println("TextAnalyserHelper.init end");
-
-            myDict.init(this::increaseProgress);
-            //System.out.println("myDict.init end");
-
-            textToAnalyse.init(this::increaseProgress);
-            //System.out.println("textToAnalyse.init end");
-
-            initAllWords();
-            //System.out.println("initAllWords end");
-
-            firstModelLine = convertToModel(textToAnalyse);
-            //System.out.println("convertToModel end");
+            firstModelLine = analyse();
 
             finishProgress();
         } catch (MalformedInputException e) {
@@ -114,32 +82,43 @@ abstract public class TextAnalyser extends Task<Void> {
         return null;
     }
 
-    private void initAllWords() {
-        double workDoneOnStart = workDone;
-        double wordsCount = textToAnalyse.getEntities().size();
-        AbstractWord entity;
-        for (int i = 0; i < textToAnalyse.getEntities().size(); i++) {
-            entity = textToAnalyse.getEntities().get(i);
-            entity.init();
-            addProgress(wordsCount*2, workDoneOnStart);
-        }
+    private void init() throws Exception {
+        TextAnalyserHelper.init(this::increaseProgress);
+        myDict.init(this::increaseProgress);
+        textToAnalyse.init(this::increaseProgress);
     }
 
-    private MDListLineModel convertToModel(TextToAnalyse textToAnalyse) {
-        double wordsCount = textToAnalyse.calcCountValidEntities();
-        Map<String, MDListLineModel> map = new HashMap<>((int)wordsCount);
+    private void prepare() throws Exception {
+        textToAnalyse.prepare(this::increaseProgress);
+    }
+
+    private int calcWorkLeftInPercent() {
+        int workDoneInPercent = (int)(100 * (workDone / MAX_WORK));
+        int workLeftInPercent = 100 - workDoneInPercent;
+
+        return workLeftInPercent < 0 ? 0 : workLeftInPercent;
+    }
+
+    private MDListLineModel analyse() throws Exception {
+        int wordsCount = textToAnalyse.getEntities().size();
+        Map<String, MDListLineModel> map = new HashMap<>(wordsCount);
         MDListLineModel lastLine = null;
-        double workDoneOnStart = workDone;
-        AContext context = new AContext(textToAnalyse);
+        AContext context = new AContext();
 
-        AbstractWord entity;
-        for (int i = 0; i < textToAnalyse.getEntities().size(); i++) {
-            entity = textToAnalyse.getEntities().get(i);
-            if (!entity.isValid()) continue;
+        int workLeftInPercent = calcWorkLeftInPercent();
+        int progressStepEach = TextAnalyserHelper.calcProgressStep(wordsCount, workLeftInPercent);
 
-            context.nextWord(i);
+        int i = 0;
+        for (AbstractWord entity : textToAnalyse.getEntities()) {
+            if (!entity.isValid()) {
+                TextAnalyserHelper.increaseProgress(i++, progressStepEach, this::increaseProgress);
+                continue;
+            }
+
+            context.nextWord(entity);
             AnalyserFacade.findAndSetSpecialCases(context);
             AnalyserFacade.findAndSetPhrasalVerb(context);
+            AnalyserFacade.findAndSetIdiom(context);
 
             MDListLineModel line = map.get(context.getRoot());
             if (line == null || line.getCount() < 2) {
@@ -165,7 +144,7 @@ abstract public class TextAnalyser extends Task<Void> {
 
             if (myDict.containsRoot(context.getRoot())) line.disable();
 
-            addProgress(wordsCount*2, workDoneOnStart);
+            TextAnalyserHelper.increaseProgress(i++, progressStepEach, this::increaseProgress);
         }
 
         return firstModelLine;

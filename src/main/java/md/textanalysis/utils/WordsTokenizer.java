@@ -11,12 +11,22 @@ public class WordsTokenizer {
     private String nxtToken;
     private int numOpenTag = 0;
     private int numCloseTag = 0;
+    private boolean htmlSupportEnabled;
 
     public WordsTokenizer(String rawText) {
         this.rawText = rawText;
         this.i = 0;
         this.nxtTokenSearchPerformed = false;
         this.nxtToken = null;
+        this.htmlSupportEnabled = true;
+    }
+
+    public WordsTokenizer(String rawText, boolean htmlSupportEnabled) {
+        this.rawText = rawText;
+        this.i = 0;
+        this.nxtTokenSearchPerformed = false;
+        this.nxtToken = null;
+        this.htmlSupportEnabled = htmlSupportEnabled;
     }
 
     public boolean hasMoreTokens() {
@@ -58,17 +68,51 @@ public class WordsTokenizer {
             }
             if (sb.length() > 0) nxtToken = sb.toString();
         }
+
+//        if (CASE_WITH_NOT.containsKey(nxtToken)) {
+//            int fNOT = checkFollowingNOT();
+//            if (fNOT > -1) {
+//                i = fNOT;
+//                nxtToken = CASE_WITH_NOT.get(nxtToken);
+//            }
+//        }
     }
+
+//    private int checkFollowingNOT() {
+//        int ii = i;
+//        for (; ii < rawText.length(); ii++) {
+//            if (rawText.charAt(ii) != ' ') break;
+//        }
+//
+//        if (ii >= rawText.length()) return -1;
+//        if (rawText.charAt(ii) == 'N' || rawText.charAt(ii) == 'n') {
+//            if (++ii >= rawText.length()) return -1;
+//            if (rawText.charAt(ii) == 'O' || rawText.charAt(ii) == 'o') {
+//                if (++ii >= rawText.length()) return -1;
+//                if (rawText.charAt(ii) == 'T' || rawText.charAt(ii) == 't') {
+//                    return ++ii;
+//                }
+//            }
+//        }
+//
+//        return -1;
+//    }
 
     private boolean isNumber(char ch) {
         return NUMBER_PATTERN.indexOf(ch) >= 0;
     }
 
+//    private String getPatternO(boolean isNumber) {
+//        if (isNumber) {
+//            return numOpenTag == numCloseTag ? NUMBER_PATTERN : TAG_NAME_PATTERN;
+//        }
+//        return numOpenTag == numCloseTag ? WORD_PATTERN : TAG_NAME_PATTERN;
+//    }
+
     private String getPattern(boolean isNumber) {
-        if (isNumber) {
-            return numOpenTag == numCloseTag ? NUMBER_PATTERN : TAG_NAME_PATTERN;
-        }
-        return numOpenTag == numCloseTag ? WORD_PATTERN : TAG_NAME_PATTERN;
+        if (htmlSupportEnabled && numOpenTag != numCloseTag) return TAG_NAME_PATTERN;
+
+        return isNumber ? NUMBER_PATTERN : WORD_PATTERN;
     }
 
     private void skipSpaces() {
