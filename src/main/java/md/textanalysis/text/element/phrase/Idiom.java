@@ -116,6 +116,16 @@ public class Idiom extends Phrase {
         PRONOUNS.add("it");
         PRONOUNS.add("they");
         PRONOUNS.add("we");
+        PRONOUNS.add("someone");
+        PRONOUNS.add("somebody");
+        PRONOUNS.add("oneself");
+        PRONOUNS.add("myself");
+        PRONOUNS.add("yourself");
+        PRONOUNS.add("himself");
+        PRONOUNS.add("herself");
+        PRONOUNS.add("itself");
+        PRONOUNS.add("ourselves");
+        PRONOUNS.add("themselves");
 
         POSSESSIVE_PRONOUNS.add("my");
         POSSESSIVE_PRONOUNS.add("your");
@@ -124,6 +134,7 @@ public class Idiom extends Phrase {
         POSSESSIVE_PRONOUNS.add("its");
         POSSESSIVE_PRONOUNS.add("our");
         POSSESSIVE_PRONOUNS.add("their");
+        POSSESSIVE_PRONOUNS.add("one's");
 
         POSSESSIVE_PRONOUNS_2.add("mine");
         POSSESSIVE_PRONOUNS_2.add("yours");
