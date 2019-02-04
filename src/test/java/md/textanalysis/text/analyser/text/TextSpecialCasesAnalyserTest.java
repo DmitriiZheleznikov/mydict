@@ -15,7 +15,7 @@ class TextSpecialCasesAnalyserTest {
     void setUp() throws IOException, URISyntaxException {
         modifier = new TextSpecialCasesModifier();
         modifier.init();
-        System.out.println(modifier.toString());
+        //System.out.println(modifier.toString());
     }
 
     @Test

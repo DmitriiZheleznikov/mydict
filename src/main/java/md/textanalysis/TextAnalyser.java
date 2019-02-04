@@ -117,8 +117,8 @@ abstract public class TextAnalyser extends Task<Void> {
 
             context.nextWord(entity);
             AnalyserFacade.findAndSetSpecialCases(context);
-            AnalyserFacade.findAndSetPhrasalVerb(context);
             AnalyserFacade.findAndSetIdiom(context);
+            AnalyserFacade.findAndSetPhrasalVerb(context);
 
             MDListLineModel line = map.get(context.getRoot());
             if (line == null || line.getCount() < 2) {

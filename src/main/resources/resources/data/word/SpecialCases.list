@@ -6,6 +6,11 @@
 #2. all words from 'from' list (everything before symbol '='), in case several words, will be combined into 1 word
 #   divided by single space between them (refer TextSpecialCasesModifier.java)
 
+am = be
+is = be
+are = be
+was = be
+were = be
 do not = do
 does not = do
 does = do

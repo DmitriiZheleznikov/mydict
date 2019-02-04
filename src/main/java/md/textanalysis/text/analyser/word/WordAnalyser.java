@@ -28,7 +28,6 @@ public class WordAnalyser {
         String key = null;
 
         String wordPrepared = word.replaceAll("\"", "");
-
         String specialCase = specialCasesWordAnalyser.get(wordPrepared);
         if (specialCase != null) {
             key = specialCase;

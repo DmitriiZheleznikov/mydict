@@ -103,11 +103,11 @@ public class TextAnalyserHelper {
     }
 
     public static boolean isWord(String entity) {
-        return entity.matches("[\"A-Za-z'’-]+");
+        return entity.matches("[-_\"A-Za-z'’]+");
     }
 
     public static boolean isNumber(String entity) {
-        return entity.matches("[0-9]+");
+        return entity.matches("[_0-9]+");
     }
 
     public static String convertToSingleSpaces(String textToConvert) {

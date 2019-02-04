@@ -14,6 +14,7 @@ class WordAnalyserTest {
         analyser.init();
 
         assertEquals("do", analyser.getRoot("doesn't"));
+        assertEquals("be", analyser.getRoot("is"));
         assertEquals("arise", analyser.getRoot("arise"));
         assertEquals("arise", analyser.getRoot("arose"));
         assertEquals("arise", analyser.getRoot("arisen"));

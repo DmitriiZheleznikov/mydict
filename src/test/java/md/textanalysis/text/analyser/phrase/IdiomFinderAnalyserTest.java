@@ -60,7 +60,6 @@ class IdiomFinderAnalyserTest {
 
         String expected = "the big apple";
 
-        Phrase phrase1 = new Phrase();
         List<AbstractWord> entities = new ArrayList<>();
         entities.add(new Word("test"));
         entities.add(new Word("the"));

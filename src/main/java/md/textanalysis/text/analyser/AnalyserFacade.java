@@ -9,6 +9,7 @@ import md.textanalysis.text.analyser.phrase.PhraseRootFinderAnalyser;
 import md.textanalysis.text.analyser.word.WordAnalyser;
 import md.textanalysis.text.analyser.word.impl.BeautifyAnalyser;
 import md.textanalysis.text.element.word.AbstractWord;
+import md.textanalysis.text.matcher.phrase.IdiomToPhraseMatcher;
 import md.textanalysis.text.modifier.TextSpecialCasesModifier;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class AnalyserFacade {
     public static final ThreadLocal<PhraseRootFinderAnalyser> PH_ROOT_FINDER = ThreadLocal.withInitial(PhraseRootFinderAnalyser::new);
     public static final ThreadLocal<BeautifyAnalyser> BEAUTIFY_ANALYSER = ThreadLocal.withInitial(BeautifyAnalyser::new);
     public static final ThreadLocal<TextSpecialCasesModifier> TEXT_SPECIAL_CASES_MODIFIER = ThreadLocal.withInitial(TextSpecialCasesModifier::new);
+    public static final ThreadLocal<IdiomToPhraseMatcher> IDIOM_TO_PHRASE_MATCHER = ThreadLocal.withInitial(IdiomToPhraseMatcher::new);
 
     public static void init() throws IOException, URISyntaxException {
         init(IProgressFunction.NULL);
@@ -35,6 +37,7 @@ public class AnalyserFacade {
         getIdiomFinder().init(progressFunction);
         getBeautifyAnalyser().init(progressFunction);
         getTextSpecialCasesModifier().init(progressFunction);
+        getIdiomToPhraseMatcher().init(progressFunction);
     }
 
     public static WordAnalyser getWordAnalyser() {
@@ -63,6 +66,10 @@ public class AnalyserFacade {
 
     public static TextSpecialCasesModifier getTextSpecialCasesModifier() {
         return TEXT_SPECIAL_CASES_MODIFIER.get();
+    }
+
+    public static IdiomToPhraseMatcher getIdiomToPhraseMatcher() {
+        return IDIOM_TO_PHRASE_MATCHER.get();
     }
 
     public static String getWordRoot(String word) {

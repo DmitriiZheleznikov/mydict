@@ -1,5 +1,6 @@
 package md.textanalysis.text.element.phrase;
 
+import md.textanalysis.text.analyser.AnalyserFacade;
 import md.textanalysis.text.element.word.AbstractWord;
 import md.textanalysis.text.element.word.Separator;
 
@@ -14,99 +15,21 @@ public class Idiom extends Phrase {
     public static final Set<String> PRONOUNS = new HashSet<>();
     public static final Set<String> ARTICLES = new HashSet<>();
     public static final Set<String> PREPOSITIONS = new HashSet<>();
+
     public static final Set<String> TO_SKIP = new HashSet<>();
-
-    public Idiom() {
-        super();
-    }
-
-    private int calcSizeOfPhaseWithoutSKIPs(Phrase phrase) {
-        if (phrase.getEntities().size() == 0) return 0;
-
-        int size = 0;
-        for (AbstractWord word : phrase.getEntities()) {
-            if (!TO_SKIP.contains(word.getLower())) size++;
-        }
-
-        return size;
-    }
-
-    private boolean checkIfPhraseContainsSeparatorOnly(Phrase phrase, int startPos) {
-        for (int i = startPos; i < phrase.getEntities().size(); i++) {
-            if (!(phrase.getEntities().get(i) instanceof Separator)) return false;
-        }
-
-        return true;
-    }
-
-    @Override
-    protected List<Integer> isContainedIn(Phrase phrase, int startPos) {
-        if (calcSizeOfPhaseWithoutSKIPs(phrase) < calcSizeOfPhaseWithoutSKIPs(this)) return EMPTY_LIST_INT;
-
-        List<Integer> numbers = new ArrayList<>();
-        int idiomI = 0;
-        int phraseI = startPos;
-
-        for (int i = startPos; i < phrase.entities.size(); i++) {
-            if (this.entities.size() <= idiomI) return numbers;
-            if (phrase.entities.size() <= phraseI) {
-                return checkIfPhraseContainsSeparatorOnly(this, idiomI) ? numbers : EMPTY_LIST_INT;
-            }
-
-            if (TO_SKIP.contains(this.entities.get(idiomI).getLower())) idiomI++;
-            if (TO_SKIP.contains(phrase.entities.get(phraseI).getLower())) {
-                numbers.add(phraseI);
-                phraseI++;
-            }
-
-            if (this.entities.size() <= idiomI) return numbers;
-            if (phrase.entities.size() <= phraseI) {
-                return checkIfPhraseContainsSeparatorOnly(this, idiomI) ? numbers : EMPTY_LIST_INT;
-            }
-
-            if (!compareWords(this.entities.get(idiomI), phrase.entities.get(phraseI))) {
-                return EMPTY_LIST_INT;
-            }
-            numbers.add(phraseI);
-            if (this.entities.size() == (idiomI + 1)) return numbers;
-            if (i >= NUM_LIMIT_DURING_CONTAINS + startPos) return EMPTY_LIST_INT;
-
-            idiomI++;
-            phraseI++;
-        }
-
-        return numbers;
-    }
-
-    private boolean compareWords(AbstractWord word1, AbstractWord word2) {
-        if (POSSESSIVE_PRONOUNS.contains(word1.getRoot()) && POSSESSIVE_PRONOUNS.contains(word2.getRoot())) return true;
-        if (POSSESSIVE_PRONOUNS_2.contains(word1.getRoot()) && POSSESSIVE_PRONOUNS_2.contains(word2.getRoot())) return true;
-        if (PRONOUNS.contains(word1.getRoot()) && PRONOUNS.contains(word2.getRoot())) return true;
-        if (ARTICLES.contains(word1.getRoot()) && ARTICLES.contains(word2.getRoot())) return true;
-        if (PREPOSITIONS.contains(word1.getRoot()) && PREPOSITIONS.contains(word2.getRoot())) return true;
-
-        if ("_".equals(word1.getOriginal()) || "_".equals(word2.getOriginal())) return true;
-
-        return word1.equals(word2);
-    }
+    public static final Set<String> CAUSE_OF_GAP = new HashSet<>();
 
     static {
         ARTICLES.add("a");
         ARTICLES.add("an");
         ARTICLES.add("the");
 
-        TO_SKIP.addAll(ARTICLES);
-        TO_SKIP.add(",");
-        TO_SKIP.add(".");
-        TO_SKIP.add("!");
-        TO_SKIP.add(";");
-        TO_SKIP.add(":");
-        TO_SKIP.add("?");
-
         PREPOSITIONS.add("on");
         PREPOSITIONS.add("upon");
         PREPOSITIONS.add("in");
         PREPOSITIONS.add("at");
+        PREPOSITIONS.add("by");
+        PREPOSITIONS.add("to");
 
         PRONOUNS.add("i");
         PRONOUNS.add("me");
@@ -141,5 +64,49 @@ public class Idiom extends Phrase {
         POSSESSIVE_PRONOUNS_2.add("hers");
         POSSESSIVE_PRONOUNS_2.add("ours");
         POSSESSIVE_PRONOUNS_2.add("theirs");
+
+        TO_SKIP.addAll(ARTICLES);
+        TO_SKIP.addAll(PREPOSITIONS);
+        TO_SKIP.addAll(PRONOUNS);
+        TO_SKIP.addAll(POSSESSIVE_PRONOUNS);
+        TO_SKIP.addAll(POSSESSIVE_PRONOUNS_2);
+        TO_SKIP.add("_");
+
+        CAUSE_OF_GAP.addAll(PRONOUNS);
+        CAUSE_OF_GAP.addAll(POSSESSIVE_PRONOUNS);
+        CAUSE_OF_GAP.addAll(POSSESSIVE_PRONOUNS_2);
+        CAUSE_OF_GAP.add("_");
+    }
+
+    private int cntOfGapsMaxCache = 0;
+
+    public Idiom() {
+        super();
+    }
+
+    public int getMaxCntOfGaps() {
+        if (cntOfGapsMaxCache <= 0) {
+            cntOfGapsMaxCache = 1; // One additional gap
+            for (AbstractWord word : entities) {
+                if (CAUSE_OF_GAP.contains(word.getLower())) {
+                    cntOfGapsMaxCache++;
+                }
+            }
+        }
+        return cntOfGapsMaxCache;
+    }
+
+    @Override
+    protected List<Integer> isContainedIn(Phrase phrase, int startPos) {
+        return AnalyserFacade.getIdiomToPhraseMatcher().findMatchingNumbersInPhrase(this, phrase, startPos);
+    }
+
+    @Override
+    public String toString(int startPos, boolean lower) {
+        String result = super.toString(startPos, lower);
+        result = result.replaceAll(" _", " [word]");
+        result = result.replaceAll("_ ", " [word]");
+
+        return result;
     }
 }

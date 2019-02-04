@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class IdiomFinderAnalyser extends AbstractPhraseFinderAnalyser<Idiom> {
-    public final HashMap<Idiom, Idiom> SPECIAL_CASES_MAP = new HashMap<>(100);
+    public final HashMap<Idiom, Idiom> SPECIAL_CASES_MAP = new HashMap<>(1000);
 
     @Override
     protected String iniFileName() {
