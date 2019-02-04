@@ -66,7 +66,7 @@ public class Idiom extends Phrase {
         POSSESSIVE_PRONOUNS_2.add("theirs");
 
         TO_SKIP.addAll(ARTICLES);
-        TO_SKIP.addAll(PREPOSITIONS);
+        //TO_SKIP.addAll(PREPOSITIONS);
         TO_SKIP.addAll(PRONOUNS);
         TO_SKIP.addAll(POSSESSIVE_PRONOUNS);
         TO_SKIP.addAll(POSSESSIVE_PRONOUNS_2);

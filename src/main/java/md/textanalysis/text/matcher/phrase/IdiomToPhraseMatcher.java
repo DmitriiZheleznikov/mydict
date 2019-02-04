@@ -46,5 +46,6 @@ public class IdiomToPhraseMatcher {
         matchingTable.init(idiom, phrase, 0, startPhrasePos);
         matchingTable.modifyMarkSkips(Idiom.TO_SKIP);
         matchingTable.modifyMatchLine1ToLine2();//startPhrasePos);
+        System.out.println(matchingTable);
     }
 }

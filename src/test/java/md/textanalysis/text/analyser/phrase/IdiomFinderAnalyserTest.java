@@ -106,29 +106,6 @@ class IdiomFinderAnalyserTest {
     }
 
     @Test
-    void processABBR() throws IOException, URISyntaxException {
-        TextAnalyserHelper.init();
-        IdiomFinderAnalyser analyser = new IdiomFinderAnalyser();
-        analyser.init();
-
-        String expected = "gentlemen only, ladies forbidden";
-
-        List<AbstractWord> entities = new ArrayList<>();
-        entities.add(new Word("test"));
-        entities.add(new Word("GOLF"));
-        entities.add(new Word("test"));
-        new TextPhrasesCreator().perform(entities);
-        entities.get(0).getPhrase().init();
-        new TextOrderNumberSetter().perform(entities);
-        AContext context = new AContext();
-        context.nextWord(entities.get(1));
-
-        analyser.process(context);
-
-        assertEquals(expected, context.getLower());
-    }
-
-    @Test
     void process4() throws IOException, URISyntaxException {
         TextAnalyserHelper.init();
         IdiomFinderAnalyser analyser = new IdiomFinderAnalyser();

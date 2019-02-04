@@ -1,5 +1,6 @@
 package md.textanalysis.text.matcher.phrase.table.action.modify;
 
+import md.textanalysis.text.element.phrase.Idiom;
 import md.textanalysis.text.element.word.AbstractWord;
 import md.textanalysis.text.matcher.phrase.table.PMTElement;
 import md.textanalysis.text.matcher.phrase.table.PMTLine;
@@ -9,9 +10,9 @@ import md.textanalysis.text.matcher.phrase.table.PhraseMatchingTable;
  * Goes by line 1 and searches matching word in line 2, not vise versa
  */
 public class PMTMatchLine1ToLine2Action {
-    public static void process(PhraseMatchingTable matchingTable) {//, int startPos) {
+    public static void process(PhraseMatchingTable matchingTable) {
         int i1 = 0;
-        int i2 = 0;//startPos;
+        int i2 = -1;
 
         PMTLine line1 = matchingTable.getLine1();
         PMTLine line2 = matchingTable.getLine2();
@@ -21,7 +22,7 @@ public class PMTMatchLine1ToLine2Action {
 
             if (currentElement.isSkipped()) continue;
 
-            int i2_found = findMatchIn(line2, currentElement, i2);
+            int i2_found = findMatchIn(line2, currentElement, i2+1);
             if (i2_found < 0) continue;
             i2 = i2_found;
 
@@ -47,6 +48,7 @@ public class PMTMatchLine1ToLine2Action {
 
     private static boolean compareWords(AbstractWord word1, AbstractWord word2) {
         //if ("_".equals(word1.getOriginal()) || "_".equals(word2.getOriginal())) return true;
+        if (Idiom.PREPOSITIONS.contains(word1.getLower()) && Idiom.PREPOSITIONS.contains(word2.getLower())) return true;
 
         return word1.equals(word2);
     }

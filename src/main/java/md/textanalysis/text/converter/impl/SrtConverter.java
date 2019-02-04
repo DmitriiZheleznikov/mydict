@@ -5,7 +5,7 @@ import java.util.List;
 import static md.textanalysis.helper.SRTHelper.isLineTime;
 import static md.textanalysis.helper.SRTHelper.isLineValid;
 
-public class SrtConverter extends TxtConverter {
+public class SrtConverter extends Fb2Converter {
 
     public SrtConverter(List<String> rawLinesToAnalyse) {
         super(rawLinesToAnalyse);

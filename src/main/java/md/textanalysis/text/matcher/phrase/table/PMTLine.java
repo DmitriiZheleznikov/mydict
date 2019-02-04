@@ -12,8 +12,8 @@ public class PMTLine {
     private int maxPos;
 
     public PMTLine() {
-        this.elements = new PMTElement[CAPACITY];
-        for (int i = 0; i < CAPACITY; i++) {
+        this.elements = new PMTElement[CAPACITY+1];
+        for (int i = 0; i < (CAPACITY+1); i++) {
             this.elements[i] = new PMTElement();
         }
         clear();
@@ -25,7 +25,9 @@ public class PMTLine {
         for (AbstractWord word : phrase.getEntities()) {
             i++;
             if (i >= startPos) {
-                elements[++maxPos].setWord(word);
+                maxPos++;
+                if (maxPos >= CAPACITY) break;
+                elements[maxPos].setWord(word);
             }
         }
     }
@@ -49,11 +51,22 @@ public class PMTLine {
         return true;
     }
 
+    private String toStringElements() {
+        if (getMaxPos() < 0) return "";
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i <= getMaxPos(); i++) {
+            sb.append(getElement(i));
+        }
+
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
         return "PMTLine{" +
                 "maxPos=" + maxPos
-                + ", elements=" + Arrays.toString(elements) +
+                + ", elements=" + toStringElements() +
                 '}';
     }
 }

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -109,5 +110,46 @@ class IdiomTest {
 
         assertEquals(Arrays.asList(1, 2, 3, 4, 5), phraseBig.contains(idiom, 1));
         assertEquals(Phrase.EMPTY_LIST_INT, phraseBig.contains(idiom, 2));
+    }
+
+    @Test
+    void containsPrepositions() {
+        phraseBig = new Phrase();
+        phraseBig.addEntity(new Word("My"));
+        phraseBig.addEntity(new Word("name"));
+        phraseBig.addEntity(new Word("is"));
+        phraseBig.addEntity(new Word("Dima"));
+        phraseBig.init();
+
+        Idiom idiom = new Idiom();
+        idiom.addEntity(new Word("name"));
+        idiom.addEntity(new Word("on"));
+        idiom.addEntity(new Word("it"));
+        idiom.init();
+
+        assertEquals(Collections.emptyList(), phraseBig.contains(idiom, 1));
+    }
+
+    @Test
+    void containsWalkTheWalk() {
+        phraseBig = new Phrase();
+        phraseBig.addEntity(new Word("Man"));
+        phraseBig.addEntity(new Word("of"));
+        phraseBig.addEntity(new Word("my"));
+        phraseBig.addEntity(new Word("dreams"));
+        phraseBig.addEntity(new Word("walked"));
+        phraseBig.addEntity(new Word("through"));
+        phraseBig.addEntity(new Word("that"));
+        phraseBig.addEntity(new Word("door"));
+        phraseBig.addEntity(new Word("now"));
+        phraseBig.init();
+
+        Idiom idiom = new Idiom();
+        idiom.addEntity(new Word("walk"));
+        idiom.addEntity(new Word("the"));
+        idiom.addEntity(new Word("walk"));
+        idiom.init();
+
+        assertEquals(Collections.emptyList(), phraseBig.contains(idiom, 4));
     }
 }
