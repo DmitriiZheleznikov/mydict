@@ -52,6 +52,8 @@ public class Main extends Application {
         wa();
         stage.setMinHeight(APP_HEIGHT);
         stage.setMinWidth(APP_WIDTH);
+        if (Settings.getHeight() > APP_HEIGHT) stage.setHeight(Settings.getHeight());
+        if (Settings.getWidth() > APP_WIDTH) stage.setWidth(Settings.getWidth());
         stage.getIcons().add(ResourceHelper.image(Main.class, "/resources/img/ico.png"));
 
         return scene;
@@ -70,19 +72,7 @@ public class Main extends Application {
         });
 
         bg.appear(() -> {
-            boolean isAnimated = false;
-            if (Settings.getHeight() > APP_HEIGHT) {
-                HT.to(stage, 700, Ease.sineInOut).prop(stage.getHeight(), Settings.getHeight(), stage::setHeight);
-                isAnimated = true;
-            }
-            if (Settings.getWidth() > APP_WIDTH) {
-                HT.to(stage, 700, Ease.sineInOut).prop(stage.getWidth(), Settings.getWidth(), stage::setWidth);
-                isAnimated = true;
-            }
-            HT.to(isAnimated ? 730 : 30).onComplete(() -> {
-//            if (Settings.isMaximized()) {
-//                stage.setMaximized(true);
-//            }
+            HT.to(40).onComplete(() -> {
                 content.addToScene(scene);
                 content.initState();
                 stage.setResizable(true);

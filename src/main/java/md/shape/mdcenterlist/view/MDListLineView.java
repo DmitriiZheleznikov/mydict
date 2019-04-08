@@ -27,7 +27,6 @@ public class MDListLineView extends CListLineView {
         this.tCountClip = new HRectangle();
 
         tCount.setColor(parent.getColorSchema().countNumber());
-        bDelete.setColor(parent.getColorSchema().buttonDeleteNormal());
         tExample1.setColor(parent.getColorSchema().example1());
         tExample2.setColor(parent.getColorSchema().example2());
 
@@ -36,12 +35,14 @@ public class MDListLineView extends CListLineView {
 
     @Override
     public void show() {
-        showImmediately(bg, tText, tCount, bDelete, tExample1, tExample2);
+        super.show();
+        showImmediately(tCount, tExample1, tExample2);
     }
 
     @Override
     public void hide() {
-        hideImmediately(bg, tText, tCount, bDelete, tExample1, tExample2);
+        super.hide();
+        hideImmediately(tCount, tExample1, tExample2);
     }
 
     public CText gettCount() {
@@ -84,13 +85,7 @@ public class MDListLineView extends CListLineView {
 
     @Override
     public void resize(double sf) {
-        dropShadow.setRadius(3f * sf);
-        dropShadow.setOffsetX(2f * sf);
-        dropShadow.setOffsetY(2f * sf);
-        bg.setStrokeWidth(Math.round(2f * sf - 0.49));
-
-        tText.resize(sf);
-        bDelete.resize(sf);
+        super.resize(sf);
         tCount.resize(sf);
         tExample1.resize(sf);
         tExample2.resize(sf);
@@ -98,7 +93,8 @@ public class MDListLineView extends CListLineView {
 
     @Override
     public void addToScene(Scene scene) {
-        parent.getGroup().getChildren().addAll(bg, tText, tCount, bDelete, tExample1.getGroup(), tExample2.getGroup());
+        super.addToScene(scene);
+        parent.getGroup().getChildren().addAll(tCount, tExample1.getGroup(), tExample2.getGroup());
     }
 
     @Override

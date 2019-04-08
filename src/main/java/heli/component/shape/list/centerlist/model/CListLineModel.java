@@ -8,6 +8,7 @@ public class CListLineModel {
 
     protected int num;
     protected String text;
+    protected String editedText;
     protected CListLineModel prev;
     protected CListLineModel next;
     protected CListLineModelStatus status;
@@ -23,6 +24,14 @@ public class CListLineModel {
             this.num = 0;
         }
         enable();
+    }
+
+    public String getEditedText() {
+        return editedText;
+    }
+
+    public void setEditedText(String editedText) {
+        this.editedText = editedText;
     }
 
     public int getNum() {

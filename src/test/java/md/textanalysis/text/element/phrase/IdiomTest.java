@@ -152,4 +152,26 @@ class IdiomTest {
 
         assertEquals(Collections.emptyList(), phraseBig.contains(idiom, 4));
     }
+
+    @Test
+    void containsStayIn() {
+        phraseBig = new Phrase();
+        phraseBig.addEntity(new Word("to"));
+        phraseBig.addEntity(new Word("stay"));
+        phraseBig.addEntity(new Word("at"));
+        phraseBig.addEntity(new Word("our"));
+        phraseBig.addEntity(new Word("great-uncle's"));
+        phraseBig.addEntity(new Word("place"));
+        phraseBig.addEntity(new Word("in"));
+        phraseBig.addEntity(new Word("the"));
+        phraseBig.addEntity(new Word("woods"));
+        phraseBig.init();
+
+        Idiom idiom = new Idiom();
+        idiom.addEntity(new Word("stay"));
+        idiom.addEntity(new Word("in"));
+        idiom.init();
+
+        assertEquals(Arrays.asList(1,2,3), phraseBig.contains(idiom, 1));
+    }
 }

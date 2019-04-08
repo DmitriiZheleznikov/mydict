@@ -142,6 +142,7 @@ abstract public class TextAnalyser extends Task<Void> {
                 line.increaseCount();
             }
 
+            //TODO Add validation and correction by "edited:" words from settings
             if (myDict.containsRoot(context.getRoot())) line.disable();
 
             TextAnalyserHelper.increaseProgress(i++, progressStepEach, this::increaseProgress);

@@ -1,5 +1,6 @@
 package md.skin.colorschema.impl.pojo.part;
 
+import heli.component.shape.list.centerlist.adj.ICListEditDialogColorSchema;
 import javafx.scene.paint.Color;
 import md.shape.mdcenterlist.adj.IMDListColorSchema;
 
@@ -13,9 +14,18 @@ public class MDListColorSchema implements IMDListColorSchema {
     Color bgStrokeInactive;
     Color bgStrokeInvisible;
     Color text;
+    Color oldText;
     Color buttonDeleteNormal;
     Color buttonDeleteHovered;
     Color buttonDeleteInactive;
+    Color buttonEditNormal;
+    Color buttonEditHovered;
+    Color buttonEditInactive;
+    MDListEditDialogColorSchema editDialog;
+
+    public MDListColorSchema(MDListEditDialogColorSchema editDialog) {
+        this.editDialog = editDialog;
+    }
 
     public MDListColorSchema countNumber(Color value) {
         this.countNumber = value;
@@ -62,6 +72,11 @@ public class MDListColorSchema implements IMDListColorSchema {
         return this;
     }
 
+    public MDListColorSchema oldText(Color value) {
+        this.oldText = value;
+        return this;
+    }
+
     public MDListColorSchema buttonDeleteNormal(Color value) {
         this.buttonDeleteNormal = value;
         return this;
@@ -74,6 +89,26 @@ public class MDListColorSchema implements IMDListColorSchema {
 
     public MDListColorSchema buttonDeleteInactive(Color value) {
         this.buttonDeleteInactive = value;
+        return this;
+    }
+
+    public MDListColorSchema buttonEditNormal(Color value) {
+        this.buttonDeleteNormal = value;
+        return this;
+    }
+
+    public MDListColorSchema buttonEditHovered(Color value) {
+        this.buttonDeleteHovered = value;
+        return this;
+    }
+
+    public MDListColorSchema buttonEditInactive(Color value) {
+        this.buttonDeleteInactive = value;
+        return this;
+    }
+
+    public MDListColorSchema editDialog(MDListEditDialogColorSchema editDialog) {
+        this.editDialog = editDialog;
         return this;
     }
 
@@ -123,6 +158,11 @@ public class MDListColorSchema implements IMDListColorSchema {
     }
 
     @Override
+    public Color oldText() {
+        return oldText;
+    }
+
+    @Override
     public Color buttonDeleteNormal() {
         return buttonDeleteNormal;
     }
@@ -135,5 +175,25 @@ public class MDListColorSchema implements IMDListColorSchema {
     @Override
     public Color buttonDeleteInactive() {
         return buttonDeleteInactive;
+    }
+
+    @Override
+    public Color buttonEditNormal() {
+        return buttonDeleteNormal;
+    }
+
+    @Override
+    public Color buttonEditHovered() {
+        return buttonDeleteHovered;
+    }
+
+    @Override
+    public Color buttonEditInactive() {
+        return buttonDeleteInactive;
+    }
+
+    @Override
+    public MDListEditDialogColorSchema editDialog() {
+        return editDialog;
     }
 }

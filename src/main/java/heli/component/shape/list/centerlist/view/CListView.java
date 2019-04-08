@@ -48,13 +48,15 @@ public class CListView {
     protected boolean isLocked = true;
     protected boolean isVisible = false;
 
+    protected CListEditDialogView editDialog;
+
     public CListView(Group group, HRectangle rect, ICListColorSchema colorSchema) {
         this.colorSchema= colorSchema;
         this.group = group;
         this.bgRect = rect;
         this.sizeBetween = SIZE_PX_BETWEEN_LINES;
         this.lines = createLines();
-
+        this.editDialog = new CListEditDialogView(this);
         this.lineFakeOnFront = createNewLineView();
     }
 
@@ -113,6 +115,10 @@ public class CListView {
         return isLocked;
     }
 
+    public boolean isAnimated() {
+        return isLocked && !editDialog.tfNewValue.isVisible();
+    }
+
     public void setLocked(boolean locked) {
         isLocked = locked;
     }
@@ -166,6 +172,7 @@ public class CListView {
         for (int i = 0; i < SIZE; i++) {
             lines[i].locate();
         }
+        editDialog.locate();
     }
 
     public void locate(CListModelWindow modelWindow) {
@@ -190,6 +197,16 @@ public class CListView {
         return lineFakeOnFront;
     }
 
+    public void appearEditDialog() {
+        setLocked(true);
+        editDialog.appear();
+    }
+
+    public void disappearEditDialog() {
+        setLocked(false);
+        editDialog.disappear();
+    }
+
     public void hideFakeLine() {
         lineFakeOnFront.hide();
     }
@@ -210,6 +227,8 @@ public class CListView {
             line.resize(sf);
         }
         lineFakeOnFront.resize(sf);
+
+        editDialog.resize(sf);
     }
 
     public long getSizeBetween() {
@@ -229,6 +248,8 @@ public class CListView {
             line.addToScene(scene);
         }
         lineFakeOnFront.addToScene(scene);
+
+        editDialog.addToScene(scene);
     }
 
     public void setVisible(boolean isVisible) {
@@ -260,5 +281,9 @@ public class CListView {
 
     public void applyAnimation(CListModelOperation op, CListViewAnimation.Animation animation, CListModelWindow window) {
         ScrollEffectsFactory.get(animation).perform(this, window, op, null);
+    }
+
+    public CListEditDialogView getEditDialog() {
+        return editDialog;
     }
 }

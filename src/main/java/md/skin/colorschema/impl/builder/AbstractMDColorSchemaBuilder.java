@@ -6,6 +6,7 @@ import md.skin.colorschema.impl.pojo.bottom.MDBottomColorSchema;
 import md.skin.colorschema.impl.pojo.center.MDCenterColorSchema;
 import md.skin.colorschema.impl.pojo.part.MDButtonColorSchema;
 import md.skin.colorschema.impl.pojo.part.MDListColorSchema;
+import md.skin.colorschema.impl.pojo.part.MDListEditDialogColorSchema;
 import md.skin.colorschema.impl.pojo.part.MDProgressColorSchema;
 import md.skin.colorschema.impl.pojo.top.MDTopColorSchema;
 
@@ -27,7 +28,7 @@ abstract public class AbstractMDColorSchemaBuilder {
     }
 
     protected MDListColorSchema buildList() {
-        return new MDListColorSchema();
+        return new MDListColorSchema(new MDListEditDialogColorSchema());
     }
 
     protected MDTopColorSchema buildTop() {

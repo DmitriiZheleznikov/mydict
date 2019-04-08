@@ -107,7 +107,7 @@ public class MDContentCenter extends AbstractMDContentBase {
                 () -> (scene == null ? 0 : scene.getHeight()) / 2 - progressText.getHeight() / 2);
 
         if (scene != null) {
-            list.locateIfNotLocked();
+            list.locateIfNotAnimated();
         }
     }
 

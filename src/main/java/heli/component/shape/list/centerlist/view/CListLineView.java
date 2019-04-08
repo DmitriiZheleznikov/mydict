@@ -7,6 +7,7 @@ import heli.htweener.fx.ext.HRectangle;
 import heli.htweener.fx.ext.HText;
 import heli.htweener.fx.ext.effect.HDropShadow;
 import heli.htweener.tweenable.ITweenableShape;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 
@@ -31,8 +32,14 @@ public class CListLineView implements ITweenableShape {
     protected CText tText;
     protected HRectangle tTextClip;
 
+    protected CText tOldText;
+    protected HRectangle tOldTextClip;
+
     protected CButton bDelete;
     protected HRectangle bDeleteClip;
+
+    protected CButton bEdit;
+    protected HRectangle bEditClip;
 
     protected CListLineViewFuturePosition futurePosition;
 
@@ -45,14 +52,22 @@ public class CListLineView implements ITweenableShape {
         this.bg.setEffect(dropShadow);
         this.bgClip = new HRectangle();
         this.tTextClip = new HRectangle();
+        this.tOldTextClip = new HRectangle();
         this.bDeleteClip = new HRectangle();
+        this.bEditClip = new HRectangle();
         this.tText = new CText("", parent.getColorSchema().text(), FONT_UBUTNU_R_URL, FONT_UBUTNU_R_SIZE_DEFAULT);
+        this.tOldText = new CText("", parent.getColorSchema().oldText(), FONT_UBUTNU_R_URL, FONT_UBUTNU_R_SIZE_DEFAULT-2);
+        tOldText.setStrikethrough(true);
         this.bDelete = new CButton("X", parent.getColorSchema().buttonDeleteNormal(),
                 parent.getColorSchema().buttonDeleteInactive(),
                 parent.getColorSchema().buttonDeleteHovered(), FONT_ROBOTO_B_SIZE_DEFAULT - 4);
-
+        this.bEdit = new CButton("E", parent.getColorSchema().buttonEditNormal(),
+                parent.getColorSchema().buttonEditInactive(),
+                parent.getColorSchema().buttonEditHovered(), FONT_ROBOTO_B_SIZE_DEFAULT - 4);
         tText.setColor(parent.getColorSchema().text());
+        tOldText.setColor(parent.getColorSchema().oldText());
         bDelete.setColor(parent.getColorSchema().buttonDeleteNormal());
+        bEdit.setColor(parent.getColorSchema().buttonEditNormal());
         bg.setStroke(getStrokeColor());
         bg.setFill(parent.getColorSchema().bg());
 
@@ -60,11 +75,11 @@ public class CListLineView implements ITweenableShape {
     }
 
     public void show() {
-        showImmediately(bg, tText, bDelete);
+        showImmediately(bg, tText, tOldText, bDelete, bEdit);
     }
 
     public void hide() {
-        hideImmediately(bg, tText, bDelete);
+        hideImmediately(bg, tText, tOldText, bDelete, bEdit);
     }
 
     protected void showImmediately(ITweenableShape... objects) {
@@ -77,6 +92,10 @@ public class CListLineView implements ITweenableShape {
         return bDelete;
     }
 
+    public CButton getbEdit() {
+        return bEdit;
+    }
+
     public CListLineView.Status getStatus() {
         return status;
     }
@@ -87,6 +106,10 @@ public class CListLineView implements ITweenableShape {
 
     public HText gettText() {
         return tText;
+    }
+
+    public CText gettOldText() {
+        return tOldText;
     }
 
     protected void showImmediately(ITweenableShape object) {
@@ -169,11 +192,18 @@ public class CListLineView implements ITweenableShape {
     }
 
     public void renewContent(CListLineModel lineModel) {
-        tText.setText(lineModel == null ? "" : lineModel.getText());
+        if (lineModel != null && lineModel.getEditedText() != null && lineModel.getEditedText().trim().length() > 0) {
+            tText.setText(lineModel.getEditedText());
+            tOldText.setText(lineModel.getText());
+        } else {
+            tText.setText(lineModel == null ? "" : lineModel.getText());
+            tOldText.setText("");
+        }
     }
 
     public void renewContentBy(CListLineView row) {
         tText.setText(row.gettText().getText());
+        tOldText.setText(row.gettOldText().getText());
     }
 
     public void resize(double sf) {
@@ -183,20 +213,26 @@ public class CListLineView implements ITweenableShape {
         bg.setStrokeWidth(Math.round(2f * sf - 0.49));
 
         tText.resize(sf);
+        tOldText.resize(sf);
         bDelete.resize(sf);
+        bEdit.resize(sf);
     }
 
     public void addToScene(Scene scene) {
-        parent.getGroup().getChildren().addAll(bg, tText, bDelete);
+        parent.getGroup().getChildren().addAll(bg, tText, tOldText, bDelete/*, bEdit*/);
     }
 
     public void clip() {
         clipSize(bgClip);
         clipSize(tTextClip);
+        clipSize(tOldTextClip);
         clipSize(bDeleteClip);
+        clipSize(bEditClip);
         bg.setClip(bgClip);
         tText.setClip(tTextClip);
+        tOldText.setClip(tOldTextClip);
         bDelete.setClip(bDeleteClip);
+        bEdit.setClip(bEditClip);
     }
 
     protected void clipSize(HRectangle rc) {
@@ -224,14 +260,18 @@ public class CListLineView implements ITweenableShape {
 
     public void unsetClip() {
         tText.setClip(null);
+        tOldText.setClip(null);
         bg.setClip(null);
         bDelete.setClip(null);
+        bEdit.setClip(null);
     }
 
     public void setClip() {
         tText.setClip(tTextClip);
+        tOldText.setClip(tOldTextClip);
         bg.setClip(bgClip);
         bDelete.setClip(bDeleteClip);
+        bEdit.setClip(bEditClip);
     }
 
     public CListLineViewFuturePosition getFuturePosition() {
@@ -259,7 +299,9 @@ public class CListLineView implements ITweenableShape {
     protected void setXInner(double x) {
         bg.setX(x);
         tText.setX(x + (parent.getBlockWidth() - tText.getWidth()) / 2);
+        tOldText.setX(x + (parent.getBlockWidth() - tOldText.getWidth()) / 2);
         bDelete.setX(x + parent.getBlockWidth() - parent.getSizeBetween()*2 - bDelete.getWidth());
+        bEdit.setX(bDelete.getX() - bEdit.getWidth()*1.5);
     }
 
     @Override
@@ -277,7 +319,9 @@ public class CListLineView implements ITweenableShape {
     protected void setYInner(double y) {
         bg.setY(y);
         tText.setY(y + tText.getHeight() * 1.5);
+        tOldText.setY(tText.getY() + tText.getHeight());// + tOldText.getHeight()/2);
         bDelete.setY(y + tText.getHeight() * 1.5);
+        bEdit.setY(y + tText.getHeight() * 1.5);
     }
 
     @Override
@@ -290,9 +334,11 @@ public class CListLineView implements ITweenableShape {
         if (alpha < 0) alpha = 0;
         bg.setOpacity(alpha);
         tText.setOpacity(alpha);
+        tOldText.setOpacity(alpha);
         if (alpha > 0f) {
             bg.setVisible(true);
             tText.setVisible(true);
+            tOldText.setVisible(true);
         }
     }
 
@@ -302,19 +348,19 @@ public class CListLineView implements ITweenableShape {
 
     public void setCoreOpacity(double alpha) {
         bDelete.setOpacity(alpha);
+        bEdit.setOpacity(alpha);
         if (alpha > 0f) {
             bDelete.setVisible(true);
-            if (!parent.getGroup().getChildren().contains(bDelete)) {
-                parent.getGroup().getChildren().add(bDelete);
-            }
+            bDelete.setLocked(false);
+            bEdit.setVisible(true);
+            bEdit.setLocked(false);
         } else {
             bDelete.setVisible(false);
-            if (parent.getGroup().getChildren().contains(bDelete)) {
-                parent.getGroup().getChildren().remove(bDelete);
-            }
+            bDelete.setLocked(true);
+            bEdit.setVisible(false);
+            bEdit.setLocked(true);
         }
     }
-
 
     @Override
     public double getRotate() {
@@ -355,7 +401,9 @@ public class CListLineView implements ITweenableShape {
     public void setVisible(boolean visible) {
         bg.setVisible(visible);
         tText.setVisible(visible);
+        tOldText.setVisible(visible);
         bDelete.setVisible(visible);
+        bEdit.setVisible(visible);
     }
 
     @Override

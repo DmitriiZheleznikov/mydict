@@ -9,7 +9,12 @@ public interface ICListColorSchema {
     Color bgStrokeInactive();
     Color bgStrokeInvisible();
     Color text();
+    Color oldText();
     Color buttonDeleteNormal();
     Color buttonDeleteHovered();
     Color buttonDeleteInactive();
+    Color buttonEditNormal();
+    Color buttonEditHovered();
+    Color buttonEditInactive();
+    ICListEditDialogColorSchema editDialog();
 }

@@ -8,6 +8,7 @@ import heli.component.shape.list.centerlist.model.CListModelWindow;
 import heli.component.shape.list.centerlist.view.CListLineView;
 import heli.component.shape.list.centerlist.view.CListView;
 import heli.component.shape.list.centerlist.view.effect.scroll.CListViewAnimation;
+import heli.htweener.fx.ext.HText;
 import javafx.scene.Scene;
 
 /**
@@ -36,6 +37,7 @@ public class CList {
     protected ICListLength onListLengthTotal;
 
     protected boolean isDirty = false;
+    protected boolean isLocked = false;
 
     public CList(CListView listView) {
         this.listView = listView;
@@ -135,7 +137,27 @@ public class CList {
         listAction(onListDelete);
     }
 
-    /** RPerforms opposite action taken from in-memory history, both "model" and "view" with animation and all */
+    public void operationShowEditDialog() {
+        if (!listView.isLocked()) {
+            listView.appearEditDialog();
+        }
+    }
+
+    public void operationSaveEditedText() {
+        String newText = listView.getEditDialog().getTfNewValue().getText();
+        if (newText != null && newText.trim().length() == 0) {
+            newText = null;
+        }
+        listModel.getCurrentLine().setEditedText(newText);
+        listView.getCurrentLine().renewContent(listModel.getCurrentLine());
+        listView.getCurrentLine().locate();
+    }
+
+    public void operationHideEditDialog() {
+        listView.disappearEditDialog();
+    }
+
+    /** Performs opposite action taken from in-memory history, both "model" and "view" with animation and all */
     public void operationStepBack() {
         if (listModel.getCurrentLine() == null) return;
 
@@ -172,6 +194,7 @@ public class CList {
     }
 
     private void listAction(ICListEvent event) {
+        if (listView.isLocked()) return;
         if (listModel.getCurrentLine() == null) return;
 
         int prevWindowPos = currentWindow.getCurrent();
@@ -189,27 +212,23 @@ public class CList {
 
     protected void setupKeyEvents(Scene scene) {
         scene.setOnKeyPressed(ke -> {
-            if (!listView.isLocked()) {
-                switch (ke.getCode()) {
-                    case UP: {
-                        operationListUp();
-                        break;
-                    }
-                    case DOWN: {
-                        operationListDown();
-                        break;
-                    }
+            switch (ke.getCode()) {
+                case UP: {
+                    operationListUp();
+                    break;
+                }
+                case DOWN: {
+                    operationListDown();
+                    break;
                 }
             }
         });
         scene.setOnKeyReleased(ke -> {
-            if (!listView.isLocked()) {
-                switch (ke.getCode()) {
-                    case RIGHT:
-                    case LEFT: {
-                        operationRemoveCurrent();
-                        break;
-                    }
+            switch (ke.getCode()) {
+                case RIGHT:
+                case LEFT: {
+                    operationRemoveCurrent();
+                    break;
                 }
             }
         });
@@ -219,11 +238,23 @@ public class CList {
         for (int i = 1; i < listView.lines().length - 1; i++) {
             final CListLineView line = listView.lines()[i];
             line.getbDelete().setOnMouseClicked(event -> {
+                if (event.getSource() instanceof HText && ((HText)event.getSource()).isLocked()) return;
                 operationRemoveCurrent();
+            });
+            line.getbEdit().setOnMouseClicked(event -> {
+                if (event.getSource() instanceof HText && ((HText)event.getSource()).isLocked()) return;
+                operationShowEditDialog();
             });
         }
         listView.getGroup().setOnMouseClicked(event -> {
             operationList(event.getX(), event.getY());
+        });
+        listView.getEditDialog().setOnCancel(() -> {
+            operationHideEditDialog();
+        });
+        listView.getEditDialog().setOnSave(() -> {
+            operationHideEditDialog();
+            operationSaveEditedText();
         });
     }
 
@@ -272,8 +303,8 @@ public class CList {
         getView().locate(getCurrentWindow());
     }
 
-    public void locateIfNotLocked() {
-        if (!getView().isLocked()) {
+    public void locateIfNotAnimated() {
+        if (!getView().isAnimated()) {
             locate();
         }
     }

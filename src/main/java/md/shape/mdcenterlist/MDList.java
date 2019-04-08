@@ -14,4 +14,10 @@ public class MDList extends CList {
         super(new MDListView(parentContent, group, rect, colorSchema));
         setNewModel(new MDListModel(line));
     }
+
+    @Override
+    public void operationSaveEditedText() {
+        super.operationSaveEditedText();
+        //TODO save new word in config
+    }
 }
