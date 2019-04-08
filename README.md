@@ -1,6 +1,10 @@
 # mydict
 
-Suggested command to run: java -jar -Xmx400M mydict-1.2.jar
+It's required Java 8+ and javafx. 
+https://openjdk.java.net/install/
+https://openjfx.io/
+
+Suggested command to run: java -jar -Xmx400M mydict-1.4.jar
 
 This is a simple program with graphical interface to analize English texts and create a dictionary for learning.
 
