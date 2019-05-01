@@ -17,7 +17,7 @@ class RootFinderAnalyserTest {
         assertNotEquals("do", analyser.get("didn't"));
         assertNotEquals("bind", analyser.get("bound"));
         assertEquals("riv", analyser.get("rivers"));
-        assertEquals("happ", analyser.get("unhappiness"));
+        assertEquals("hap", analyser.get("unhappiness"));
         assertEquals("gust", analyser.get("disgusting"));
         assertEquals("print", analyser.get("printer"));
         assertEquals("hamburger", analyser.get("hamburger's"));
@@ -29,6 +29,8 @@ class RootFinderAnalyserTest {
         assertEquals("fals", analyser.get("false"));
         assertEquals("applicability", analyser.get("applicability"));
         assertEquals("applicability", analyser.get("'applicability'"));
+        assertEquals("longpop", analyser.get("longpopped"));
+        assertEquals("pop", analyser.get("popped"));
     }
 
 }

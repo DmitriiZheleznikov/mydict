@@ -65,6 +65,13 @@ public class RootFinderAnalyser extends AbstractWordAnalyser {
         return true;
     }
 
+    private boolean canBeReplaced(String word, String partFrom, String partTo) {
+        if (partFrom == null || partTo == null) return false;
+        if ((word.length() - partFrom.length() + partTo.length()) < MIN_WORD_LENGTH) return false;
+
+        return true;
+    }
+
     private String findEnd(String word) {
         for (String end : DATA_END) {
             if (word.endsWith(end)) return end;
@@ -80,9 +87,11 @@ public class RootFinderAnalyser extends AbstractWordAnalyser {
     }
 
     private String replaceEnd(String word) {
-        for (String key : DATA_END_REPLACE.keySet()) {
-            if (word.endsWith(key) && canBeRemoved(word, key)) {
-                word = word.substring(0, word.length()-key.length()) + DATA_END_REPLACE.get(key);
+        for (Map.Entry<String, String> entry : DATA_END_REPLACE.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            if (word.endsWith(key) && canBeReplaced(word, key, value)) {
+                word = word.substring(0, word.length()-key.length()) + value;
             }
         }
         return word;

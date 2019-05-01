@@ -267,7 +267,6 @@ day-to-day == day to day
 for the time being
 from now on
 from time to time
-in the long run
 high time
 just in time == just in the nick of time
 just in the nick of time
@@ -534,7 +533,6 @@ as fit as a fiddle
 as good as gold
 as good luck would have it
 as happy as
-as happy as _ == as happy as
 as happy as a clam == as happy as
 as happy as a sandboy == as happy as
 as happy as larry == as happy as
@@ -1383,6 +1381,9 @@ hobby horse == hobby-horse
 hocus pocus
 hoi polloi
 hoist with your own petard
+hoist by your own petard == hoist with your own petard
+hoist a flag
+hoist a sail == hoist a flag
 hoity-toity
 hoity toity == hoity-toity
 hold a candle to == can't hold a candle to
@@ -2104,8 +2105,7 @@ don't cross the bridge till you come to it
 don't cut off your nose to spite your face
 don't get mad, get even
 don't leave your manners on the doorstep
-don't let the cat out of the bag
-let the cat out of the bag == don't let the cat out of the bag
+let the cat out of the bag
 don't let the grass grow under your feet
 don't meet troubles half-way
 don't mix business with pleasure
@@ -2498,6 +2498,7 @@ put the mockers on
 put the wood in the hole
 put up your dukes
 put your back up
+get your back up == put your back up
 put your nose out of joint
 pyrric victory
 quality time
@@ -3353,6 +3354,7 @@ burn my bridges
 burn my fingers
 get my fingers burnt == burn my fingers
 the burning question
+the burning issue == the burning question
 business as usual
 business is business
 busman's holiday
@@ -4610,7 +4612,6 @@ on the mend
 method in his madness
 middle of nowhere
 middle-of-the-road == middle of the road
-MOR == middle of the road
 smack dab in the middle
 look or feel like a million dollars
 millstone around your neck
@@ -5457,6 +5458,8 @@ take him down a peg == take down a peg
 take in good part
 took it in good part == take in good part
 take _ in your stride
+get into your stride == take _ in your stride
+hit your stride == take _ in your stride
 take _ lying down
 take no for an answer
 take offline
@@ -5671,3 +5674,218 @@ your wish is my command
 zero in on something
 zeroed in on
 lick _ boots
+
+be out of someone's league
+be in a league of your own
+be in a different league from someone
+what the heck
+take _ for granted
+conspiracy of silence
+conspiracy theory
+riding for a fall
+you get out what you put in
+work your butt off
+mess with someone's head
+get your own back
+grappling hook/iron
+grappling iron == grappling hook/iron
+grappling hook == grappling hook/iron
+pay the ultimate price/make the ultimate sacrifice
+make the ultimate sacrifice == pay the ultimate price/make the ultimate sacrifice
+pay the ultimate price == pay the ultimate price/make the ultimate sacrifice
+put on an act
+be putting it on
+put on airs and graces
+His modesty is all put on
+put on pace
+get/go into a huddle
+get into a huddle == get/go into a huddle
+go into a huddle == get/go into a huddle
+get _ into trouble
+come/get/fall into line
+come into line == come/get/fall into line
+get into line == come/get/fall into line
+fall into line == come/get/fall into line
+get your claws into
+get _ into your head
+get your hooks into
+get your teeth into
+jump/get into bed with
+jump into bed with == jump/get into bed with
+get into bed with == jump/get into bed with
+be in/get into a (real) state
+be in a real state == be in/get into a (real) state
+get into a real state == be in/get into a (real) state
+be in a state == be in/get into a (real) state
+get into a state == be in/get into a (real) state
+get into conversation
+get it into/through your head
+get it into your head == get it into/through your head
+get it through your head == get it into/through your head
+get into the swing of
+enter/get into the spirit of
+enter into the spirit of == enter/get into the spirit of
+get into the spirit of == enter/get into the spirit of
+get/climb/jump into the sack with
+jump into the sack with == get/climb/jump into the sack with
+climb into the sack with == get/climb/jump into the sack with
+get into the sack with == get/climb/jump into the sack with
+get _ into/through your thick head/skull
+get _ into your thick head == get _ into/through your thick head/skull
+get _ into your thick skull == get _ into/through your thick head/skull
+get _ through your thick head == get _ into/through your thick head/skull
+get _ through your thick skull == get _ into/through your thick head/skull
+what's gotten into _?
+in the sense that
+rest assured
+Out of the pan into the fire
+lodge power with
+not to do a stitch of work
+put on the dog
+an early grave
+a watery grave
+dig your own grave
+from cradle to grave
+rise from the dead/grave
+rise from the dead == rise from the dead/grave
+rise from the grave == rise from the dead/grave
+have one foot in the grave
+someone would turn over in their grave
+silent/quiet as the grave
+silent as the grave == silent/quiet as the grave
+quiet as the grave == silent/quiet as the grave
+a grave expression/face
+a grave expression == a grave expression/face
+a grave face == a grave expression/face
+get _ straight
+let me get this straight == get _ straight
+chop and change
+be for the chop
+get/be given the chop
+be given the chop == get/be given the chop
+get given the chop == get/be given the chop
+put in a squeak
+not hear a squeak from
+not hear a squeak out of  == not hear a squeak from
+have a narrow squeak
+have a near squeak == have a narrow squeak
+have a tight squeak == have a narrow squeak
+take _ on board
+ham it up
+steer a course
+steering committee
+no contest
+backup light
+traffic backup
+backup in the sink
+be on the lookout for
+it's your lookout
+get to know
+play hard to get
+get to first base
+get back to basics
+go back to basics == get back to basics
+get down to business
+come to the point
+get to the point == come to the point
+get down to brass tacks
+get what's coming to you
+nothing to get excited about
+be accustomed to
+get accustomed to == be accustomed to
+get to the bottom of
+get to work
+go to work == get to work
+set to work == get to work
+have something down to a fine art
+get something down to a fine art == have something down to a fine art
+take aim
+he’s aim is true
+take a bow
+have a whale of a time
+no rhyme or reason
+die in a ditch
+not make a scrap of difference
+make a scrap of difference == not make a scrap of difference
+thread a needle
+hang by a thread
+thread your fingers through
+thread your way
+thread at screw
+pick up/take up the threads
+pick up the threads == pick up/take up the threads
+take up the threads == pick up/take up the threads
+let the genie out of the bottle
+come out of the closet
+come out of left field
+come out on top
+come out tops == come out on top
+it will come out in the wash
+crawl out of the woodwork == come out of the woodwork
+come out smelling like a rose
+come out on the right side
+come out on the wrong side
+come out with _ life
+make a shift
+hold on a minute
+hang on a minute == hold on a minute
+hold on like grim death
+put a hold on something
+loosen your hold
+loosen your grip == loosen your hold
+keep a tight hold on
+keep a tight rein on == keep a tight hold on
+keep a tight grip on == keep a tight hold on
+on hold
+revenge yourself on _ for
+revenge yourself on == revenge yourself on _ for
+be revenged on _ for
+be revenged on == be revenged on _ for
+a stick to beat _ with
+pop in/into/over/out/down
+pop in == pop in/into/over/out/down
+pop into == pop in/into/over/out/down
+pop over == pop in/into/over/out/down
+pop out == pop in/into/over/out/down
+pop down == pop in/into/over/out/down
+hang out your shingle
+in sympathy
+sympathy card
+sympathy strike
+tea and sympathy
+offer your sympathy
+extend your sympathy == offer your sympathy
+sympathies lay with
+in the long run/term
+in the long run== in the long run/term
+in the long term == in the long run/term
+in the short run/term
+in the short run == in the short run/term
+in the short term == in the short run/term
+awareness bracelet
+awareness band == awareness bracelet
+black lung
+heart-lung machine
+the odds are in favor of
+odds-on
+long odds
+at odds with
+over the odds
+short odds
+what is the odds?
+the odds-on favorite
+odds are stacked against
+it doesn't make any odds
+even odds
+make odds even
+it makes no odds
+get-together
+get your shit together
+frame-up
+cold frame
+time frame
+freeze-frame
+window frame
+climbing frame
+frame of mind
+frame of reference
