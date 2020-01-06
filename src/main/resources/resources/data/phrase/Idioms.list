@@ -1,9 +1,9 @@
-#Idioms and phrases are searched in text as is (not like phrasal verbs 'bring him along', 'him' inside 'bring along'), this is a list of phrases
-#Prases in lower case are expected, one phrase on one line
+#Idioms ands are searched in text as is (not like phrasal verbs 'bring him along', 'him' inside 'bring along'), this is a list ofs
+#Prases in lower case are expected, one on one line
 
 # 1. several versions ==
 #There is ability to point special case, when some idiom/phrase are used in wrong way,
-#for example in movie "Back To The Future I" Biff uses phrase "make like a tree and get out of here" with mistake,
+#for example in movie "Back To The Future I" Biff uses "make like a tree and get out of here" with mistake,
 #correct version is "make like a tree and leave" and actually they are equal and it would be nice if it would be detected.
 #In this case special construction "==" can be used, like this:
 #"make like a tree and get out of here == make like a tree and leave"
@@ -25,7 +25,7 @@
 # "a", "an", "the" are skipped (to cover mistakes)
 
 # 4. skip word _
-# in case phrase contains underscore symbol _ it will be tracked as any word in this place
+# in case contains underscore symbol _ it will be tracked as any word in this place
 # Following phases will be taken as same:
 # - in someone's good books
 # - in his good books
@@ -654,7 +654,7 @@ beware the ides of march
 beyond belief
 beyond our ken
 beyond the pale
-biblical phrases
+biblicals
 the big apple
 the big cheese
 the big easy
@@ -875,7 +875,7 @@ cockup == cock-up
 cock up == cock-up
 cockney rhyming slang
 cogito ergo sum
-coin a phrase
+coin a
 cold as any stone
 cold comfort
 cold enough to freeze the balls off a brass monkey
@@ -1056,7 +1056,7 @@ the ends of the earth
 enough is as good as a feast
 enough is enough
 englishman's home is his castle
-eponymous phrases
+eponymouss
 et tu, brute
 ethnic cleansing
 euphemisms
@@ -1100,7 +1100,7 @@ far be it from me
 far from the madding crowd
 farmers
 fashion victim
-the word fast, and phrases that derive from it.
+the word fast, ands that derive from it.
 fast and loose
 fast asleep
 fathom out
@@ -1176,7 +1176,7 @@ four by two
 four corners of the earth
 frailty, thy name is woman
 freezing temperatures
-french phrases
+frenchs
 friday afternoon car
 friends, romans, countrymen, lend me your ears
 a frog in the throat
@@ -1579,7 +1579,7 @@ lardy dardy == lardy-dardy
 lark about
 last but not least
 last straw == the last straw
-latin phrases
+latins
 laugh like a drain
 laughing-stock
 laughing stock == laughing-stock
@@ -1780,7 +1780,7 @@ namby-pamby
 namby pamby == namby-pamby
 name and shame
 nasty, brutish and short
-nautical phrases
+nauticals
 near the knuckle
 necessity is the mother of invention
 ne'er do well
@@ -2157,6 +2157,7 @@ for want of a nail the shoe was lost == for want of a nail the shoe was lost; fo
 forgive and forget
 fortune favours the brave
 from the sublime to the ridiculous is only one step
+from the sublime to the ridiculous == from the sublime to the ridiculous is only one step
 genius is an infinite capacity for taking pains
 genius is one percent inspiration, ninety-nine percent perspiration
 genius is one percent inspiration, ninety nine percent perspiration == genius is one percent inspiration, ninety-nine percent perspiration
@@ -2531,7 +2532,7 @@ red-letter day
 red letter day == red-letter day
 red sky at night ...
 red tape
-reduplicated phrases
+reduplicateds
 religion is the opium of the people
 rest on his laurels
 rhyme nor reason
@@ -2675,7 +2676,7 @@ vanish into thin air
 we few, we happy few, we band of brothers
 we have seen better days
 wear your heart on your sleeve
-what a piece of work is man
+what a piece of work is
 what's in a name? that which we call a rose by any other name would smell as sweet
 when sorrows come, they come not single spies, but in battalions
 where the bee sucks, there suck i
@@ -2806,7 +2807,7 @@ talk the talk
 talk through my hat
 talk to the hand
 tall story
-tattoo phrases and sayings
+tattoos and sayings
 tawdry
 tea leaf
 technicolor yawn
@@ -2914,7 +2915,7 @@ trouble and strife
 true blue
 tuckered out
 turn a blind eye
-turn of phrase
+turn of
 turn the tables
 turn up for the books
 turn up trumps
@@ -5889,3 +5890,92 @@ window frame
 climbing frame
 frame of mind
 frame of reference
+is a piece of work
+might just as well
+could just as well == might just as well
+may just as well == might just as well
+barrel bomb
+pork barrel
+barrel organ
+empty barrel
+barrel-chested
+not a barrel of laughs
+lock, stock, and barrel
+barrel down/into/through
+barrel down == barrel down/into/through
+barrel into == barrel down/into/through
+barrel through == barrel down/into/through
+to wit
+half-wit
+keen on _
+a keen eye for _
+peachy-keen
+powers of observation
+under observation
+observation post
+hush puppy
+this/that puppy
+this puppy == this/that puppy
+that puppy == this/that puppy
+novelty wears off
+lead nowhere
+get nowhere
+go nowhere == get nowhere
+out of nowhere
+from nowhere
+in the middle of nowhere
+nowhere near
+not anywhere near == nowhere near
+be going nowhere fast
+be getting nowhere fast == be going nowhere fast
+flattery will get you nowhere
+get nowhere
+nowhere to be seen/in sight/to be found
+nowhere to be seen == nowhere to be seen/in sight/to be found
+nowhere in sight == nowhere to be seen/in sight/to be found
+nowhere to be found == nowhere to be seen/in sight/to be found
+don't you go nowhere
+get stuck in
+get in on the act
+get a look-in
+have a look-in == get a look-in
+get it in the neck
+not get a word in edgeways
+be lost in the shuffle
+get lost in the shuffle == be lost in the shuffle
+be/get caught (up) in something
+get caught in something == be/get caught (up) in something
+get caught up in something == be/get caught (up) in something
+be caught in something == be/get caught (up) in something
+be caught up in something == be/get caught (up) in something
+be in on the ground floor
+get in on the ground floor == be in on the ground floor
+get your knickers in a twist
+be mixed up in something
+get mixed up in something == be mixed up in something
+be in/get into a (real) state
+be in a state == be in/get into a (real) state
+be in a real state == be in/get into a (real) state
+get into a state == be in/get into a (real) state
+get into a real state == be in/get into a (real) state
+be tangled up in
+get tangled up in == be tangled up in
+get in the way of
+get your butt in/out of/over here
+get your butt in over here == get your butt in/out of/over here
+get your butt out of here == get your butt in/out of/over here
+nothing to sneeze at
+a break in the weather
+break out in a sweat
+cardboard cut-out
+pick and choose
+pick a lock
+pick your nose
+pick _ pocket
+pick your teeth
+pick _ to pieces
+pick your way somewhere
+pick a winner
+cleft sentence
+cleft palate
+pseudo-cleft sentence

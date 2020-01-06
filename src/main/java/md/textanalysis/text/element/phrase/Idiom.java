@@ -71,6 +71,7 @@ public class Idiom extends Phrase {
         TO_SKIP.addAll(POSSESSIVE_PRONOUNS);
         TO_SKIP.addAll(POSSESSIVE_PRONOUNS_2);
         TO_SKIP.add("_");
+        TO_SKIP.add("just");
 
         CAUSE_OF_GAP.addAll(PRONOUNS);
         CAUSE_OF_GAP.addAll(POSSESSIVE_PRONOUNS);
@@ -105,7 +106,7 @@ public class Idiom extends Phrase {
     public String toString(int startPos, boolean lower) {
         String result = super.toString(startPos, lower);
         result = result.replaceAll(" _", " [word]");
-        result = result.replaceAll("_ ", " [word]");
+        result = result.replaceAll("_ ", "[word] ");
 
         return result;
     }

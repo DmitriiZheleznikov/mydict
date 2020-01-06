@@ -202,4 +202,29 @@ class IdiomFinderAnalyserTest {
 
         assertEquals(expected, context.getLower());
     }
+
+    @Test
+    void process4_3() throws IOException, URISyntaxException {
+        TextAnalyserHelper.init();
+        IdiomFinderAnalyser analyser = new IdiomFinderAnalyser();
+        analyser.init();
+
+        String expected = "might just as well";
+
+        List<AbstractWord> entities = new ArrayList<>();
+        entities.add(new Word("might"));
+        entities.add(new Word("as"));
+        entities.add(new Word("well"));
+
+        new TextPhrasesCreator().perform(entities);
+        entities.get(0).getPhrase().init();
+
+        new TextOrderNumberSetter().perform(entities);
+        AContext context = new AContext();
+        context.nextWord(entities.get(0));
+
+        analyser.process(context);
+
+        assertEquals(expected, context.getLower());
+    }
 }
